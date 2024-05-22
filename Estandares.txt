@@ -19,9 +19,9 @@ Estandares de Nombres:
 
 Recomendaciones: (no obligatorio pero se recomienda).
 
-6: Se aconseja las funciones sean referenciadas en documentación o comentarios como: su nombre seguido de '()'. Ejemplo Sumar().
+1: Se aconseja las funciones sean referenciadas en documentación o comentarios como: su nombre seguido de '()'. Ejemplo Sumar().
 
-7: Se aconseja que cada vez que se referecie en documentación o comentarios un elemento se deberá utilizar el nombre dado a este. Ejemplo: una funcion llamado Imprimer_Precio() debera se referenciada como Imprimir_Precio() en vez de "La funcion que imprime el precio".
+2: Se aconseja que cada vez que se referecie en documentación o comentarios un elemento se deberá utilizar el nombre dado a este. Ejemplo: una funcion llamado Imprimer_Precio() debera se referenciada como Imprimir_Precio() en vez de "La funcion que imprime el precio".
 
 Criticas: 
 
