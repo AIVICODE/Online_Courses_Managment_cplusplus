@@ -1,0 +1,32 @@
+Estandares de Nombres:
+
+
+1: Las palabras de los nombres (de variables, funciones, clases, etc) van separados por guion bajo.
+
+2: Las variables, parametos, atributos y los nombres de los tipos de datos genericos (ej: integer, string)  van en todo minuscula.
+
+3: Las constantes van en todo mayuscula.
+
+4: Para las funciones, datatypes, clases, las enumeraciones, los structs e interfaces: empiezan con mayuscula. 
+
+5: Los datatype son: empiezan por DT_ seguido por el nombre de la clase a la cual representan.
+
+6: No se deben utilizar tildes.
+
+7: La "ñ" deberá se replazada por "ni".
+
+8: Utilizar palabras completas.
+
+Recomendaciones: (no obligatorio pero se recomienda).
+
+6: Se aconseja las funciones sean referenciadas en documentación o comentarios como: su nombre seguido de '()'. Ejemplo Sumar().
+
+7: Se aconseja que cada vez que se referecie en documentación o comentarios un elemento se deberá utilizar el nombre dado a este. Ejemplo: una funcion llamado Imprimer_Precio() debera se referenciada como Imprimir_Precio() en vez de "La funcion que imprime el precio".
+
+Criticas: 
+
+1: Una vez por semana cada compañero debe revisar el trabajo de todos sus compañeros detalladamente.
+
+2: Si durante una inspección un compañero nota un problema con el trabajo de otro compañero, este debera escribir su critica en la lista "Criticas" de Trello, y debe escribirse: primero el nombre del Compañero seguido de ':' y la critica.
+
+3: Si el problema necesita discusión se debera agendar una fecha y hora para realizar una videoconferencia discutiendo el asunto.
