@@ -7,7 +7,7 @@
 
 #include "../headers/Estudiante.h"
 
-Estudiante::Estudiante() {
+Estudiante::Estudiante() : Usuario() {
 	// TODO Auto-generated constructor stub
 
 }
