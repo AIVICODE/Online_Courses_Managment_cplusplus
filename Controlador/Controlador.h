@@ -9,6 +9,7 @@
 #define LABFINAL_CONTROLADOR_CONTROLADOR_H_
 
 #include "../Interfaces/IControlador.h"
+#include "../DT/DTUsuario.h"
 
 class Controlador : public IControlador{
 
@@ -17,6 +18,8 @@ private:
 	Controlador();
 public:
 	static IControlador* Get_Instancia();
+
+	void ingresarUsuario(DTUsuario* user);
 
 
 	virtual ~Controlador();

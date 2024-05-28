@@ -21,6 +21,11 @@ IControlador* Controlador::Get_Instancia() {
     return instancia;
 }
 
+void Controlador::ingresarUsuario(DTUsuario* user) {
+	cout<<"Igresando Usuario"<<endl;
+}
+
+
 Controlador::Controlador() {
     // Inicialización específica de Controlador si es necesario
 }
