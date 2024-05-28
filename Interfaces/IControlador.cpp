@@ -1,18 +1,18 @@
 /*
- * Lecciones.cpp
+ * IControlador.cpp
  *
  *  Created on: May 27, 2024
  *      Author: ivan
  */
 
-#include "../headers/Lecciones.h"
+#include "IControlador.h"
 
-Lecciones::Lecciones() {
+IControlador::IControlador() {
 	// TODO Auto-generated constructor stub
 
 }
 
-Lecciones::~Lecciones() {
+IControlador::~IControlador() {
 	// TODO Auto-generated destructor stub
 }
 

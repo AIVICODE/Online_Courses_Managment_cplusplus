@@ -14,7 +14,7 @@ private:
         //string objetivo;
         //set<Ejercicio*> ejercicios;
     public:
-       Leccion();
+       Lecciones();
         //Leccion(string descripcion);
         //Leccion(string tema, string objetivo);
         //Leccion(string tema,string objetivo,set<Ejercicio*>);
@@ -33,7 +33,7 @@ private:
         //void crearEjercicioYAgregarlo(string desc);
 
 
-        ~Leccion();
+        ~Lecciones();
 };
 
 #endif /* LABFINAL_LECCIONES_H_ */

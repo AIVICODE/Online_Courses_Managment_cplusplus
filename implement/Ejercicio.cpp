@@ -1,18 +1,18 @@
 /*
- * Lecciones.cpp
+ * Ejercicio.cpp
  *
  *  Created on: May 27, 2024
  *      Author: ivan
  */
 
-#include "../headers/Lecciones.h"
+#include "../headers/Ejercicio.h"
 
-Lecciones::Lecciones() {
+Ejercicio::Ejercicio() {
 	// TODO Auto-generated constructor stub
 
 }
 
-Lecciones::~Lecciones() {
+Ejercicio::~Ejercicio() {
 	// TODO Auto-generated destructor stub
 }
 
