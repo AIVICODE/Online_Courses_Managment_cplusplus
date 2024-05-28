@@ -14,7 +14,7 @@
 
 using namespace std;
 
-/* Clase Abstracta */
+/* Class Abstracta*/
 class Usuario {
     private:
 

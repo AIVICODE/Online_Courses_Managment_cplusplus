@@ -10,8 +10,8 @@
 
 class IControlador {
 public:
-	IControlador();
-	virtual ~IControlador();
+
+	virtual ~IControlador()=default;
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

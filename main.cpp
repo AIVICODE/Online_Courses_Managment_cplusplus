@@ -6,8 +6,14 @@
  */
 
 
+#include "Interfaces/IControlador.h"
+#include "Controlador/Controlador.h"
+
+#include <iostream>
+using namespace std;
 int main() {
-    // Your code here
-    return 0;
+
+    IControlador* instanciaControlador = Controlador::Get_Instancia();
+	return 0;
 }
 

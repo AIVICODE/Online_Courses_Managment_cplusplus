@@ -4,8 +4,9 @@ HEADERS= headers/
 IMPLEMENT= implement/
 CONTROLADOR= Controlador/
 INTERFACE= Interfaces/
+EXE = programa
 DT= DT/
-OBJS = main.o Curso.o Usuario.o Estudiante.o Profesor.o Lecciones.o Ejercicio.o Controlador.o
+OBJS = main.o Curso.o Usuario.o Estudiante.o Profesor.o Lecciones.o Ejercicio.o Controlador.o 
 BINARIO = programa
 
 all: programa
@@ -38,8 +39,14 @@ Ejercicio.o: $(IMPLEMENT)Ejercicio.cpp $(HEADERS)Ejercicio.h
 Controlador.o: $(CONTROLADOR)Controlador.cpp $(CONTROLADOR)Controlador.h
 	$(CXX) $(CXXFLAGS) -c $(CONTROLADOR)Controlador.cpp
 	
-IControlador.o: $(INTERFACE)IControlador.cpp $(INTERFACE)IControlador.h
-	$(CXX) $(CXXFLAGS) -c $(INTERFACE)IControlador.cpp
+IControlador.o: $(INTERFACE)IControlador.h
+
+
+build: $(EXE)
 	
 clean:
 	rm -f $(BINARIO) $(OBJS)
+	
+run: $(EXE)
+	@clear
+	@./$(EXE)	

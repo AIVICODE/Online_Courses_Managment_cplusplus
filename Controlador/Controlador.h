@@ -11,8 +11,14 @@
 #include "../Interfaces/IControlador.h"
 
 class Controlador : public IControlador{
-public:
+
+private:
+	static Controlador* instancia;
 	Controlador();
+public:
+	static IControlador* Get_Instancia();
+
+
 	virtual ~Controlador();
 };
 
