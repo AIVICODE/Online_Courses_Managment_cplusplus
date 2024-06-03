@@ -7,8 +7,8 @@
 
 #ifndef ESTUDIANTE_H_
 #define ESTUDIANTE_H_
-
-class Estudiante {
+#include "Usuario.h"
+class Estudiante : public Usuario{
 public:
 	Estudiante();
 	virtual ~Estudiante();

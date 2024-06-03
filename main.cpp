@@ -6,8 +6,21 @@
  */
 
 
+#include "Interfaces/IControlador.h"
+#include "Controlador/Controlador.h"
+#include "DT/DTUsuario.h"
+#include <iostream>
+
+#include <iostream>
+using namespace std;
 int main() {
-    // Your code here
-    return 0;
+    IControlador* instanciaControlador = Controlador::Get_Instancia();
+    DTUsuario* u = new DTUsuario("nickname", "contrasenia", "nombre", "descripcion");
+
+       // Asegúrate de liberar la memoria cuando ya no la necesites
+
+    instanciaControlador->ingresarUsuario(u);
+    delete u;
+	return 0;
 }
 

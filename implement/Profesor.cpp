@@ -7,7 +7,7 @@
 
 #include "../headers/Profesor.h"
 
-Profesor::Profesor() {
+Profesor::Profesor() : Usuario(){
 	// TODO Auto-generated constructor stub
 
 }
