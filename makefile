@@ -6,7 +6,8 @@ CONTROLADOR= Controlador/
 INTERFACE= Interfaces/
 EXE = programa
 DT= DT/
-OBJS = main.o Curso.o Usuario.o Estudiante.o Profesor.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o 
+SYS= System/
+OBJS = main.o Curso.o Usuario.o Estudiante.o Profesor.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o System.o
 BINARIO = programa
 
 all: programa
@@ -46,6 +47,10 @@ IControlador.o: $(INTERFACE)IControlador.h
 #DATATYPES
 DTUsuario.o: $(DT)DTUsuario.cpp $(DT)DTUsuario.h
 	$(CXX) $(CXXFLAGS) -c $(DT)DTUsuario.cpp
+	
+#SYSTEM
+System.o: $(SYS)System.cpp $(SYS)System.h
+	$(CXX) $(CXXFLAGS) -c $(SYS)System.cpp
 
 build: $(EXE)
 	
