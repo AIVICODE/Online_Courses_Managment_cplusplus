@@ -4,7 +4,8 @@
 
 
 #include "../Interfaces/IControlador.h"
-#include "../"
+#include "../Controlador/Controlador.h"
+
 using namespace std;
 
 
@@ -16,5 +17,6 @@ class System {
 	    public:
 	        static System *Get_Instancia();
 	        ~System();
+	        void Alta_De_Usuario();
 	};
 #endif /* LABFINAL_SYSTEM_ICONTROLADOR_H_ */
