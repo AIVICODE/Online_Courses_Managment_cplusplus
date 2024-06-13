@@ -11,24 +11,19 @@
 #include <iostream>
 using namespace std;
 
-Controlador* Controlador::instancia = NULL;
 
-
-IControlador* Controlador::Get_Instancia() {
-    if (instancia == NULL) {
-        instancia = new Controlador();
-    }
-    return instancia;
+Controlador::Controlador() {
+	//obtendo la unica instancia del Sistema
+	this->sistema = System::Get_Instancia();
 }
+
+
 
 void Controlador::ingresarUsuario(DTUsuario* user) {
 	cout<<"Igresando Usuario"<<endl;
 }
 
 
-Controlador::Controlador() {
-    // Inicialización específica de Controlador si es necesario
-}
 Controlador::~Controlador() {
 	// TODO Auto-generated destructor stub
 }
