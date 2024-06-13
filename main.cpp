@@ -7,18 +7,19 @@
 
 
 
-#include "System/System.h"
+#include "Presentacion/Alta_De_Usuario.h"
 
 #include <iostream>
+
 using namespace std;
 int main() {
 	bool quiereContinuar = true;
 
 	    // Inicializar sistema
-	    System *sistema = System::Get_Instancia();
+
 
 	    do {
-	        //imprimirMenu();
+	       //IMPORTANTE //imprimirMenu();
 
 	        int num;
 	            cout << "Ingrese una opción: ";
@@ -26,7 +27,10 @@ int main() {
 
 	        switch (num) {
 	            case 1:
-	                sistema->Alta_De_Usuario();
+	            	{
+	                AltaUsuario altaUsuario;
+	                altaUsuario.altaUsuario();
+	            	}
 	                break;
 	            case 2:
 	                //sistema->Consulta_De_Usuario();
@@ -75,7 +79,6 @@ int main() {
 
 	    } while (quiereContinuar);
 
-	    delete sistema;
 	return 0;
 }
 

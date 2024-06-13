@@ -10,18 +10,18 @@
 
 #include "../Interfaces/IControlador.h"
 #include "../DT/DTUsuario.h"
+#include "../System/System.h"
 
 class Controlador : public IControlador{
 
 private:
-	static Controlador* instancia;
-	Controlador();
+	System* sistema;
+
 public:
-	static IControlador* Get_Instancia();
 
 	void ingresarUsuario(DTUsuario* user);
 
-
+	Controlador();
 	virtual ~Controlador();
 };
 

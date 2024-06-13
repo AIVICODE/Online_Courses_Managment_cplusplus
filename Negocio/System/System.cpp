@@ -19,13 +19,6 @@ System *System::Get_Instancia() {
     return instance;
 }
 
-void System::Alta_De_Usuario() {
-    IControlador* instanciaControlador = Controlador::Get_Instancia();
-
-	DTUsuario* u = new DTUsuario("nickname", "contrasenia", "nombre", "descripcion");
-	instanciaControlador->ingresarUsuario(u);
-}
-
 System::~System() {
 
 }

@@ -1,13 +1,14 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall
-HEADERS= headers/
-IMPLEMENT= implement/
-CONTROLADOR= Controlador/
-INTERFACE= Interfaces/
+HEADERS= Negocio/headers/
+IMPLEMENT= Negocio/Clases/
+CONTROLADOR= Negocio/Controlador/
+INTERFACE= Negocio/Interfaces/
 EXE = programa
-DT= DT/
-SYS= System/
-OBJS = main.o Curso.o Usuario.o Estudiante.o Profesor.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o System.o
+DT= Negocio/DT/
+SYS= Negocio/System/
+PRESENT= Presentacion/
+OBJS = main.o Curso.o Usuario.o Estudiante.o Profesor.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o System.o Alta_De_Usuario.o
 BINARIO = programa
 
 all: programa
@@ -51,6 +52,10 @@ DTUsuario.o: $(DT)DTUsuario.cpp $(DT)DTUsuario.h
 #SYSTEM
 System.o: $(SYS)System.cpp $(SYS)System.h
 	$(CXX) $(CXXFLAGS) -c $(SYS)System.cpp
+	
+#PRESENTACION
+Alta_De_Usuario.o: $(PRESENT)Alta_De_Usuario.cpp $(PRESENT)Alta_De_Usuario.h
+	$(CXX) $(CXXFLAGS) -c $(PRESENT)Alta_De_Usuario.cpp
 
 build: $(EXE)
 	
