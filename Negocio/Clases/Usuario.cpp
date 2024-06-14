@@ -12,7 +12,18 @@ Usuario::Usuario() {
 
 }
 
+Usuario::Usuario(string nickname, string contrasenia, string nombre, string descripcion/*, int tipo*/) {
+    this->nickname = nickname;
+    this->contrasenia = contrasenia;
+    this->nombre = nombre;
+    this->descripcion = descripcion;
+
+}
+
 Usuario::~Usuario() {
 	// TODO Auto-generated destructor stub
 }
 
+string Usuario::Get_Nick() {
+	return nickname;
+}

@@ -13,13 +13,15 @@
 class Profesor : public Usuario {
 private:
     //set<Idioma*> idiomasDeProfesor;
+	string instituto;
 public:
     Profesor();
-    //Profesor(string nickname, string contrasenia, string nombre, string descripcion, string instituto);
+    Profesor(string nickname, string contrasenia, string nombre, string descripcion, string instituto);
     //Profesor(string nickname, string contrasenia, string nombre, string descripcion, string instituto, set<Idioma*> idiomasDeProfesor);
 
     // Getters
-    //string getInstituto();
+    string getInstituto()const;
+
     //bool esProfesor();
     //bool esEstudiante();
 
