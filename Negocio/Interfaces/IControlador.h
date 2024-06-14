@@ -8,12 +8,14 @@
 #ifndef LABFINAL_INTERFACES_ICONTROLADOR_H_
 #define LABFINAL_INTERFACES_ICONTROLADOR_H_
 #include "../DT/DTUsuario.h"
+#include <string>
 
 class IControlador {
 public:
 
 	virtual void ingresarUsuario(DTUsuario* user) = 0;
 
+	virtual bool Verificar_Nick(string nick)=0;
 
 	virtual ~IControlador()=default;
 };

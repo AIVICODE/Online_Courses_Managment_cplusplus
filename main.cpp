@@ -30,6 +30,7 @@ int main() {
 	            	{
 	                AltaUsuario altaUsuario;
 	                altaUsuario.altaUsuario();
+	                //altaUsuario.~AltaUsuario();
 	            	}
 	                break;
 	            case 2:

@@ -8,7 +8,7 @@ EXE = programa
 DT= Negocio/DT/
 SYS= Negocio/System/
 PRESENT= Presentacion/
-OBJS = main.o Curso.o Usuario.o Estudiante.o Profesor.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o System.o Alta_De_Usuario.o
+OBJS = main.o Curso.o Usuario.o Estudiante.o Profesor.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o System.o Alta_De_Usuario.o
 BINARIO = programa
 
 all: programa
@@ -49,6 +49,14 @@ IControlador.o: $(INTERFACE)IControlador.h
 DTUsuario.o: $(DT)DTUsuario.cpp $(DT)DTUsuario.h
 	$(CXX) $(CXXFLAGS) -c $(DT)DTUsuario.cpp
 	
+DTProfesor.o: $(DT)DTProfesor.cpp $(DT)DTProfesor.h
+	$(CXX) $(CXXFLAGS) -c $(DT)DTProfesor.cpp
+	
+DTEstudiante.o: $(DT)DTEstudiante.cpp $(DT)DTEstudiante.h
+	$(CXX) $(CXXFLAGS) -c $(DT)DTEstudiante.cpp
+	
+DTFecha.o: $(DT)DTFecha.cpp $(DT)DTFecha.h
+	$(CXX) $(CXXFLAGS) -c $(DT)DTFecha.cpp
 #SYSTEM
 System.o: $(SYS)System.cpp $(SYS)System.h
 	$(CXX) $(CXXFLAGS) -c $(SYS)System.cpp

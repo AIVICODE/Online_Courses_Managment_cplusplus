@@ -11,8 +11,14 @@ Profesor::Profesor() : Usuario(){
 	// TODO Auto-generated constructor stub
 
 }
-
+Profesor::Profesor(string nickname, string contrasenia, string nombre, string descripcion, string instituto)
+    : Usuario(nickname, contrasenia, nombre, descripcion), instituto(instituto) {}
 Profesor::~Profesor() {
 	// TODO Auto-generated destructor stub
 }
+
+string Profesor::getInstituto() const{
+	return instituto;
+}
+
 

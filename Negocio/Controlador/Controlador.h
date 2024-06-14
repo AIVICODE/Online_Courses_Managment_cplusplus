@@ -11,6 +11,8 @@
 #include "../Interfaces/IControlador.h"
 #include "../DT/DTUsuario.h"
 #include "../System/System.h"
+#include <set>
+#include <string>
 
 class Controlador : public IControlador{
 
@@ -20,7 +22,7 @@ private:
 public:
 
 	void ingresarUsuario(DTUsuario* user);
-
+	bool Verificar_Nick(string nick);
 	Controlador();
 	virtual ~Controlador();
 };

@@ -28,8 +28,8 @@ class Usuario {
         Usuario(string nickname, string contrasenia, string nombre, string descripcion);
 
         // Get_ters
-        /*virtual string Get_Nickname();
-        virtual string Get_Contrasenia();
+        string Get_Nick();
+        /* virtual string Get_Contrasenia();
         virtual string Get_Nombre();
         virtual string Get_Descripcion();
 
