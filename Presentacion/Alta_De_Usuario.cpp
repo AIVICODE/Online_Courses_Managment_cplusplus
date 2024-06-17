@@ -111,7 +111,7 @@ DTUsuario* AltaUsuario::Ingresar_Estudiante() {
 
 	try {
 		DTFecha fecha(dia, mes, anio);
-		DTEstudiante *estudiante = new DTEstudiante(nickname, contrasenia,
+		DTEstudiante* estudiante = new DTEstudiante(nickname, contrasenia,
 				nombre, descripcion, pais, fecha);
 
 		this->controlador->ingresarUsuario(estudiante);

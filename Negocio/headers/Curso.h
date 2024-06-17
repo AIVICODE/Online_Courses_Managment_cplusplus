@@ -10,29 +10,33 @@
 
 #include <string>
 #include <list>
-
+#include "Tipo_Dificultad.h"
 
 using namespace std;
 
 class Curso {
-    private:
-        string nombre;
-        string descripcion;
-        //Nivel nivel;
-        bool disponible;
+private:
+	string nombre;
+	string descripcion;
+	Tipo_Dificultad dificultad;
+	bool disponible;
 
+public:
+	Curso();
+	Curso(std::string nombre, std::string descripcion,
+			Tipo_Dificultad dificultad, bool disponible); // Constructor actualizado
 
-    public:
-        Curso();
-        //Curso(string nombre, string descripcion, Nivel nivel, bool disponible);
-       // Curso(string nombre, string descripcion, Nivel nivel, bool disponible, Idioma* idioma, Profesor* profesor, vector<Leccion*> lecciones);
+	std::string getNombre() const;
+	std::string getDescripcion() const;
+	Tipo_Dificultad getDificultad() const;
+	std::string getDificultadString() const;
+	bool isDisponible() const;
 
-        // Getters
-        string Get_Nombre();
-        string Get_Descripcion();
-        //Nivel getNivel();
-        bool Get_Disponible();
-        list<string> evalua_progreso();
-        ~Curso();
-	};
+	void setNombre(std::string nombre);
+	void setDescripcion(std::string descripcion);
+	void setDificultad(Tipo_Dificultad dificultad);
+	void setDisponible(bool disponible);
+	list<string> evalua_progreso();
+	~Curso();
+};
 #endif /* CLASES_CURSO_H_ */
