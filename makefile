@@ -9,7 +9,7 @@ EXE = programa
 DT= Negocio/DT/
 SYS= Negocio/System/
 PRESENT= Presentacion/
-OBJS = main.o Curso.o Usuario.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o System.o Consultar_Estadisticas.o Alta_De_Usuario.o
+OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o System.o Alta_De_Curso.o Consultar_Estadisticas.o Alta_De_Usuario.o
 BINARIO = programa
 
 all: programa
@@ -46,6 +46,9 @@ Ejercicio.o: $(IMPLEMENT)Ejercicio.cpp $(HEADERS)Ejercicio.h
 Inscripcion.o: $(IMPLEMENT)Inscripcion.cpp $(HEADERS)Inscripcion.h
 	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Inscripcion.cpp
 	
+Tipo_Dificultad.o: $(IMPLEMENT)Tipo_Dificultad.cpp $(HEADERS)Tipo_Dificultad.h
+	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Tipo_Dificultad.cpp
+	
 	
 #CONTROLADORES
 Controlador.o: $(CONTROLADOR)Controlador.cpp $(CONTROLADOR)Controlador.h
@@ -72,6 +75,9 @@ System.o: $(SYS)System.cpp $(SYS)System.h
 #PRESENTACION
 Alta_De_Usuario.o: $(PRESENT)Alta_De_Usuario.cpp $(PRESENT)Alta_De_Usuario.h
 	$(CXX) $(CXXFLAGS) -c $(PRESENT)Alta_De_Usuario.cpp
+
+Alta_De_Curso.o: $(PRESENT)Alta_De_Curso.cpp $(PRESENT)Alta_De_Curso.h
+	$(CXX) $(CXXFLAGS) -c $(PRESENT)Alta_De_Curso.cpp
 	
 Consultar_Estadisticas.o: $(PRESENT)Consultar_Estadisticas.cpp $(PRESENT)Consultar_Estadisticas.h
 	$(CXX) $(CXXFLAGS) -c $(PRESENT)Consultar_Estadisticas.cpp

@@ -34,7 +34,8 @@ public:
 	Usuario* Buscar_Usuario(string nickname);
 	//fin consultar estadistica
 	Controlador();
-
+	//Alta curso
+	list<DTUsuario*> Listar_Profesores();
 	virtual ~Controlador();
 };
 
