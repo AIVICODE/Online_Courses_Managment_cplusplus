@@ -5,14 +5,14 @@
  *      Author: ivan
  */
 
-#include "../headers/Lecciones.h"
+#include "../headers/Leccion.h"
 
-Lecciones::Lecciones() {
+Leccion::Leccion() {
 	// TODO Auto-generated constructor stub
 
 }
 
-Lecciones::~Lecciones() {
+Leccion::~Leccion() {
 	// TODO Auto-generated destructor stub
 }
 

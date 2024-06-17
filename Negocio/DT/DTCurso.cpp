@@ -10,17 +10,17 @@
 
 #include <string>
 #include <iostream>
+#include <list>
 
 using namespace std;
 
 DTCurso::DTCurso() {}
 
 
-DTCurso::DTCurso(string nombre, string descripcion,int dificultad) {
-    this->nombre = nombre;
-    this->descripcion = descripcion;
-    this->dificultad=dificultad;
-}
+DTCurso::DTCurso(string nombre, string descripcion, int dificultad, string idioma, list<string> previas)
+    : nombre(nombre), descripcion(descripcion), dificultad(dificultad), idioma(idioma), previas(previas) {}
+
+// Getters
 string DTCurso::getNombre() const {
     return nombre;
 }
@@ -31,6 +31,13 @@ string DTCurso::getDescripcion() const {
 
 int DTCurso::getDificultad() const {
     return dificultad;
+}
+
+string DTCurso::getIdioma() const {
+    return idioma;
+}
+list<string> DTCurso::getPrevias() const {
+    return previas;
 }
 // Destructor
 

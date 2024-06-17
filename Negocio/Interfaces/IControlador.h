@@ -26,7 +26,7 @@ public:
 
 	virtual list<string> Listar_Idiomas()=0;
 
-	virtual Idioma* Existe_Idioma(const std::string& nombreIdioma)=0;
+	virtual bool Existe_Idioma(const std::string& nombreIdioma)=0;
 	//fin alta user
 
 	//consultar estadistica
@@ -40,9 +40,11 @@ public:
 
 
 	// Alta Curso
+	void virtual Agregar_Idioma_Curso(string idioma)=0;
 	virtual list <string> Listar_Cursos_Habiles()=0;
 	virtual bool Verificar_Nombre_Curso(const std::string& nombre)=0;
 	virtual void Crear_Curso(DTCurso* curso)=0;
+	virtual Idioma* Buscar_Idioma(string idioma)=0;
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

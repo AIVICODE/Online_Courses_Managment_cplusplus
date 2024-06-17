@@ -88,14 +88,34 @@ void Alta_De_Curso::CrearCurso(){
 
 			    dificultad = seleccionarDificultad();
 
-			    DTCurso* curso=new DTCurso(nombreCurso,descripcion,dificultad);
-			    this->controlador->Crear_Curso(curso);
+
+			   // this->controlador->Crear_Curso(curso);
 			    Muestro_Idiomas();
 			    cout << "Ingrese el Idioma: ";
 			    			    getline(cin, idioma);
-			    // el idioma debe quedar asociado al curso falta implementar eso.!!!
+
+
 			    Muestro_Cursos_Hab();
 
+			    char respuesta;
+			    cout << "Desea agregar previas al curso? (s/n): ";
+			    cin >> respuesta;
+			    cin.ignore(); // Limpiar el buffer de entrada
+
+			    list<string> previas;
+
+			    while (respuesta == 's' || respuesta == 'S') {
+			        string previa;
+			        cout << "Ingrese el nombre del curso previo: ";
+			        getline(cin, previa);
+			        previas.push_back(previa);
+
+			        cout << "Desea agregar otra previa al curso? (s/n): ";
+			        cin >> respuesta;
+			        cin.ignore(); // Limpiar el buffer de entrada
+			    }
+
+			    DTCurso* curso=new DTCurso(nombreCurso,descripcion,dificultad,idioma,previas);
 				break;
 			}
 		}

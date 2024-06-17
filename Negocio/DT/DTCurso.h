@@ -8,25 +8,29 @@
 #ifndef LABFINAL_DT_DTCURSO_H_
 #define LABFINAL_DT_DTCURSO_H_
 #include <string>
-#include <vector>
 
 
+#include <list>
 using namespace std;
 class DTCurso {
 private:
     string nombre;
     string descripcion;
     int dificultad;
+    string idioma;
+    list<string> previas;
 
 public:
 
     // Constructor
     DTCurso();
-    DTCurso(string nombre, string descripcion,int dificultad);
+    DTCurso(string nombre, string descripcion,int dificultad,string idioma,list<string> previas);
 
+    list<string> getPrevias() const;
     string getNombre() const;
     string getDescripcion() const;
     int getDificultad() const;
+    string getIdioma() const;
     // Destructor
     virtual ~DTCurso();
 };

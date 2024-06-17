@@ -8,13 +8,13 @@
 #ifndef LABFINAL_LECCIONES_H_
 #define LABFINAL_LECCIONES_H_
 
-class Lecciones {
+class Leccion {
 private:
        // string tema;
         //string objetivo;
         //set<Ejercicio*> ejercicios;
     public:
-       Lecciones();
+       Leccion();
         //Leccion(string descripcion);
         //Leccion(string tema, string objetivo);
         //Leccion(string tema,string objetivo,set<Ejercicio*>);
@@ -33,7 +33,7 @@ private:
         //void crearEjercicioYAgregarlo(string desc);
 
 
-        ~Lecciones();
+        ~Leccion();
 };
 
 #endif /* LABFINAL_LECCIONES_H_ */
