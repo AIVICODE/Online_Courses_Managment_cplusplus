@@ -113,6 +113,11 @@ void Controlador::Agregar_Especializacion(string idioma,string user){
 	    }
 	}
 
+//redundante pero quien sabe
+	if (enlaceIdioma == nullptr)
+	    // Si el idioma no existe, manejar el caso (por ejemplo, mostrar un mensaje de error)
+	    cout << "El idioma seleccionado no existe." << endl;
+
 
 	for (auto it = this->sistema->usuarios.begin(); it != this->sistema->usuarios.end(); it++) {
 	    // Verificar si el usuario es de tipo profesor
@@ -124,6 +129,15 @@ void Controlador::Agregar_Especializacion(string idioma,string user){
 	    }
 	}
 
+}
+
+Idioma* Controlador::Existe_Idioma(const std::string& nombreIdioma) {
+    for (auto it = this->sistema->idiomas.begin(); it != this->sistema->idiomas.end(); it++) {
+        if (nombreIdioma == (*it)->Get_Nombre()) {
+            return *it; // Retornar el puntero al idioma encontrado
+        }
+    }
+    return nullptr; // Si no se encuentra, retornar nullptr
 }
 
 Controlador::~Controlador() {

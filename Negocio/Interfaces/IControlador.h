@@ -8,6 +8,7 @@
 #ifndef LABFINAL_INTERFACES_ICONTROLADOR_H_
 #define LABFINAL_INTERFACES_ICONTROLADOR_H_
 #include "../DT/DTUsuario.h"
+#include "../headers/Idioma.h"
 #include <string>
 #include <list>
 
@@ -19,6 +20,8 @@ public:
 	virtual bool Verificar_Nick(string nick)=0;
 
 	virtual list<string> Listar_Idiomas()=0;
+
+	virtual Idioma* Existe_Idioma(const std::string& nombreIdioma)=0;
 
 	virtual ~IControlador()=default;
 
