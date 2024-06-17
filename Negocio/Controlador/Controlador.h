@@ -37,6 +37,8 @@ public:
 	//Alta curso
 	list<DTUsuario*> Listar_Profesores();
 	void Crear_Curso(DTCurso* curso);
+	bool Verificar_Nombre_Curso(const std::string& nombre);
+	list <string> Listar_Cursos_Habiles();
 	virtual ~Controlador();
 };
 
