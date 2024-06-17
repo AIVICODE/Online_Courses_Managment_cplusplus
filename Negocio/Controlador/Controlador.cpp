@@ -82,11 +82,11 @@ bool Controlador::Verificar_Nick(string nick) {
 }
 
 list<string> Controlador::Listar_Idiomas(){
-
+//PARA PRUEBAS
 	// Crear un nuevo idioma "inglés" y agregarlo al conjunto de idiomas
-	    Idioma* ingles = new Idioma("ingles");
-	    this->sistema->idiomas.insert(ingles);
-
+	    //Idioma* ingles = new Idioma("ingles");
+	   // this->sistema->idiomas.insert(ingles);
+//FIN PRUEBA
 	    // Lista para almacenar los nombres de los idiomas
 	    std::list<std::string> nombresIdiomas;
 
