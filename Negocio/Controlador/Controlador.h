@@ -25,7 +25,10 @@ public:
 	list<string> Listar_Idiomas();
 	bool Verificar_Nick(string nick);
 	void Agregar_Especializacion(string idioma,string user);
+	Idioma* Existe_Idioma(const std::string& nombreIdioma);
 	//Fin alta user
+
+
 	Controlador();
 
 	virtual ~Controlador();

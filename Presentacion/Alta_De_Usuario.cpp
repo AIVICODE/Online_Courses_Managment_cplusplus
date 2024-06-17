@@ -92,64 +92,77 @@ DTUsuario* AltaUsuario::Ingresar_Profesor() {
 }
 
 DTUsuario* AltaUsuario::Ingresar_Estudiante() {
-    string nickname, contrasenia, nombre, descripcion, pais;
-    int dia, mes, anio;
+	string nickname, contrasenia, nombre, descripcion, pais;
+	int dia, mes, anio;
 
-    if (!IngresarNickname(nickname)) {
-        cout << "Operación cancelada." << endl;
-        return nullptr;
-    }
+	if (!IngresarNickname(nickname)) {
+		cout << "Operación cancelada." << endl;
+		return nullptr;
+	}
 
-    cout << "Ingrese la contrasenia: ";
-    cin >> contrasenia;
-    cout << "Ingrese el nombre: ";
-    cin >> nombre;
-    cout << "Ingrese la descripcion: ";
-    cin >> descripcion;
-    cout << "Ingrese el pais: ";
-    cin >> pais;
-    cout << "Ingrese la fecha de nacimiento (dia mes anio): ";
-    cin >> dia >> mes >> anio;
+	cout << "Ingrese la contrasenia: ";
+	cin >> contrasenia;
+	cout << "Ingrese el nombre: ";
+	cin >> nombre;
+	cout << "Ingrese la descripcion: ";
+	cin >> descripcion;
+	cout << "Ingrese el pais: ";
+	cin >> pais;
+	cout << "Ingrese la fecha de nacimiento (dia mes anio): ";
+	cin >> dia >> mes >> anio;
 
-    try {
-        DTFecha fecha(dia, mes, anio);
-        DTEstudiante* estudiante = new DTEstudiante(nickname, contrasenia, nombre, descripcion, pais, fecha);
+	try {
+		DTFecha fecha(dia, mes, anio);
+		DTEstudiante *estudiante = new DTEstudiante(nickname, contrasenia,
+				nombre, descripcion, pais, fecha);
 
-        this->controlador->ingresarUsuario(estudiante);
-        return estudiante;
-    } catch (const invalid_argument& e) {
-        cerr << "Error: " << e.what() << endl;
-        return nullptr;
-    }
+		this->controlador->ingresarUsuario(estudiante);
+		return estudiante;
+	} catch (const invalid_argument &e) {
+		cerr << "Error: " << e.what() << endl;
+		return nullptr;
+	}
 }
 
-bool AltaUsuario::IngresarNickname(string& nickname) {
+bool AltaUsuario::IngresarNickname(string &nickname) {
+	while (true) {
+		cout << "Ingrese el nickname: ";
+		cin >> nickname;
+		if (this->controlador->Verificar_Nick(nickname)) {
+			cout << "El nickname '" << nickname << "' ya está en uso." << endl;
+			cout << "¿Desea intentar de nuevo? (s/n): ";
+			char opcion;
+			cin >> opcion;
+			if (opcion == 'n' || opcion == 'N') {
+				return false; // cancelar
+			}
+		} else {
+			return true; // Sale
+		}
+	}
+}
+
+void AltaUsuario::Agregar_Especializacion(string user) {
+    string idioma;
     while (true) {
-        cout << "Ingrese el nickname: ";
-        cin >> nickname;
-        if (this->controlador->Verificar_Nick(nickname)) {
-            cout << "El nickname '" << nickname << "' ya está en uso." << endl;
+        cout << "Seleccione idioma (case sensitive):" << endl;
+        cin >> idioma;
+
+        // Verificar si el idioma existe
+        if (this->controlador->Existe_Idioma(idioma)) {
+            // Agregar la especialización y salir del bucle
+            this->controlador->Agregar_Especializacion(idioma, user);
+
+            break; // Salir del bucle
+        } else {
+            cout << "El idioma '" << idioma << "' no existe." << endl;
             cout << "¿Desea intentar de nuevo? (s/n): ";
             char opcion;
             cin >> opcion;
             if (opcion == 'n' || opcion == 'N') {
-                return false; // cancelar
+                break; // Salir del bucle y de la función
             }
-        } else {
-            return true; // Sale
         }
     }
 }
-
-void AltaUsuario::Agregar_Especializacion(string user){
-	cout << "Seleccione idioma (case sensitive):" << endl;
-
-	cout << "Ingrese el idioma: ";
-
-		string idioma;
-	    cin >> idioma;
-	    //existe?
-	this->controlador->Agregar_Especializacion(idioma,user);
-}
-
 
