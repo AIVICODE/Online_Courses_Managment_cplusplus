@@ -10,8 +10,12 @@
 #include "Presentacion/Alta_De_Usuario.h"
 
 #include <iostream>
+#include "General/Includes.cpp"
 
 using namespace std;
+
+
+
 int main() {
 	bool quiereContinuar = true;
 
@@ -19,7 +23,7 @@ int main() {
 
 
 	    do {
-	       //IMPORTANTE //imprimirMenu();
+	       imprimirMenu();
 
 	        int num;
 	            cout << "Ingrese una opción: ";
@@ -34,43 +38,43 @@ int main() {
 	            	}
 	                break;
 	            case 2:
-	                //sistema->Consulta_De_Usuario();
+	                //Consulta_De_Usuario();
 	                break;
 	            case 3:
-	                //sistema->Alta_De_Idioma();
+	                //Alta_De_Idioma();
 	                break;
 	            case 4:
-	                //sistema->Consultar_Idiomas();
+	                //Consultar_Idiomas();
 	                break;
 	            case 5:
-	                //sistema->altaDeCurso();
+	                //altaDeCurso();
 	                break;
 	            case 6:
 	                //sistema ->agregarLeccion();
 	                break;
 	            case 7:
-	                //sistema->agregarEjercicio();
+	                //agregarEjercicio();
 	                break;
 	            case 8:
-	                //sistema->habilitarCurso();
+	                //habilitarCurso();
 	                break;
 	            case 9:
-	                //sistema->eliminarCurso();
+	                //eliminarCurso();
 	                break;
 	            case 10:
-	                //sistema->consultarCurso();
+	                //consultarCurso();
 	                break;
 	            case 11:
-	                //sistema->inscribirseACurso();
+	                //inscribirseACurso();
 	                break;
 	            case 12:
-	                //sistema->realizarEjercicio();
+	                //realizarEjercicio();
 	                break;
 	            case 13:
-	                //sistema ->consultarEstadisticas();
+	                //consultarEstadisticas();
 	                break;
 	            case 14:
-	                //sistema ->cargarDatosdePrueba();
+	                //cargarDatosdePrueba();
 	                break;
 	            case 0:
 	                quiereContinuar = false;

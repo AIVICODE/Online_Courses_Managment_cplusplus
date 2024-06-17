@@ -9,10 +9,11 @@
 #define PROFESOR_H_
 
 #include "Usuario.h"
-
+#include "Idioma.h"
+#include <list>
 class Profesor : public Usuario {
 private:
-    //set<Idioma*> idiomasDeProfesor;
+    list<Idioma*> idiomasDeProfesor;
 	string instituto;
 public:
     Profesor();
@@ -22,8 +23,8 @@ public:
     // Getters
     string getInstituto()const;
 
-    //bool esProfesor();
-    //bool esEstudiante();
+    void agregarIdioma(Idioma* idioma);
+
 
    // DTUsuario* getDT();
 

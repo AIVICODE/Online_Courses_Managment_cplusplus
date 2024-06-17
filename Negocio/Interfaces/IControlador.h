@@ -9,6 +9,7 @@
 #define LABFINAL_INTERFACES_ICONTROLADOR_H_
 #include "../DT/DTUsuario.h"
 #include <string>
+#include <list>
 
 class IControlador {
 public:
@@ -17,7 +18,11 @@ public:
 
 	virtual bool Verificar_Nick(string nick)=0;
 
+	virtual list<string> Listar_Idiomas()=0;
+
 	virtual ~IControlador()=default;
+
+	virtual void Agregar_Especializacion(string idioma,string user)=0;
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

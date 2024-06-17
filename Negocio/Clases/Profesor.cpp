@@ -21,4 +21,6 @@ string Profesor::getInstituto() const{
 	return instituto;
 }
 
-
+void Profesor::agregarIdioma(Idioma* idioma){
+	idiomasDeProfesor.push_back(idioma);
+}

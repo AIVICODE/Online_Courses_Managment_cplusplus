@@ -20,10 +20,14 @@ private:
 	System* sistema;
 
 public:
-
+	//Alta user
 	void ingresarUsuario(DTUsuario* user);
+	list<string> Listar_Idiomas();
 	bool Verificar_Nick(string nick);
+	void Agregar_Especializacion(string idioma,string user);
+	//Fin alta user
 	Controlador();
+
 	virtual ~Controlador();
 };
 
