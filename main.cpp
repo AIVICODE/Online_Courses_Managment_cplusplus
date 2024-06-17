@@ -8,6 +8,7 @@
 
 
 #include "Presentacion/Alta_De_Usuario.h"
+#include "Presentacion/Consultar_Estadisticas.h"
 
 #include <iostream>
 #include "General/Includes.cpp"
@@ -34,7 +35,6 @@ int main() {
 	            	{
 	                AltaUsuario altaUsuario;
 	                altaUsuario.altaUsuario();
-	                //altaUsuario.~AltaUsuario();
 	            	}
 	                break;
 	            case 2:
@@ -71,8 +71,12 @@ int main() {
 	                //realizarEjercicio();
 	                break;
 	            case 13:
-	                //consultarEstadisticas();
+	            	{
+	            	Consultar_Estadisticas estadistica;
+	            	estadistica.consultar_estadisticas();
+	            	}
 	                break;
+
 	            case 14:
 	                //cargarDatosdePrueba();
 	                break;

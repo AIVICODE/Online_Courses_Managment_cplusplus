@@ -26,3 +26,8 @@ string DTEstudiante::getPais() const {
 DTFecha DTEstudiante::getFecha() const {
     return fecha;
 }
+
+
+
+DTEstudiante::DTEstudiante(string nickname)
+    : DTUsuario(nickname) {} // Llamar al constructor de DTUsuario

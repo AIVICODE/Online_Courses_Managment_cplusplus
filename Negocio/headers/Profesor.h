@@ -22,7 +22,7 @@ public:
 
     // Getters
     string getInstituto()const;
-
+    string getNickname();
     void agregarIdioma(Idioma* idioma);
 
 

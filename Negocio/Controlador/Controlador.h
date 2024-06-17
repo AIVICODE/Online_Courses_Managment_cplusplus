@@ -27,8 +27,12 @@ public:
 	void Agregar_Especializacion(string idioma,string user);
 	Idioma* Existe_Idioma(const std::string& nombreIdioma);
 	//Fin alta user
+	list<DTUsuario*> Listar_Usuarios();
+	//consultar estadistica
+	list<string> consultar_estadistica(string nickname);
 
-
+	Usuario* Buscar_Usuario(string nickname);
+	//fin consultar estadistica
 	Controlador();
 
 	virtual ~Controlador();

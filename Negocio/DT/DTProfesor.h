@@ -25,6 +25,9 @@ public:
 
     string getInstituto() const;
 
+    DTProfesor(string nickname);
+
+
     // Destructor
     virtual ~DTProfesor();
 };

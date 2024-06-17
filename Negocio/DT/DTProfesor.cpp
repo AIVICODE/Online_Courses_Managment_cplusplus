@@ -19,6 +19,11 @@ DTProfesor::DTProfesor(string nickname, string contrasenia, string nombre, strin
     : DTUsuario(nickname, contrasenia, nombre, descripcion), instituto(instituto) {}
 DTProfesor::~DTProfesor() {}
 
+
+
 string DTProfesor::getInstituto() const {
     return instituto;
 }
+
+DTProfesor::DTProfesor(string nickname)
+    : DTUsuario(nickname) {} // Llamar al constructor de DTUsuario
