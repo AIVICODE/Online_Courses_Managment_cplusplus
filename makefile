@@ -1,6 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall
 HEADERS= Negocio/headers/
+GENERAL= General/
 IMPLEMENT= Negocio/Clases/
 CONTROLADOR= Negocio/Controlador/
 INTERFACE= Negocio/Interfaces/
@@ -8,7 +9,7 @@ EXE = programa
 DT= Negocio/DT/
 SYS= Negocio/System/
 PRESENT= Presentacion/
-OBJS = main.o Curso.o Usuario.o Estudiante.o Profesor.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o System.o Alta_De_Usuario.o
+OBJS = main.o Curso.o Usuario.o Estudiante.o Profesor.o Idioma.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o System.o Alta_De_Usuario.o
 BINARIO = programa
 
 all: programa
@@ -18,6 +19,7 @@ programa: $(OBJS)
 
 main.o: main.cpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
+#Includes y menus
 	
 	  
 Curso.o: $(IMPLEMENT)Curso.cpp $(HEADERS)Curso.h
@@ -28,6 +30,9 @@ Usuario.o: $(IMPLEMENT)Usuario.cpp $(HEADERS)Usuario.h
 	
 Estudiante.o: $(IMPLEMENT)Estudiante.cpp $(HEADERS)Estudiante.h
 	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Estudiante.cpp
+
+Idioma.o: $(IMPLEMENT)Idioma.cpp $(HEADERS)Idioma.h
+	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Idioma.cpp
 	
 Profesor.o: $(IMPLEMENT)Profesor.cpp $(HEADERS)Profesor.h
 	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Profesor.cpp

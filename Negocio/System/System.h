@@ -8,6 +8,7 @@
 #include "../headers/Usuario.h"
 #include "../headers/Profesor.h"
 #include "../headers/Estudiante.h"
+#include "../headers/Idioma.h"
 
 #include <iostream>
 #include <set>
@@ -27,6 +28,7 @@ class System {
 	        ~System();
 
 	        set<Usuario*> usuarios;
+	        set<Idioma*> idiomas;
 
 	        void mostrarProfesores() const {
 	                for (auto it = usuarios.begin(); it != usuarios.end(); ++it) {

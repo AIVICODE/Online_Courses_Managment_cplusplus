@@ -32,9 +32,9 @@ Controlador::Controlador() {
 
 void Controlador::ingresarUsuario(DTUsuario* user) {
 	cout << "Ingresando Usuario" << endl;
-	        // Casting dinámico para determinar el tipo de usuario
+
 	if (DTProfesor* profesorDTO = dynamic_cast<DTProfesor*>(user)) {
-	        //cout << "Es un profesor" << endl;
+
 	        // Creación del objeto Profesor
 	        Profesor* profesor = new Profesor(
 	            profesorDTO->getNickname(),
@@ -46,10 +46,10 @@ void Controlador::ingresarUsuario(DTUsuario* user) {
 	        // Agregar el profesor al conjunto de usuarios
 	        this->sistema->usuarios.insert(profesor);
 
-	         //this->sistema->mostrarProfesores();
+
 
 	        } else if (DTEstudiante* estudianteDTO = dynamic_cast<DTEstudiante*>(user)) {
-	           // cout << "Es un estudiante" << endl;
+
 	        	Estudiante* estudiante = new Estudiante(
 	        		            estudianteDTO->getNickname(),
 	        		            estudianteDTO->getContrasenia(),
@@ -61,9 +61,6 @@ void Controlador::ingresarUsuario(DTUsuario* user) {
 	        		        );
 		        this->sistema->usuarios.insert(estudiante);
 
-	            // Agregar el estudiante al conjunto de usuarios
-	            // Aquí debes tener acceso al conjunto de usuarios de System
-	            // usuarios->insert(estudiante);
 	        } else {
 	            cerr << "Error: Usuario no reconocido" << endl;
 	        }
@@ -82,6 +79,51 @@ bool Controlador::Verificar_Nick(string nick) {
 			}
 		}
 		return result;
+}
+
+list<string> Controlador::Listar_Idiomas(){
+
+	// Crear un nuevo idioma "inglés" y agregarlo al conjunto de idiomas
+	    Idioma* ingles = new Idioma("ingles");
+	    this->sistema->idiomas.insert(ingles);
+
+	    // Lista para almacenar los nombres de los idiomas
+	    std::list<std::string> nombresIdiomas;
+
+	    // Iterar sobre el conjunto de punteros a objetos Idioma
+	    for (auto it = this->sistema->idiomas.begin(); it != this->sistema->idiomas.end(); it++) {
+	        // Obtener el nombre del idioma y agregarlo a la lista
+	        nombresIdiomas.push_back((*it)->Get_Nombre()); // Suponiendo que GetNombre() devuelve el nombre del idioma
+	    }
+
+	    return nombresIdiomas;
+}
+
+void Controlador::Agregar_Especializacion(string idioma,string user){
+//Existe idioma?
+	Idioma* enlaceIdioma = nullptr; // Inicializar el puntero a nullptr para indicar que aún no se ha encontrado el idioma
+
+	for (auto it = this->sistema->idiomas.begin(); it != this->sistema->idiomas.end(); it++) {
+	    // Obtener el nombre del idioma y verificar si coincide con el idioma deseado
+	    if (idioma == (*it)->Get_Nombre()) {
+	        // Si se encuentra el idioma deseado, guardar el enlace al objeto Idioma
+	        enlaceIdioma = *it;
+	        // Salir del bucle si se ha encontrado el idioma
+	        break;
+	    }
+	}
+
+
+	for (auto it = this->sistema->usuarios.begin(); it != this->sistema->usuarios.end(); it++) {
+	    // Verificar si el usuario es de tipo profesor
+	    Profesor* profesor = dynamic_cast<Profesor*>(*it);
+	    if (profesor != nullptr && user == profesor->Get_Nick()) {
+	        // El usuario es un profesor, así que podemos llamar a agregarIdioma()
+	        profesor->agregarIdioma(enlaceIdioma);
+
+	    }
+	}
+
 }
 
 Controlador::~Controlador() {

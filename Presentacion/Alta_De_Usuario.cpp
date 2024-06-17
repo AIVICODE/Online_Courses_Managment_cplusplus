@@ -1,10 +1,12 @@
 
 #include <iostream>
 #include <set>
+#include <list>
 
 #include "Alta_De_Usuario.h"
 #include "../Negocio/DT/DTEstudiante.h"
 #include "../Negocio/DT/DTProfesor.h"
+#include "../Negocio/DT/DTUsuario.h"
 #include "../Negocio/Controlador/Controlador.h"
 
 //#include "../negocio/dto/DTOEstudiante.h"
@@ -26,97 +28,128 @@ AltaUsuario::~AltaUsuario() {
 
 void AltaUsuario::altaUsuario() {
 
-	int opcion;
-	    cout << "Ingrese 1 si es profesor o 2 si es estudiante: ";
-	    cin >> opcion;
+DTUsuario* user=Ingresar_Usuario();
+system("clear");
 
-	    if (opcion == 1) {
-	        // Ingreso de datos para DTProfesor
-	        string nickname, contrasenia, nombre, descripcion, instituto;
+DTProfesor* profesor = dynamic_cast<DTProfesor*>(user);
+if (profesor != nullptr) {
+	Listar_Idiomas(this->controlador->Listar_Idiomas());
 
-	        while (true) {
-	               cout << "Ingrese el nickname: ";
-	               cin >> nickname;
-	               if (this->controlador->Verificar_Nick(nickname)) {
-	                   cout << "El nickname '" << nickname << "' ya está en uso." << endl;
-	                   cout << "¿Desea intentar de nuevo? (s/n): ";
-	                   char opcion;
-	                   cin >> opcion;
-	                   if (opcion == 'n' || opcion == 'N') {
-	                       cout << "Operación cancelada." << endl;
-	                       return; // cancelar
-	                   }
-	               } else {
-	                   break; // Sale
-	               }
-	           }
-	        cout << "Ingrese la contrasenia: ";
-	        cin >> contrasenia;
-	        cout << "Ingrese el nombre: ";
-	        cin >> nombre;
-	        cout << "Ingrese la descripcion: ";
-	        cin >> descripcion;
-	        cout << "Ingrese el instituto: ";
-	        cin >> instituto;
+	Agregar_Especializacion(user->getNickname());
+}
 
-	        // Creación del objeto DTProfesor
-	        DTProfesor* profesor=new DTProfesor(nickname, contrasenia, nombre, descripcion, instituto);
-	        cout << "Profesor creado con éxito!" << endl;
-	        cout << "Instituto: " << profesor->getInstituto() << endl;
-            this->controlador->ingresarUsuario(profesor);
-
-
-	    } else if (opcion == 2) {
-	        // Ingreso de datos para DTEstudiante
-	        string nickname, contrasenia, nombre, descripcion, pais;
-	        int dia, mes, anio;
-	        while (true) {
-	        					cin.clear();
-	        	               cout << "Ingrese el nickname: ";
-	        	               cin >> nickname;
-	        	               cin.clear();
-	        	               if (this->controlador->Verificar_Nick(nickname)) {
-	        	                   cout << "El nickname '" << nickname << "' ya está en uso." << endl;
-	        	                   cout << "¿Desea intentar de nuevo? (s/n): ";
-	        	                   char opcion;
-	        	                   cin >> opcion;
-	        	                   if (opcion == 'n' || opcion == 'N') {
-	        	                       cout << "Operación cancelada." << endl;
-	        	                       return; // cancelar
-	        	                   }
-	        	               } else {
-	        	                   break; // Sale
-	        	               }
-	        	           }
-	        cout << "Ingrese la contrasenia: ";
-	        cin >> contrasenia;
-	        cout << "Ingrese el nombre: ";
-	        cin >> nombre;
-	        cout << "Ingrese la descripcion: ";
-	        cin >> descripcion;
-	        cout << "Ingrese el pais: ";
-	        cin >> pais;
-	        cout << "Ingrese la fecha de nacimiento (dia mes anio): ";
-	        cin >> dia >> mes >> anio;
-
-	        try {
-	            DTFecha fecha(dia, mes, anio);
-
-	            // Creación del objeto DTEstudiante
-	            DTEstudiante* estudiante = new DTEstudiante(nickname, contrasenia, nombre, descripcion, pais, fecha);	            cout << "Estudiante creado con éxito!" << endl;
-	            cout << "Pais: " << estudiante->getPais() << endl;
-	            cout << "Fecha de nacimiento: ";
-	            // Paso el DT a el controlador.
-	            estudiante->getFecha().imprimirFecha();
-	            this->controlador->ingresarUsuario(estudiante);
-
-	        } catch (const invalid_argument& e) {
-	            cerr << "Error: " << e.what() << endl;
-	        }
-
-	    } else {
-	        cerr << "Opción inválida!" << endl;
-	    }
 
 
 }
+
+void AltaUsuario::Listar_Idiomas(const list<string>& listaIdiomas) {
+    cout << "Idiomas disponibles:" << endl;
+    for (const auto& idioma : listaIdiomas) {
+        cout << idioma << endl;
+    }
+
+    std::cin.ignore();
+}
+
+
+
+DTUsuario* AltaUsuario::Ingresar_Usuario() {
+    int opcion;
+    cout << "Ingrese 1 si es profesor o 2 si es estudiante: ";
+    cin >> opcion;
+
+    if (opcion == 1) {
+        return Ingresar_Profesor();
+    } else if (opcion == 2) {
+        return Ingresar_Estudiante();
+    } else {
+        cerr << "Opción inválida!" << endl;
+        return nullptr;
+    }
+}
+
+DTUsuario* AltaUsuario::Ingresar_Profesor() {
+    string nickname, contrasenia, nombre, descripcion, instituto;
+
+    if (!IngresarNickname(nickname)) {
+        cout << "Operación cancelada." << endl;
+        return nullptr;
+    }
+
+    cout << "Ingrese la contrasenia: ";
+    cin >> contrasenia;
+    cout << "Ingrese el nombre: ";
+    cin >> nombre;
+    cout << "Ingrese la descripcion: ";
+    cin >> descripcion;
+    cout << "Ingrese el instituto: ";
+    cin >> instituto;
+
+    DTProfesor* profesor = new DTProfesor(nickname, contrasenia, nombre, descripcion, instituto);
+
+    this->controlador->ingresarUsuario(profesor);
+    return profesor;
+}
+
+DTUsuario* AltaUsuario::Ingresar_Estudiante() {
+    string nickname, contrasenia, nombre, descripcion, pais;
+    int dia, mes, anio;
+
+    if (!IngresarNickname(nickname)) {
+        cout << "Operación cancelada." << endl;
+        return nullptr;
+    }
+
+    cout << "Ingrese la contrasenia: ";
+    cin >> contrasenia;
+    cout << "Ingrese el nombre: ";
+    cin >> nombre;
+    cout << "Ingrese la descripcion: ";
+    cin >> descripcion;
+    cout << "Ingrese el pais: ";
+    cin >> pais;
+    cout << "Ingrese la fecha de nacimiento (dia mes anio): ";
+    cin >> dia >> mes >> anio;
+
+    try {
+        DTFecha fecha(dia, mes, anio);
+        DTEstudiante* estudiante = new DTEstudiante(nickname, contrasenia, nombre, descripcion, pais, fecha);
+
+        this->controlador->ingresarUsuario(estudiante);
+        return estudiante;
+    } catch (const invalid_argument& e) {
+        cerr << "Error: " << e.what() << endl;
+        return nullptr;
+    }
+}
+
+bool AltaUsuario::IngresarNickname(string& nickname) {
+    while (true) {
+        cout << "Ingrese el nickname: ";
+        cin >> nickname;
+        if (this->controlador->Verificar_Nick(nickname)) {
+            cout << "El nickname '" << nickname << "' ya está en uso." << endl;
+            cout << "¿Desea intentar de nuevo? (s/n): ";
+            char opcion;
+            cin >> opcion;
+            if (opcion == 'n' || opcion == 'N') {
+                return false; // cancelar
+            }
+        } else {
+            return true; // Sale
+        }
+    }
+}
+
+void AltaUsuario::Agregar_Especializacion(string user){
+	cout << "Seleccione idioma (case sensitive):" << endl;
+
+	cout << "Ingrese el idioma: ";
+
+		string idioma;
+	    cin >> idioma;
+	    //existe?
+	this->controlador->Agregar_Especializacion(idioma,user);
+}
+
+
