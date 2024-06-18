@@ -29,7 +29,7 @@ Controlador::Controlador() {
 }
 
 
-
+//Alta user
 void Controlador::ingresarUsuario(DTUsuario* user) {
 	cout << "Ingresando Usuario" << endl;
 
@@ -88,7 +88,7 @@ list<string> Controlador::Listar_Idiomas(){
 	   // this->sistema->idiomas.insert(ingles);
 //FIN PRUEBA
 	    // Lista para almacenar los nombres de los idiomas
-	    std::list<std::string> nombresIdiomas;
+	    list<string> nombresIdiomas;
 
 	    // Iterar sobre el conjunto de punteros a objetos Idioma
 	    for (auto it = this->sistema->idiomas.begin(); it != this->sistema->idiomas.end(); it++) {
@@ -131,7 +131,7 @@ void Controlador::Agregar_Especializacion(string idioma,string user){
 
 }
 
-Idioma* Controlador::Existe_Idioma(const std::string& nombreIdioma) {
+Idioma* Controlador::Existe_Idioma(const string& nombreIdioma) {
     for (auto it = this->sistema->idiomas.begin(); it != this->sistema->idiomas.end(); it++) {
         if (nombreIdioma == (*it)->Get_Nombre()) {
             return *it; // Retornar el puntero al idioma encontrado
@@ -139,7 +139,66 @@ Idioma* Controlador::Existe_Idioma(const std::string& nombreIdioma) {
     }
     return nullptr; // Si no se encuentra, retornar nullptr
 }
+//fin alta user
 
+//consultar estadistica
+list<string> Controlador::consultar_estadistica(string nickname){
+
+Usuario* user=Buscar_Usuario(nickname);
+
+Estudiante* estudiante = dynamic_cast<Estudiante*>(user);
+
+if (estudiante != nullptr) {//Es estudiante
+	estudiante->dar_estadistica();
+}
+
+Profesor* profesor = dynamic_cast<Profesor*>(user);
+
+if (profesor != nullptr) {//Es profesor
+
+}
+
+
+}
+//fin consultar estadistica
+
+list<DTUsuario*> Controlador::Listar_Usuarios() {
+    list<DTUsuario*> userlist;
+
+    // Itera sobre la lista de usuarios
+    for (Usuario* usuario : this->sistema->usuarios) {
+        // Verifica si el usuario es un profesor
+        if (Profesor* profesor = dynamic_cast<Profesor*>(usuario)) {
+            // Crea un DTProfesor con solo el nickname y agrega a la lista
+            DTProfesor* dtProfesor = new DTProfesor(usuario->Get_Nick());
+            userlist.push_back(dtProfesor);
+        }
+        // Verifica si el usuario es un estudiante
+        else if (Estudiante* estudiante = dynamic_cast<Estudiante*>(usuario)) {
+            // Crea un DTEstudiante con solo el nickname y agrega a la lista
+            DTEstudiante* dtEstudiante = new DTEstudiante(usuario->Get_Nick());
+            userlist.push_back(dtEstudiante);
+        }
+        // Si el usuario no es ni profesor ni estudiante, crea un DTUsuario genérico con solo el nickname
+        else {
+            cout<<"Error inesperado";
+        }
+    }
+
+    return userlist;
+}
+
+Usuario* Controlador::Buscar_Usuario(string nickname){
+
+	for (auto it = this->sistema->usuarios.begin(); it != this->sistema->usuarios.end(); ++it) {
+	        if ((*it)->Get_Nick() == nickname) {
+	            return *it;
+	        }
+	    }
+	    return nullptr; // Devuelve nullptr si no se encuentra el usuario
+
+
+}
 Controlador::~Controlador() {
 	// TODO Auto-generated destructor stub
 }

@@ -38,8 +38,6 @@ if (profesor != nullptr) {
 	Agregar_Especializacion(user->getNickname());
 }
 
-
-
 }
 
 void AltaUsuario::Listar_Idiomas(const list<string>& listaIdiomas) {
@@ -165,4 +163,5 @@ void AltaUsuario::Agregar_Especializacion(string user) {
         }
     }
 }
+
 

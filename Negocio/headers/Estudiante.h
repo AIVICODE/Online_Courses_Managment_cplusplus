@@ -10,11 +10,16 @@
 #include "Usuario.h"
 
 #include "../DT/DTFecha.h"
+#include "Inscripcion.h"
+#include <list>
+#include <string>
 
 class Estudiante : public Usuario{
 private:
 string pais;
 DTFecha fecha;
+
+list<Inscripcion*> inscripto;
 
 public:
     // Constructor
@@ -24,6 +29,9 @@ public:
     virtual ~Estudiante();
     string getPais() const;
     DTFecha getFecha() const;
+    string Get_Nick();
+
+    list<string> dar_estadistica();
 
 };
 

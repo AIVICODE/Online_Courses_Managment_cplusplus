@@ -24,3 +24,8 @@ string Profesor::getInstituto() const{
 void Profesor::agregarIdioma(Idioma* idioma){
 	idiomasDeProfesor.push_back(idioma);
 }
+
+string Profesor::getNickname(){
+return Get_Nick();
+}
+

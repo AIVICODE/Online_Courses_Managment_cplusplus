@@ -18,7 +18,7 @@ public:
 		DTUsuario* Ingresar_Estudiante();
 		bool IngresarNickname(string& nickname);
 	void Listar_Idiomas(const list<string>& listaIdiomas);
-		void Agregar_Especializacion(string user);
+	void Agregar_Especializacion(string user);
 	//DTOEstudiante* ingresarEstudiante(string nick);
 	//DTOProfesor* ingresarProfesor(string nick);
 	//set<string> seleccionarIdiomas();

@@ -22,6 +22,7 @@ public:
     // Constructor
     DTEstudiante();
     DTEstudiante(string nickname, string contrasenia, string nombre, string descripcion, string pais, DTFecha fecha);
+    DTEstudiante(string nickname);
     // Destructor
     virtual ~DTEstudiante();
     string getPais() const;

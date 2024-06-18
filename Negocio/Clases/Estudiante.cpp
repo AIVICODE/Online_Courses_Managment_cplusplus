@@ -27,3 +27,19 @@ string Estudiante::getPais() const {
 DTFecha Estudiante::getFecha() const {
     return fecha;
 }
+
+
+list<string> Estudiante::dar_estadistica(){
+	 list<string> estadisticas;
+
+	    for (Inscripcion* inscripcion : inscripto) {
+	        estadisticas=inscripcion->evalua_progreso();
+
+	    }
+
+	    //return estadisticas;
+}
+
+string Estudiante::Get_Nick(){
+	return Get_Nick();
+}

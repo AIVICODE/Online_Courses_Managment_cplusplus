@@ -24,6 +24,7 @@ public:
     // Constructor
     DTUsuario();
     DTUsuario(string nickname, string contrasenia, string nombre, string descripcion);
+    DTUsuario(string nickname);
 
     // Getters
     string getNickname() const;

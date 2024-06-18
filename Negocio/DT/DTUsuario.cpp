@@ -23,6 +23,12 @@ DTUsuario::DTUsuario(string nickname, string contrasenia, string nombre, string 
     this->descripcion = descripcion;
 
 }
+DTUsuario::DTUsuario(string nickname) {
+    this->nickname = nickname;
+
+}
+
+
 
 // Getters
 
