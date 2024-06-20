@@ -46,7 +46,7 @@ void AltaUsuario::Listar_Idiomas(const list<string>& listaIdiomas) {
         cout << idioma << endl;
     }
 
-    std::cin.ignore();
+
 }
 
 

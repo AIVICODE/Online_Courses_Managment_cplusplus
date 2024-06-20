@@ -18,6 +18,9 @@ public:
 
 	void CrearCurso();
 	int seleccionarDificultad();
+	void Muestro_Idiomas();
+	void Muestro_Cursos_Hab();
+
 };
 
 #endif

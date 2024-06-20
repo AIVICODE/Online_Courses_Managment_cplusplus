@@ -40,7 +40,8 @@ public:
 
 
 	// Alta Curso
-
+	virtual list <string> Listar_Cursos_Habiles()=0;
+	virtual bool Verificar_Nombre_Curso(const std::string& nombre)=0;
 	virtual void Crear_Curso(DTCurso* curso)=0;
 };
 

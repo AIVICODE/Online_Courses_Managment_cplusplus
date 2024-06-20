@@ -36,7 +36,6 @@ void Alta_De_Curso::AltaCurso(){
 		        std::cout << "Profesor - Nickname: " << user->getNickname() << std::endl;
 		    }
 		}
-		AltaUsuario altaUsuario;
 
 string nickname;
 		while (true) {
@@ -60,31 +59,64 @@ string nickname;
 
 
 		std::cout << "Presione Enter para continuar...";
-		std::cin.get();//Borra buffer \n
+	    cin.ignore(); // Limpiar el buffer
 		    std::cin.get(); // Esperar a que el usuario presione Enter
 
 }
 
 void Alta_De_Curso::CrearCurso(){
 
-    string nombreCurso, descripcion;
+    string nombreCurso, descripcion,idioma;
     int dificultad;
 
-    cout << "Ingrese el nombre del curso: ";
-    cin.ignore(); // Limpiar el buffer
-    getline(cin, nombreCurso);
 
-    cout << "Ingrese la descripción del curso: ";
-    getline(cin, descripcion);
+	while (true) {
+	    cout << "Ingrese el nombre del curso: ";
+	    cin.ignore(); // Limpiar el buffer
+	    getline(cin, nombreCurso);
+			if (this->controlador->Verificar_Nombre_Curso(nombreCurso)) {
+				cout << "El curso '" << nombreCurso << "' ya existe." << endl;
+				cout << "¿Desea intentar de nuevo? (s/n): ";
+				char opcion;
+				cin >> opcion;
+				if (opcion == 'n' || opcion == 'N') {
+					return ; // cancelar
+				}
+			} else {
+			    cout << "Ingrese la descripción del curso: ";
+			    getline(cin, descripcion);
 
-    dificultad = seleccionarDificultad();
+			    dificultad = seleccionarDificultad();
 
-    DTCurso* curso=new DTCurso(nombreCurso,descripcion,dificultad);
-    this->controlador->Crear_Curso(curso);
+			    DTCurso* curso=new DTCurso(nombreCurso,descripcion,dificultad);
+			    this->controlador->Crear_Curso(curso);
+			    Muestro_Idiomas();
+			    cout << "Ingrese el Idioma: ";
+			    			    getline(cin, idioma);
+			    // el idioma debe quedar asociado al curso falta implementar eso.!!!
+			    Muestro_Cursos_Hab();
+
+				break;
+			}
+		}
 
 
 }
 
+void Alta_De_Curso::Muestro_Cursos_Hab(){
+    std::list<string> cursoshab = controlador->Listar_Cursos_Habiles();
+
+    for (const string& cursoNombre : cursoshab) {
+        cout << "Cursos habilitados: " << cursoNombre << endl;
+    }
+}
+void Alta_De_Curso::Muestro_Idiomas(){
+	list<string> idiomas = this->controlador->Listar_Idiomas();
+				    cout << "Idiomas disponibles:" << endl;
+				    for (const auto& idioma : idiomas) {
+				        cout << idioma << endl;
+				    }
+}
 int Alta_De_Curso::seleccionarDificultad() {
     int opcion;
     while (true) {

@@ -205,6 +205,9 @@ Usuario* Controlador::Buscar_Usuario(string nickname){
 }
 
 //fin alta user
+
+
+//Comienzo alta curso
 void Controlador::Crear_Curso(DTCurso* dtcurso){
 
 
@@ -237,8 +240,6 @@ Curso* curso = new Curso(
 this->sistema->cursos.insert(curso);
 
 
-    cin.ignore(); // Ignorar el carácter de nueva línea residual
-    cin.get(); // Esperar a que el usuario presione Enter
 
 }
 
@@ -256,9 +257,32 @@ list<DTUsuario*> Controlador::Listar_Profesores(){
 	    }
 return userlist;
 }
+
+
+bool Controlador::Verificar_Nombre_Curso(const std::string& nombre) {
+    // Recorro los cursos del sistema
+    bool result = false;
+
+    for (Curso* curso : this->sistema->cursos) {
+        if (nombre == curso->getNombre()) {
+            result = true;
+            break;
+        }
+    }
+    return result;
+}
 //Comienzo alta curso
 
+list <string> Controlador::Listar_Cursos_Habiles(){
+    list<string> cursosHabilitados;
 
+    for (Curso* curso : this->sistema->cursos) {
+        if (curso->isDisponible()) {
+            cursosHabilitados.push_back(curso->getNombre());
+        }
+    }
+    return cursosHabilitados;
+}
 
 
 
