@@ -18,10 +18,7 @@ Consultar_Estadisticas::Consultar_Estadisticas() {
 void Consultar_Estadisticas::consultar_estadisticas(){
 	//muestro usuarios
 	list<DTUsuario*> userlist;
-cout<<"llega";
-int opcion;
-    cout << "Ingrese 1 si es profesor o 2 si es estudiante: ";
-    cin >> opcion;
+
 	userlist=this->controlador->Listar_Usuarios();
 
 	for (DTUsuario* user : userlist) {

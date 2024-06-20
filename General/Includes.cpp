@@ -4,7 +4,9 @@
 #include <iostream>
 
 using namespace std;
+
 void imprimirMenu();
+bool esNumero(const string& str);
 
 void imprimirMenu() {
     cout << "Menu de opciones:" << endl;
@@ -23,4 +25,11 @@ void imprimirMenu() {
     cout << "13. Consultar Estadísticas" << endl;
     cout << "14. Cargar Datos de Prueba" << endl;
     cout << "0. Salir" << endl;
+}
+
+bool esNumero(const string& str) {
+    for (char const &c : str) {
+        if (isdigit(c) == 0) return false;
+    }
+    return true;
 }

@@ -188,6 +188,21 @@ list<DTUsuario*> Controlador::Listar_Usuarios() {
     return userlist;
 }
 
+list<DTUsuario*> Controlador::Listar_Profesores(){
+	list<DTUsuario*> userlist;
+
+	    // Itera sobre la lista de usuarios
+	    for (Usuario* usuario : this->sistema->usuarios) {
+	        // Verifica si el usuario es un profesor
+	        if (Profesor* profesor = dynamic_cast<Profesor*>(usuario)) {
+	            // Crea un DTProfesor con solo el nickname y agrega a la lista
+	            DTProfesor* dtProfesor = new DTProfesor(usuario->Get_Nick());
+	            userlist.push_back(dtProfesor);
+	        }
+	    }
+return userlist;
+}
+
 Usuario* Controlador::Buscar_Usuario(string nickname){
 
 	for (auto it = this->sistema->usuarios.begin(); it != this->sistema->usuarios.end(); ++it) {

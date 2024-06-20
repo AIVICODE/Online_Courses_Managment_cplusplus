@@ -17,6 +17,7 @@ class IControlador {
 public:
 //extras
 	virtual list<DTUsuario*> Listar_Usuarios()=0;
+	virtual list<DTUsuario*> Listar_Profesores()=0;
 	//fin
 	virtual void ingresarUsuario(DTUsuario* user) = 0;
 
