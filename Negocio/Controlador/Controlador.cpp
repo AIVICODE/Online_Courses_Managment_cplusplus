@@ -10,10 +10,12 @@
 #include "../headers/Usuario.h"
 #include "../headers/Profesor.h"
 #include "../headers/Estudiante.h"
+#include "../headers/Tipo_Dificultad.h"
 
 #include "../DT/DTUsuario.h"
 #include "../DT/DTProfesor.h"
 #include "../DT/DTEstudiante.h"
+#include "../DT/DTCurso.h"
 
 #include "../System/System.h"
 
@@ -188,6 +190,58 @@ list<DTUsuario*> Controlador::Listar_Usuarios() {
     return userlist;
 }
 
+
+Usuario* Controlador::Buscar_Usuario(string nickname){
+
+
+	for (auto it = this->sistema->usuarios.begin(); it != this->sistema->usuarios.end(); ++it) {
+	        if ((*it)->Get_Nick() == nickname) {
+	            return *it;
+	        }
+	    }
+	    return nullptr; // Devuelve nullptr si no se encuentra el usuario
+
+
+}
+
+//fin alta user
+void Controlador::Crear_Curso(DTCurso* dtcurso){
+
+
+Tipo_Dificultad dificultad;
+
+switch (dtcurso->getDificultad()) {
+        case 1:
+            dificultad = Tipo_Dificultad::Facil;
+            break;
+        case 2:
+            dificultad = Tipo_Dificultad::Intermedia;
+            break;
+        case 3:
+            dificultad = Tipo_Dificultad::Dificil;
+            break;
+        default:
+            // Manejo de error si el valor de dificultad no es válido
+            // Puedes lanzar una excepción, asignar un valor predeterminado, etc.
+            break;
+    }
+Curso* curso = new Curso(
+
+		dtcurso->getNombre(),
+		dtcurso->getDescripcion(),
+		dificultad,
+		0// setea el curso habilitado = false
+		);
+
+
+this->sistema->cursos.insert(curso);
+
+
+    cin.ignore(); // Ignorar el carácter de nueva línea residual
+    cin.get(); // Esperar a que el usuario presione Enter
+
+}
+
 list<DTUsuario*> Controlador::Listar_Profesores(){
 	list<DTUsuario*> userlist;
 
@@ -202,18 +256,12 @@ list<DTUsuario*> Controlador::Listar_Profesores(){
 	    }
 return userlist;
 }
-
-Usuario* Controlador::Buscar_Usuario(string nickname){
-
-	for (auto it = this->sistema->usuarios.begin(); it != this->sistema->usuarios.end(); ++it) {
-	        if ((*it)->Get_Nick() == nickname) {
-	            return *it;
-	        }
-	    }
-	    return nullptr; // Devuelve nullptr si no se encuentra el usuario
+//Comienzo alta curso
 
 
-}
+
+
+
 Controlador::~Controlador() {
 	// TODO Auto-generated destructor stub
 }

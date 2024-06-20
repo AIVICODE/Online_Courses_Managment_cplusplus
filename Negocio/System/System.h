@@ -29,15 +29,8 @@ class System {
 
 	        set<Usuario*> usuarios;
 	        set<Idioma*> idiomas;
+	        set<Curso*> cursos;
 
-	        void mostrarProfesores() const {
-	                for (auto it = usuarios.begin(); it != usuarios.end(); ++it) {
-	                    Profesor* profesor = dynamic_cast<Profesor*>(*it);
-	                    if (profesor != nullptr) {
-	                    	cout<< profesor->Get_Nick();
-	                    }
-	                }
-	            }
 	        //void Alta_De_Usuario();
 	};
 #endif /* LABFINAL_SYSTEM_ICONTROLADOR_H_ */

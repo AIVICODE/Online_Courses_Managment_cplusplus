@@ -79,6 +79,9 @@ void Alta_De_Curso::CrearCurso(){
 
     dificultad = seleccionarDificultad();
 
+    DTCurso* curso=new DTCurso(nombreCurso,descripcion,dificultad);
+    this->controlador->Crear_Curso(curso);
+
 
 }
 

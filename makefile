@@ -9,7 +9,7 @@ EXE = programa
 DT= Negocio/DT/
 SYS= Negocio/System/
 PRESENT= Presentacion/
-OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o System.o Alta_De_Curso.o Consultar_Estadisticas.o Alta_De_Usuario.o
+OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Consultar_Estadisticas.o Alta_De_Usuario.o
 BINARIO = programa
 
 all: programa
@@ -68,6 +68,9 @@ DTEstudiante.o: $(DT)DTEstudiante.cpp $(DT)DTEstudiante.h
 	
 DTFecha.o: $(DT)DTFecha.cpp $(DT)DTFecha.h
 	$(CXX) $(CXXFLAGS) -c $(DT)DTFecha.cpp
+	
+DTCurso.o: $(DT)DTCurso.cpp $(DT)DTCurso.h
+	$(CXX) $(CXXFLAGS) -c $(DT)DTCurso.cpp
 #SYSTEM
 System.o: $(SYS)System.cpp $(SYS)System.h
 	$(CXX) $(CXXFLAGS) -c $(SYS)System.cpp

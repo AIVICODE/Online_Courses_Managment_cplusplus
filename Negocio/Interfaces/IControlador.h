@@ -8,6 +8,7 @@
 #ifndef LABFINAL_INTERFACES_ICONTROLADOR_H_
 #define LABFINAL_INTERFACES_ICONTROLADOR_H_
 #include "../DT/DTUsuario.h"
+#include "../DT/DTCurso.h"
 #include "../headers/Usuario.h"
 #include "../headers/Idioma.h"
 #include <string>
@@ -36,6 +37,11 @@ public:
 	virtual ~IControlador()=default;
 
 	virtual void Agregar_Especializacion(string idioma,string user)=0;
+
+
+	// Alta Curso
+
+	virtual void Crear_Curso(DTCurso* curso)=0;
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

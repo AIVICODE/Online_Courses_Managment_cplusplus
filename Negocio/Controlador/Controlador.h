@@ -36,6 +36,7 @@ public:
 	Controlador();
 	//Alta curso
 	list<DTUsuario*> Listar_Profesores();
+	void Crear_Curso(DTCurso* curso);
 	virtual ~Controlador();
 };
 
