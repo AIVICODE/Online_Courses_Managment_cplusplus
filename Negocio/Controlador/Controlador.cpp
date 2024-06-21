@@ -133,13 +133,13 @@ void Controlador::Agregar_Especializacion(string idioma,string user){
 
 }
 
-Idioma* Controlador::Existe_Idioma(const string& nombreIdioma) {
+bool Controlador::Existe_Idioma(const string& nombreIdioma) {
     for (auto it = this->sistema->idiomas.begin(); it != this->sistema->idiomas.end(); it++) {
         if (nombreIdioma == (*it)->Get_Nombre()) {
-            return *it; // Retornar el puntero al idioma encontrado
+            return true; // Retornar el puntero al idioma encontrado
         }
     }
-    return nullptr; // Si no se encuentra, retornar nullptr
+    return false; // Si no se encuentra, retornar nullptr
 }
 //fin alta user
 
@@ -235,7 +235,8 @@ Curso* curso = new Curso(
 		dificultad,
 		0// setea el curso habilitado = false
 		);
-
+	
+curso->setIdioma(Buscar_Idioma(dtcurso->getIdioma()));
 
 this->sistema->cursos.insert(curso);
 
@@ -255,7 +256,7 @@ list<DTUsuario*> Controlador::Listar_Profesores(){
 	            userlist.push_back(dtProfesor);
 	        }
 	    }
-return userlist;
+	return userlist;
 }
 
 
@@ -284,7 +285,22 @@ list <string> Controlador::Listar_Cursos_Habiles(){
     return cursosHabilitados;
 }
 
+void Controlador::Agregar_Idioma_Curso(string idioma){
 
+
+}
+Idioma* Controlador::Buscar_Idioma(string idioma){
+
+
+	for (auto it = this->sistema->idiomas.begin(); it != this->sistema->idiomas.end(); ++it) {
+	        if ((*it)->Get_Nombre() == idioma) {
+	            return *it;
+	        }
+	    }
+	    return nullptr; // Devuelve nullptr si no se encuentra el usuario
+
+
+}
 
 Controlador::~Controlador() {
 	// TODO Auto-generated destructor stub

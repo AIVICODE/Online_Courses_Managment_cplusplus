@@ -9,7 +9,7 @@ EXE = programa
 DT= Negocio/DT/
 SYS= Negocio/System/
 PRESENT= Presentacion/
-OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Lecciones.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Consultar_Estadisticas.o Alta_De_Usuario.o
+OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Leccion.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Consultar_Estadisticas.o Alta_De_Usuario.o
 BINARIO = programa
 
 all: programa
@@ -37,8 +37,8 @@ Idioma.o: $(IMPLEMENT)Idioma.cpp $(HEADERS)Idioma.h
 Profesor.o: $(IMPLEMENT)Profesor.cpp $(HEADERS)Profesor.h
 	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Profesor.cpp
 
-Lecciones.o: $(IMPLEMENT)Lecciones.cpp $(HEADERS)Lecciones.h
-	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Lecciones.cpp
+Leccion.o: $(IMPLEMENT)Leccion.cpp $(HEADERS)Leccion.h
+	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Leccion.cpp
 	
 Ejercicio.o: $(IMPLEMENT)Ejercicio.cpp $(HEADERS)Ejercicio.h
 	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Ejercicio.cpp

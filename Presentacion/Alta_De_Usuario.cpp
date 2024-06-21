@@ -26,7 +26,7 @@ AltaUsuario::~AltaUsuario() {
 	delete this->controlador;
 }
 
-void AltaUsuario::altaUsuario() {
+void AltaUsuario::altaUsuario(){
 
 DTUsuario* user=Ingresar_Usuario();
 system("clear");
@@ -147,7 +147,7 @@ void AltaUsuario::Agregar_Especializacion(string user) {
         cin >> idioma;
 
         // Verificar si el idioma existe
-        if (this->controlador->Existe_Idioma(idioma)) {
+        if ((this->controlador->Existe_Idioma(idioma))!=NULL) {
             // Agregar la especialización y salir del bucle
             this->controlador->Agregar_Especializacion(idioma, user);
 

@@ -11,6 +11,8 @@
 #include <string>
 #include <list>
 #include "Tipo_Dificultad.h"
+#include "Idioma.h"
+#include "Leccion.h"
 
 using namespace std;
 
@@ -20,6 +22,8 @@ private:
 	string descripcion;
 	Tipo_Dificultad dificultad;
 	bool disponible;
+	Idioma* idiomacurso;
+	list <Leccion*> leccionescurso;
 
 public:
 	Curso();
@@ -32,9 +36,12 @@ public:
 	std::string getDificultadString() const;
 	bool isDisponible() const;
 
-	void setNombre(std::string nombre);
-	void setDescripcion(std::string descripcion);
-	void setDificultad(Tipo_Dificultad dificultad);
+    Idioma* getIdioma() const;
+
+    void setNombre(std::string nombre);
+    void setDescripcion(std::string descripcion);
+    void setDificultad(Tipo_Dificultad dificultad);
+    void setIdioma(Idioma* idioma);
 	void setDisponible(bool disponible);
 	list<string> evalua_progreso();
 	~Curso();

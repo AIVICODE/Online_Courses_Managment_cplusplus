@@ -35,6 +35,8 @@ std::string Curso::getDificultadString() const {
     return toString(dificultad);
 }
 
+
+
 bool Curso::isDisponible() const {
     return disponible;
 }
@@ -54,7 +56,12 @@ void Curso::setDificultad(Tipo_Dificultad dificultad) {
 void Curso::setDisponible(bool disponible) {
     this->disponible = disponible;
 }
-
+void Curso::setIdioma(Idioma* idioma) {
+    this->idiomacurso = idioma;
+}
+Idioma* Curso::getIdioma() const {
+    return idiomacurso;
+}
 list<string> Curso::evalua_progreso(){
 // RECORRO LECCIONES
 // A CADA UNA ENVIO dar_ejercicios_pendientes(//paso los ejercicios realizados)//Esta operacion va a trabajar con los ejercicios de la leccion en el loop;

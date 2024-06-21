@@ -25,7 +25,7 @@ public:
 	list<string> Listar_Idiomas();
 	bool Verificar_Nick(string nick);
 	void Agregar_Especializacion(string idioma,string user);
-	Idioma* Existe_Idioma(const std::string& nombreIdioma);
+	bool Existe_Idioma(const std::string& nombreIdioma);
 	//Fin alta user
 	list<DTUsuario*> Listar_Usuarios();
 	//consultar estadistica
@@ -39,6 +39,8 @@ public:
 	void Crear_Curso(DTCurso* curso);
 	bool Verificar_Nombre_Curso(const std::string& nombre);
 	list <string> Listar_Cursos_Habiles();
+	void Agregar_Idioma_Curso(string idioma);
+	Idioma* Buscar_Idioma(string idioma);
 	virtual ~Controlador();
 };
 
