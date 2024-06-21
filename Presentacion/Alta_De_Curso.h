@@ -20,7 +20,8 @@ public:
 	int seleccionarDificultad();
 	void Muestro_Idiomas();
 	void Muestro_Cursos_Hab();
-
+	list<string> Agregar_Previa();
+	void Agregar_Idioma(string &idioma);
+	void Agregar_Descripcion(string &descripcion);
 };
-
 #endif

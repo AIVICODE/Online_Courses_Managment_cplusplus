@@ -235,7 +235,8 @@ Curso* curso = new Curso(
 		dificultad,
 		0// setea el curso habilitado = false
 		);
-
+	
+curso->setIdioma(Buscar_Idioma(dtcurso->getIdioma()));
 
 this->sistema->cursos.insert(curso);
 
@@ -255,7 +256,7 @@ list<DTUsuario*> Controlador::Listar_Profesores(){
 	            userlist.push_back(dtProfesor);
 	        }
 	    }
-return userlist;
+	return userlist;
 }
 
 
@@ -283,6 +284,7 @@ list <string> Controlador::Listar_Cursos_Habiles(){
     }
     return cursosHabilitados;
 }
+
 void Controlador::Agregar_Idioma_Curso(string idioma){
 
 

@@ -37,7 +37,7 @@ void Alta_De_Curso::AltaCurso(){
 		    }
 		}
 
-string nickname;
+	string nickname;
 		while (true) {
 				cout << "Ingrese un nickname de la lista: ";
 				cin >> nickname;
@@ -67,6 +67,7 @@ string nickname;
 void Alta_De_Curso::CrearCurso(){
 
     string nombreCurso, descripcion,idioma;
+    list<string> previas;
     int dificultad;
 
 
@@ -83,45 +84,82 @@ void Alta_De_Curso::CrearCurso(){
 					return ; // cancelar
 				}
 			} else {
-			    cout << "Ingrese la descripción del curso: ";
-			    getline(cin, descripcion);
-
+				Agregar_Descripcion(descripcion);
 			    dificultad = seleccionarDificultad();
-
-
-			   // this->controlador->Crear_Curso(curso);
-			    Muestro_Idiomas();
-			    cout << "Ingrese el Idioma: ";
-			    			    getline(cin, idioma);
-
-
-			    Muestro_Cursos_Hab();
-
-			    char respuesta;
+			    
+				Agregar_Idioma(idioma);
+				
+				
+				char respuesta;
 			    cout << "Desea agregar previas al curso? (s/n): ";
 			    cin >> respuesta;
-			    cin.ignore(); // Limpiar el buffer de entrada
+			    if(respuesta == 's' || respuesta == 'S'){
+				previas=Agregar_Previa();
+				
+				//lecciones 
+					//ejercicios
+				}
+			    
+		}
+	}
+	DTCurso* curso=new DTCurso(nombreCurso,descripcion,dificultad,idioma,previas);
+}
+void Alta_De_Curso::Agregar_Descripcion(string& descripcion){
+	cout << "Ingrese la Descripción: ";
+	getline(cin, descripcion);
 
+}
+void Alta_De_Curso::Agregar_Idioma(string& idioma){
+	 Muestro_Idiomas();
+
+	while (true) {
+            cout << "Ingrese el Idioma (o 'salir' para terminar): ";
+            getline(cin, idioma);
+            if (idioma == "salir") {
+                cout << "Saliendo del proceso de entrada de idioma." << endl;
+                idioma = ""; // Limpiar el valor de idioma ya que el usuario decidió salir
+                return;
+            }
+            if (!this->controlador->Existe_Idioma(idioma)) {
+                cout << "Idioma no existe. ";
+            } else {
+                break;
+            }
+        }
+}
+
+list<string> Alta_De_Curso::Agregar_Previa(){
+			    Muestro_Cursos_Hab();
+				char respuesta;
 			    list<string> previas;
 
 			    while (respuesta == 's' || respuesta == 'S') {
 			        string previa;
 			        cout << "Ingrese el nombre del curso previo: ";
+			        cin.ignore(); 
 			        getline(cin, previa);
+			        while (!this->controlador->Verificar_Nombre_Curso(previa)) { // existe el curso en cursos, falta controlar cursoprevio en curso
+                    	cout << "El curso '" << previa << "' no existe. ";
+                    	cout << "¿Desea intentar de nuevo? (s/n): ";
+						char opcion;
+						cin >> opcion;
+						if (opcion == 'n' || opcion == 'N') {
+							break; // cancelar
+						}
+                    	cout << "Ingrese el nombre del curso previo: ";
+                    	getline(cin, previa);
+               		 }
 			        previas.push_back(previa);
-
+					
 			        cout << "Desea agregar otra previa al curso? (s/n): ";
 			        cin >> respuesta;
 			        cin.ignore(); // Limpiar el buffer de entrada
 			    }
 
-			    DTCurso* curso=new DTCurso(nombreCurso,descripcion,dificultad,idioma,previas);
-				break;
-			}
-		}
-
-
+			
+			return previas;
 }
+
 
 void Alta_De_Curso::Muestro_Cursos_Hab(){
     std::list<string> cursoshab = controlador->Listar_Cursos_Habiles();

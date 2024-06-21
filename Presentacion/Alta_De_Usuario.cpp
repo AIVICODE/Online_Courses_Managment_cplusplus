@@ -26,7 +26,7 @@ AltaUsuario::~AltaUsuario() {
 	delete this->controlador;
 }
 
-void AltaUsuario::altaUsuario() {
+void AltaUsuario::altaUsuario(){
 
 DTUsuario* user=Ingresar_Usuario();
 system("clear");
