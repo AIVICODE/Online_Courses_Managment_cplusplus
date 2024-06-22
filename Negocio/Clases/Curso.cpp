@@ -62,6 +62,11 @@ void Curso::setIdioma(Idioma* idioma) {
 Idioma* Curso::getIdioma() const {
     return idiomacurso;
 }
+
+    void Curso::setPrevias(const list<Curso*>& nuevasPrevias) {
+        previas = nuevasPrevias;
+    }
+
 list<string> Curso::evalua_progreso(){
 // RECORRO LECCIONES
 // A CADA UNA ENVIO dar_ejercicios_pendientes(//paso los ejercicios realizados)//Esta operacion va a trabajar con los ejercicios de la leccion en el loop;

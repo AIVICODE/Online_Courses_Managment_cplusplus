@@ -41,6 +41,7 @@ public:
 	list <string> Listar_Cursos_Habiles();
 	void Agregar_Idioma_Curso(string idioma);
 	Idioma* Buscar_Idioma(string idioma);
+	Curso* Buscar_Curso(const string nombreCurso);
 	virtual ~Controlador();
 };
 
