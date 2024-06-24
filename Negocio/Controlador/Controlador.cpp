@@ -328,3 +328,10 @@ Controlador::~Controlador() {
 	// TODO Auto-generated destructor stub
 }
 
+void Controlador::Alta_Idioma(std::string el_idioma){
+
+
+	this->sistema->idiomas.insert(new Idioma(el_idioma));
+	
+}
+

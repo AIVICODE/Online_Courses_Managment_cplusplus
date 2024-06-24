@@ -10,7 +10,8 @@
 #include "Presentacion/Alta_De_Usuario.h"
 #include "Presentacion/Alta_De_Curso.h"
 #include "Presentacion/Consultar_Estadisticas.h"
-
+#include "Presentacion/Alta_Idioma.h"
+#include "Presentacion/Consultar_Idiomas.h"
 #include <iostream>
 #include "General/Includes.cpp"
 
@@ -53,9 +54,18 @@ int main() {
                 break;
             case 3:
                 //Alta_De_Idioma();
+                {
+                Alta_Idioma alta_idioma;
+                alta_idioma.Hacer();
+                }
                 break;
             case 4:
                 //Consultar_Idiomas();
+                {
+                Consultar_Idiomas consultar_idiomas;
+                consultar_idiomas.Hacer();
+                esperaEnter();
+                }
                 break;
             case 5: {
                 Alta_De_Curso altaCurso;
@@ -86,6 +96,7 @@ int main() {
             case 13: {
                 Consultar_Estadisticas estadistica;
                 estadistica.consultar_estadisticas();
+                esperaEnter();
             }
             break;
             case 14:

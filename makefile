@@ -9,8 +9,9 @@ EXE = programa
 DT= Negocio/DT/
 SYS= Negocio/System/
 PRESENT= Presentacion/
-OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Leccion.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Consultar_Estadisticas.o Alta_De_Usuario.o
+OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Leccion.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Alta_Idioma.o Consultar_Estadisticas.o Consultar_Idiomas.o Alta_De_Usuario.o
 BINARIO = programa
+INPUT = input.txt
 
 all: programa
 
@@ -84,7 +85,12 @@ Alta_De_Curso.o: $(PRESENT)Alta_De_Curso.cpp $(PRESENT)Alta_De_Curso.h
 	
 Consultar_Estadisticas.o: $(PRESENT)Consultar_Estadisticas.cpp $(PRESENT)Consultar_Estadisticas.h
 	$(CXX) $(CXXFLAGS) -c $(PRESENT)Consultar_Estadisticas.cpp
-
+	
+Alta_Idioma.o: $(PRESENT)Alta_Idioma.cpp $(PRESENT)Alta_Idioma.h
+	$(CXX) $(CXXFLAGS) -c $(PRESENT)Alta_Idioma.cpp	
+	
+Consultar_Idiomas.o: $(PRESENT)Consultar_Idiomas.cpp $(PRESENT)Consultar_Idiomas.h
+	$(CXX) $(CXXFLAGS) -c $(PRESENT)Consultar_Idiomas.cpp	
 build: $(EXE)
 	
 clean:

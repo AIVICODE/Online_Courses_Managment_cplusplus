@@ -43,6 +43,9 @@ public:
 	Idioma* Buscar_Idioma(string idioma);
 	Curso* Buscar_Curso(const string nombreCurso);
 	virtual ~Controlador();
+	
+	//altaidioma
+	void Alta_Idioma(std::string el_idioma);
 };
 
 #endif /* LABFINAL_CONTROLADOR_CONTROLADOR_H_ */
