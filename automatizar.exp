@@ -1,6 +1,29 @@
 #!/usr/bin/expect -f
+
+#EJEMPLO ALTA IDIOMA
+
+proc clear_buffer {} {
+    expect -re ".+"
+}
+
 spawn ./programa
 
 send "1\r"
+clear_buffer
+
+send "3\r"
+clear_buffer
+
+send "3\r"
+clear_buffer
+
+send "Ingle\r"
+clear_buffer
+
+send "s\r"
+clear_buffer
+
+send "n\r"
+clear_buffer
 
 expect eof
