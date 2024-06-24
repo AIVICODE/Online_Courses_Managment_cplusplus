@@ -11,6 +11,7 @@
 #include "../DT/DTCurso.h"
 #include "../headers/Usuario.h"
 #include "../headers/Idioma.h"
+#include "../headers/Curso.h"
 #include <string>
 #include <list>
 
@@ -45,6 +46,10 @@ public:
 	virtual bool Verificar_Nombre_Curso(const std::string& nombre)=0;
 	virtual void Crear_Curso(DTCurso* curso)=0;
 	virtual Idioma* Buscar_Idioma(string idioma)=0;
+	virtual Curso* Buscar_Curso(const string nombreCurso)=0;
+	
+	//alta idioma
+	virtual void Alta_Idioma(string el_idioma) = 0;
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

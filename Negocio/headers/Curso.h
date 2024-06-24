@@ -24,6 +24,7 @@ private:
 	bool disponible;
 	Idioma* idiomacurso;
 	list <Leccion*> leccionescurso;
+	list <Curso*> previas;
 
 public:
 	Curso();
@@ -43,6 +44,9 @@ public:
     void setDificultad(Tipo_Dificultad dificultad);
     void setIdioma(Idioma* idioma);
 	void setDisponible(bool disponible);
+	    void setPrevias(const list<Curso*>& nuevasPrevias);
+
+	
 	list<string> evalua_progreso();
 	~Curso();
 };

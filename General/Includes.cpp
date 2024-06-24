@@ -7,7 +7,7 @@ using namespace std;
 
 void imprimirMenu();
 bool esNumero(const string& str);
-
+void esperaEnter();
 void imprimirMenu() {
     cout << "Menu de opciones:" << endl;
     cout << "1. Alta de Usuario" << endl;
@@ -32,4 +32,10 @@ bool esNumero(const string& str) {
         if (isdigit(c) == 0) return false;
     }
     return true;
+}
+
+void esperaEnter() {
+    std::cout << "Presione una enter para continuar...";
+    std::string nosirve;
+    std::getline(std::cin, nosirve);
 }

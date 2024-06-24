@@ -150,13 +150,13 @@ Usuario* user=Buscar_Usuario(nickname);
 
 Estudiante* estudiante = dynamic_cast<Estudiante*>(user);
 
-if (estudiante != nullptr) {//Es estudiante
-	estudiante->dar_estadistica();
-}
+	if (estudiante != nullptr) {//Es estudiante
+		estudiante->dar_estadistica();
+	}
 
-Profesor* profesor = dynamic_cast<Profesor*>(user);
+	Profesor* profesor = dynamic_cast<Profesor*>(user);
 
-if (profesor != nullptr) {//Es profesor
+	if (profesor != nullptr) {//Es profesor
 
 }
 
@@ -201,7 +201,6 @@ Usuario* Controlador::Buscar_Usuario(string nickname){
 	    }
 	    return nullptr; // Devuelve nullptr si no se encuentra el usuario
 
-
 }
 
 //fin alta user
@@ -228,19 +227,32 @@ switch (dtcurso->getDificultad()) {
             // Puedes lanzar una excepción, asignar un valor predeterminado, etc.
             break;
     }
+    
 Curso* curso = new Curso(
-
 		dtcurso->getNombre(),
 		dtcurso->getDescripcion(),
 		dificultad,
 		0// setea el curso habilitado = false
 		);
 	
-curso->setIdioma(Buscar_Idioma(dtcurso->getIdioma()));
+	curso->setIdioma(Buscar_Idioma(dtcurso->getIdioma()));
+//agrego previas a curso
+	list<string> strprevias=dtcurso->getPrevias();
+	
+	        if (curso != nullptr) {
+				
+            list<Curso*> nuevasPrevias;
+            for (const auto& strprevia : strprevias) {
+                Curso* previa = Buscar_Curso(strprevia);
+                if (previa != nullptr) {
+                    nuevasPrevias.push_back(previa);
+                } 
+            }
+            curso->setPrevias(nuevasPrevias);
 
-this->sistema->cursos.insert(curso);
-
-
+            }
+            
+	this->sistema->cursos.insert(curso);
 
 }
 
@@ -302,7 +314,24 @@ Idioma* Controlador::Buscar_Idioma(string idioma){
 
 }
 
+Curso* Controlador::Buscar_Curso(const string nombreCurso) {
+	for (auto it = this->sistema->cursos.begin(); it != this->sistema->cursos.end(); ++it) {
+            if ((*it)->getNombre() == nombreCurso) {
+                return *it;
+            }
+        }
+        return nullptr; // Devuelve nullptr si no se encuentra el curso
+	
+    }
+
 Controlador::~Controlador() {
 	// TODO Auto-generated destructor stub
+}
+
+void Controlador::Alta_Idioma(std::string el_idioma){
+
+
+	this->sistema->idiomas.insert(new Idioma(el_idioma));
+	
 }
 
