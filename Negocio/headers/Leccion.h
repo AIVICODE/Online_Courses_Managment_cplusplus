@@ -10,32 +10,27 @@
 
 #include <list>
 #include <string>
-
+#include "Ejercicio.h"
 using namespace std;
 class Leccion {
 private:
 		string nombre;
        // string tema;
         //string objetivo;
-        //list<Ejercicio*> ejercicios;
+        list<Ejercicio*> ejercicios;
     public:
        Leccion();
-        //Leccion(string descripcion);
-        //Leccion(string tema, string objetivo);
-        //Leccion(string tema,string objetivo,set<Ejercicio*>);
+
+	    Leccion(string nombre);
+
 		string Get_Nombre();
-        // Getters
-        //string getTema();
-        //string getObjetivo();
-        //set<Ejercicio*> getEjercicios();
-        //int getCantEj();
-
-        // Setters
-        //void setTema(string tema);
-        //void setObjetivo(string objetivo);
-
-        // Operaciones
-        //void crearEjercicioYAgregarlo(string desc);
+		
+		string Get_Nombre() const;
+		
+    void Agregar_Ejercicio(Ejercicio* ejercicio);
+    
+    const list<Ejercicio*>& Get_Ejercicios() ; 
+        
 
 
         ~Leccion();

@@ -52,6 +52,8 @@ public:
 	list <string> Listar_Cursos_No_Habiles();
 	void Agregar_Ejercicio(string nombreCurso,string nombreLeccion,DTEjercicio* dtejercicio);
 	list<string> Mostrar_Lecciones(string nombreCurso);
+	bool Existe_Leccion(string nombreCurso,string nombreLeccion);
+	list<string>  Mostrar_Ejercicios(string nombreCurso, string nombreLeccion);
 	//fin
 	void Carga_Datos();
 };

@@ -31,7 +31,6 @@ public:
     string getContrasenia() const;
     string getNombre() const;
     string getDescripcion() const;
-
     // Destructor
     virtual ~DTUsuario();
 };

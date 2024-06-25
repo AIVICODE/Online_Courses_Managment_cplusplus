@@ -25,5 +25,7 @@ string DTProfesor::getInstituto() const {
     return instituto;
 }
 
+
+
 DTProfesor::DTProfesor(string nickname)
     : DTUsuario(nickname) {} // Llamar al constructor de DTUsuario

@@ -58,6 +58,10 @@ public:
 	virtual list <string> Listar_Cursos_No_Habiles()=0;
 	virtual void Agregar_Ejercicio(string nombreCurso,string nombreLeccion,DTEjercicio* dtejercicio)=0;
 	virtual list<string> Mostrar_Lecciones(string nombreCurso)=0;
+	virtual bool Existe_Leccion(string nombreCurso,string nombreLeccion)=0;
+	//
+	//REalizar ejercicio 
+	virtual list<string>  Mostrar_Ejercicios(string nombreCurso, string nombreLeccion)=0;
 	//fin
 	virtual void Carga_Datos()=0;
 };

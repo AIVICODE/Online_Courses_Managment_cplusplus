@@ -27,7 +27,6 @@ public:
 
     DTProfesor(string nickname);
 
-
     // Destructor
     virtual ~DTProfesor();
 };
