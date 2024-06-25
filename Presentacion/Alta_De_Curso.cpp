@@ -82,8 +82,9 @@ void Alta_De_Curso::CrearCurso(){
 				cin >> opcion;
 				if (opcion == 'n' || opcion == 'N') {
 					return ; // cancelar
+					}
 				}
-			} else {
+			}
 				Agregar_Descripcion(descripcion);
 			    dificultad = seleccionarDificultad();
 			    
@@ -95,14 +96,37 @@ void Alta_De_Curso::CrearCurso(){
 			    cin >> respuesta;
 			    if(respuesta == 's' || respuesta == 'S'){
 				previas=Agregar_Previa();
-				
-				//lecciones 
-					//ejercicios
+			
 				}
+	char deseaAgregarLeccion;
+    char deseaAgregarEjercicio;
+
+    do {
+        std::cout << "¿Desea agregar una lección? (s/n): ";
+        std::cin >> deseaAgregarLeccion;
+
+        if (deseaAgregarLeccion == 's' || deseaAgregarLeccion == 'S') {
+            //agregarLeccion();
+
+            do {
+                std::cout << "¿Desea agregar un ejercicio? (s/n): ";
+                std::cin >> deseaAgregarEjercicio;
+
+                if (deseaAgregarEjercicio == 's' || deseaAgregarEjercicio == 'S') {
+                    //agregarEjercicio();
+                }
+            } while (deseaAgregarEjercicio == 's' || deseaAgregarEjercicio == 'S');
+        }
+
+    } while (deseaAgregarLeccion == 's' || deseaAgregarLeccion == 'S');
+
+    std::cout << "Terminado." << std::endl;
 			    
-		}
-	}
+		
+	
 	DTCurso* curso=new DTCurso(nombreCurso,descripcion,dificultad,idioma,previas);
+	
+	
 }
 void Alta_De_Curso::Agregar_Descripcion(string& descripcion){
 	cout << "Ingrese la Descripción: ";

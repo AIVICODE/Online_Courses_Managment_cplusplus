@@ -228,7 +228,7 @@ switch (dtcurso->getDificultad()) {
             break;
     }
     
-Curso* curso = new Curso(
+	Curso* curso = new Curso(
 		dtcurso->getNombre(),
 		dtcurso->getDescripcion(),
 		dificultad,
@@ -252,6 +252,7 @@ Curso* curso = new Curso(
 
             }
             
+    
 	this->sistema->cursos.insert(curso);
 
 }
@@ -335,3 +336,19 @@ void Controlador::Alta_Idioma(std::string el_idioma){
 	
 }
 
+void Controlador::Carga_Datos(){
+	Estudiante estudiante("pedro", "123", "nombre", "Le gusta el ingle", "Burkina", DTFecha(1, 1, 1940));
+	this->sistema->usuarios.insert(new Estudiante(estudiante));
+
+// Crear un profesor y agregarlo a usuarios
+	Profesor profesor("nickname_prof", "contrasenia_prof", "nombre_prof", "descripcion_prof", "instituto_prof");
+	this->sistema->usuarios.insert(new Profesor(profesor));
+
+// Crear un curso y agregarlo a cursos
+	Curso curso("Tenis", "Abajo del agua", Tipo_Dificultad::Facil, true);
+	this->sistema->cursos.insert(new Curso(curso));
+
+// Crear un idioma y agregarlo a idiomas
+	Idioma idioma("Ingles");
+	this->sistema->idiomas.insert(new Idioma(idioma));
+}

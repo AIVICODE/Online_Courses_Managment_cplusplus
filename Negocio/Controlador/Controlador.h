@@ -46,6 +46,8 @@ public:
 	
 	//altaidioma
 	void Alta_Idioma(std::string el_idioma);
+	
+	void Carga_Datos();
 };
 
 #endif /* LABFINAL_CONTROLADOR_CONTROLADOR_H_ */

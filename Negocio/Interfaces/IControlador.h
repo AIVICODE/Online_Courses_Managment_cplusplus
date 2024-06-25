@@ -50,6 +50,7 @@ public:
 	
 	//alta idioma
 	virtual void Alta_Idioma(string el_idioma) = 0;
+	virtual void Carga_Datos()=0;
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

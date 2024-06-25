@@ -12,6 +12,7 @@
 #include "Presentacion/Consultar_Estadisticas.h"
 #include "Presentacion/Alta_Idioma.h"
 #include "Presentacion/Consultar_Idiomas.h"
+#include "Presentacion/Cargar_Datos.h"
 #include <iostream>
 #include "General/Includes.cpp"
 
@@ -100,7 +101,10 @@ int main() {
             }
             break;
             case 14:
-                //cargarDatosdePrueba();
+            	{
+                Cargar_Datos carga;
+                carga.cargarDatos();
+                }
                 break;
             case 0:
                 quiereContinuar = false;
