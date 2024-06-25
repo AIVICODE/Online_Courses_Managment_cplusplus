@@ -67,6 +67,11 @@ public:
 	//Eliminar curso 
 	virtual list <string> Listar_Cursos()=0;
 	virtual void Carga_Datos()=0;
+	
+	// ejer
+	virtual void Ingresa_Ejercicio(string nickname)=0;
+	virtual list<string> Muestra_Cursos_Pendientes(string nickname)=0;
+	virtual list<string> Muestra_Ejercicios_Pendientes(string nickname,string nombreCurso)=0;
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

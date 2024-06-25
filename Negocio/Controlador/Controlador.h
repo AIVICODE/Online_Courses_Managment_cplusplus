@@ -60,6 +60,11 @@ public:
 	//Eliminar curso
 	list <string> Listar_Cursos();
 	void Carga_Datos();
+	
+//ejercicio realizar
+	void Ingresa_Ejercicio(string nickname);
+	list<string> Muestra_Cursos_Pendientes(string nickname);
+	list<string> Muestra_Ejercicios_Pendientes(string nickname,string nombreCurso);
 };
 
 #endif /* LABFINAL_CONTROLADOR_CONTROLADOR_H_ */

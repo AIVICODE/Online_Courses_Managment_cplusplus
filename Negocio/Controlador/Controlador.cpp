@@ -15,6 +15,7 @@
 #include "../headers/Ejercicio_Completar.h"
 #include "../headers/Ejercicio_Traducir.h"
 #include "../headers/Leccion.h"
+#include "../headers/Inscripcion.h"
 
 #include "../DT/DTUsuario.h"
 #include "../DT/DTProfesor.h"
@@ -466,4 +467,101 @@ void Controlador::Carga_Datos(){
 
 
 
+void Controlador::Ingresa_Ejercicio(string nickname){
 
+	Usuario* user=Buscar_Usuario(nickname);
+
+       
+    
+}
+
+list<string> Controlador::Muestra_Cursos_Pendientes(string nickname){
+			Usuario* user=Buscar_Usuario(nickname);
+		    // Verificamos si un usuario existe y obtenemos el usuario
+    if (user) {
+        // Intentamos convertirlo a Estudiante
+        Estudiante* estudiante = dynamic_cast<Estudiante*>(user);
+        if (estudiante) {
+            list<string> cursosPendientes = estudiante->dar_cursos_pendientes();
+        	}
+        } 
+}
+
+list<string> Controlador::Muestra_Ejercicios_Pendientes(string nickname,string nombreCurso){
+			Usuario* user=Buscar_Usuario(nickname);
+			
+			Curso* curso=Buscar_Curso(nombreCurso);
+			
+			    list<string> ejerciciosPendientes;
+
+			
+			const list<Leccion*>& leccionesCurso = curso->getLecciones();
+
+    // Intentar castear el usuario a Estudiante
+    Estudiante* estudiante = dynamic_cast<Estudiante*>(user);
+
+    // Obtener las inscripciones del estudiante
+    list<Inscripcion*> inscripciones = estudiante->getInscripciones();
+    
+        Inscripcion* inscripcionEnCurso = nullptr;
+    for (Inscripcion* inscripcion : inscripciones) {
+        if (inscripcion->getCurso() == curso) {
+            inscripcionEnCurso = inscripcion;
+            break;
+        }
+    }
+
+    // Verificar si se encontró la inscripción para el curso
+    if (!inscripcionEnCurso) {
+        cout << "El estudiante no está inscrito en el curso '" << nombreCurso << "'." << endl;
+        return ejerciciosPendientes;
+    }
+
+    // Encontrar la lección actual que no está aprobada
+    Leccion* leccionActual = nullptr;
+    bool encontrada = false;
+
+    const list<Leccion*>& leccionesAprobadas = inscripcionEnCurso->getLeccionesAprobadas();
+
+    for (Leccion* leccion : leccionesCurso) {
+        bool estaAprobada = false;
+        for (Leccion* aprobada : leccionesAprobadas) {
+            if (aprobada == leccion) {
+                estaAprobada = true;
+                break;
+            }
+        }
+
+        if (!estaAprobada) {
+            leccionActual = leccion;
+            encontrada = true;
+            break;
+        }
+    }
+
+    // Si se encontró una lección no aprobada, obtener los ejercicios pendientes
+    if (encontrada && leccionActual) {
+        const list<Ejercicio*>& ejerciciosCurso = leccionActual->Get_Ejercicios();
+        const list<Ejercicio*>& ejerciciosAprobados = inscripcionEnCurso->getEjerciciosAprobados();
+
+        for (Ejercicio* ejercicio : ejerciciosCurso) {
+            bool estaAprobado = false;
+            for (Ejercicio* aprobado : ejerciciosAprobados) {
+                if (aprobado == ejercicio) {
+                    estaAprobado = true;
+                    break;
+                }
+            }
+
+            if (!estaAprobado) {
+                ejerciciosPendientes.push_back(ejercicio->Get_Nombre());
+            }
+        }
+    } else {
+        cout << "Todos los ejercicios del curso '" << nombreCurso << "' han sido aprobados." << endl;
+    }
+
+    return ejerciciosPendientes;
+    
+
+}

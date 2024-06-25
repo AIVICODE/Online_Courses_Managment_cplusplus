@@ -5,14 +5,16 @@
 #include "../DT/DTFecha.h"
 #include "Curso.h"
 #include "Idioma.h"
+#include "Leccion.h"
+#include "Ejercicio.h"
 #include <string>
 #include <list>
 class Inscripcion {
 private:
     DTFecha fecha;
-    //leccion actual
-    //list<lecciones*> aprobadas;
+    list<Leccion*> aprobadas;
     Curso* curso;
+    list<Ejercicio*> ejaprobados;
 public:
     Inscripcion(const DTFecha& fecha);
 
@@ -23,6 +25,14 @@ public:
 
     // Getter
     DTFecha getFecha() const;
+    
+    
+    
+    bool estaAprobado() const;
+    Curso* getCurso() const;
+    
+    list<Leccion*> getLeccionesAprobadas() const;
+    list<Ejercicio*> getEjerciciosAprobados() const;
 };
 
 #endif // INSCRIPCION_H
