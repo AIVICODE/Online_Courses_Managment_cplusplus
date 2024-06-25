@@ -14,6 +14,8 @@
 #include "../headers/Idioma.h"
 #include "../headers/Curso.h"
 #include "../DT/DTConsultaCurso.h"
+#include "../DT/DTLeccion.h"
+
 #include <string>
 #include <list>
 
@@ -80,6 +82,9 @@ virtual void obtenerFechaActual(int &dia, int &mes, int &anio)=0;
 	virtual DTConsulta_Curso* ConsultaCurso(string nombreCurso)=0;
 	virtual list<string> Cursos_Habiles_Estudiante(string nickname)=0;
 	virtual void Inscribirse_a_Curso(string nickname, string nombreCurso)=0;
+	
+	//agregar leccion
+	virtual void AgregaLeccion(string nombreCurso,DTLeccion * dtleccion)=0;
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

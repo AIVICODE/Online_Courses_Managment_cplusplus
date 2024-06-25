@@ -31,3 +31,11 @@ void Leccion::Agregar_Ejercicio(Ejercicio* ejercicio) {
 const list<Ejercicio*>& Leccion::Get_Ejercicios() {
     return ejercicios;
 }
+
+	    Leccion::Leccion(string nombre,string descripcion,string tema,string objetivo){
+			this->nombre=nombre;
+			this->descripcion=descripcion;
+			this->tema=tema;
+			this->objetivo=objetivo;
+			
+		}
