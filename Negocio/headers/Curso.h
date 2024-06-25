@@ -44,7 +44,10 @@ public:
     void setDificultad(Tipo_Dificultad dificultad);
     void setIdioma(Idioma* idioma);
 	void setDisponible(bool disponible);
-	    void setPrevias(const list<Curso*>& nuevasPrevias);
+	void setPrevias(const list<Curso*>& nuevasPrevias);
+	list<Leccion*> getLecciones() const;
+    void setLeccion(Leccion* nuevaLeccion);
+    Leccion* buscarLeccion(const string& nombreLeccion);
 
 	
 	list<string> evalua_progreso();

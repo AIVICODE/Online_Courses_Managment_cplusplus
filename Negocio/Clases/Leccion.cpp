@@ -12,6 +12,9 @@ Leccion::Leccion() {
 
 }
 
+string Leccion::Get_Nombre(){
+	return nombre;
+}
 Leccion::~Leccion() {
 	// TODO Auto-generated destructor stub
 }
