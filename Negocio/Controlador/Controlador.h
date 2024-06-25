@@ -43,7 +43,8 @@ public:
 	Idioma* Buscar_Idioma(string idioma);
 	Curso* Buscar_Curso(const string nombreCurso);
 	virtual ~Controlador();
-	
+	//hab curso
+	void Habilitar_Curso(string nombreCurso);
 	//altaidioma
 	void Alta_Idioma(std::string el_idioma);
 	

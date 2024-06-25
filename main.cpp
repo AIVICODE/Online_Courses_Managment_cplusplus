@@ -13,6 +13,7 @@
 #include "Presentacion/Alta_Idioma.h"
 #include "Presentacion/Consultar_Idiomas.h"
 #include "Presentacion/Cargar_Datos.h"
+#include "Presentacion/Habilitar_Curso.h"
 #include <iostream>
 #include "General/Includes.cpp"
 
@@ -80,7 +81,10 @@ int main() {
                 //agregarEjercicio();
                 break;
             case 8:
-                //habilitarCurso();
+            {
+                Habilitar_Curso habcurso;
+                habcurso.habilitarCurso();
+                }
                 break;
             case 9:
                 //eliminarCurso();

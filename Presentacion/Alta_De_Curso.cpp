@@ -84,7 +84,11 @@ void Alta_De_Curso::CrearCurso(){
 					return ; // cancelar
 					}
 				}
+				else{
+				break;
+				}
 			}
+			
 				Agregar_Descripcion(descripcion);
 			    dificultad = seleccionarDificultad();
 			    
@@ -95,7 +99,10 @@ void Alta_De_Curso::CrearCurso(){
 			    cout << "Desea agregar previas al curso? (s/n): ";
 			    cin >> respuesta;
 			    if(respuesta == 's' || respuesta == 'S'){
-				previas=Agregar_Previa();
+					
+					
+					Muestro_Cursos_Hab();
+					previas=Agregar_Previa();
 			
 				}
 	char deseaAgregarLeccion;
@@ -119,15 +126,16 @@ void Alta_De_Curso::CrearCurso(){
         }
 
     } while (deseaAgregarLeccion == 's' || deseaAgregarLeccion == 'S');
-
-    std::cout << "Terminado." << std::endl;
-			    
+		    
 		
-	
 	DTCurso* curso=new DTCurso(nombreCurso,descripcion,dificultad,idioma,previas);
+	this->controlador->Crear_Curso(curso);
 	
 	
 }
+
+
+
 void Alta_De_Curso::Agregar_Descripcion(string& descripcion){
 	cout << "Ingrese la Descripción: ";
 	getline(cin, descripcion);
@@ -135,6 +143,7 @@ void Alta_De_Curso::Agregar_Descripcion(string& descripcion){
 }
 void Alta_De_Curso::Agregar_Idioma(string& idioma){
 	 Muestro_Idiomas();
+                    		    cin.ignore(); // Limpiar el buffer
 
 	while (true) {
             cout << "Ingrese el Idioma (o 'salir' para terminar): ";
@@ -153,16 +162,20 @@ void Alta_De_Curso::Agregar_Idioma(string& idioma){
 }
 
 list<string> Alta_De_Curso::Agregar_Previa(){
-			    Muestro_Cursos_Hab();
 				char respuesta;
+				respuesta='s';
 			    list<string> previas;
 
 			    while (respuesta == 's' || respuesta == 'S') {
+					cin.ignore(); // Limpiar el buffer
+
 			        string previa;
 			        cout << "Ingrese el nombre del curso previo: ";
-			        cin.ignore(); 
-			        getline(cin, previa);
+			        cin >> previa;
+
 			        while (!this->controlador->Verificar_Nombre_Curso(previa)) { // existe el curso en cursos, falta controlar cursoprevio en curso
+			        	cin.ignore(); // Limpiar el buffer
+
                     	cout << "El curso '" << previa << "' no existe. ";
                     	cout << "¿Desea intentar de nuevo? (s/n): ";
 						char opcion;
@@ -170,14 +183,16 @@ list<string> Alta_De_Curso::Agregar_Previa(){
 						if (opcion == 'n' || opcion == 'N') {
 							break; // cancelar
 						}
+									        	cin.ignore(); // Limpiar el buffer
+
                     	cout << "Ingrese el nombre del curso previo: ";
                     	getline(cin, previa);
+
                		 }
 			        previas.push_back(previa);
 					
 			        cout << "Desea agregar otra previa al curso? (s/n): ";
 			        cin >> respuesta;
-			        cin.ignore(); // Limpiar el buffer de entrada
 			    }
 
 			
