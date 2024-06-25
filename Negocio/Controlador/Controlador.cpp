@@ -680,17 +680,18 @@ void Controlador::Carga_Datos(){
 	Profesor profesor("prof", "contrasenia_prof", "nombre_prof", "descripcion_prof", "instituto_prof");
 	this->sistema->usuarios.insert(new Profesor(profesor));
 
-
-
+//alta idioma
+	Idioma idioma("ing");
+	this->sistema->idiomas.insert(new Idioma(idioma));
 // Crear un curso y agregarlo a cursos
 
 	Curso curso("fut", "Abajo del agua", Tipo_Dificultad::Facil, false);
 	    Leccion* leccion1 = new Leccion("lec1");
+	    curso.setIdioma(Buscar_Idioma("ing"));
     curso.setLeccion(leccion1);
 
 	this->sistema->cursos.insert(new Curso(curso));
 
-// Crear un idioma y agregarlo a idiomas
-	Idioma idioma("ing");
-	this->sistema->idiomas.insert(new Idioma(idioma));
+
+
 }
