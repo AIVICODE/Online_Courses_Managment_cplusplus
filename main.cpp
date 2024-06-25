@@ -16,6 +16,7 @@
 #include "Presentacion/Habilitar_Curso.h"
 #include "Presentacion/Agregar_Ejercicio.h"
 #include "Presentacion/Consultar_Usuario.h"
+#include "Presentacion/Eliminar_Curso.h"
 
 #include <iostream>
 #include "General/Includes.cpp"
@@ -96,7 +97,10 @@ int main() {
                 }
                 break;
             case 9:
-                //eliminarCurso();
+            {
+                Eliminar_Curso eliminarc;
+                eliminarc.EliminarCurso();
+                }
                 break;
             case 10:
                 //consultarCurso();

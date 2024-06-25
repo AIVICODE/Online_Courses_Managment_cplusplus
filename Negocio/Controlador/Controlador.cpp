@@ -307,6 +307,16 @@ list <string> Controlador::Listar_Cursos_No_Habiles(){
     return cursosnoHabilitados;
 }
 
+list <string> Controlador::Listar_Cursos(){
+	    list<string> cursoslist;
+
+    for (Curso* curso : this->sistema->cursos) {
+            cursoslist.push_back(curso->getNombre());
+
+    }
+    return cursoslist;
+}
+
 void Controlador::Agregar_Idioma_Curso(string idioma){
 
 

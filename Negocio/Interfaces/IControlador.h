@@ -63,6 +63,9 @@ public:
 	//REalizar ejercicio 
 	virtual list<string>  Mostrar_Ejercicios(string nombreCurso, string nombreLeccion)=0;
 	//fin
+	
+	//Eliminar curso 
+	virtual list <string> Listar_Cursos()=0;
 	virtual void Carga_Datos()=0;
 };
 

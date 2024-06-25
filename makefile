@@ -9,7 +9,7 @@ EXE = programa
 DT= Negocio/DT/
 SYS= Negocio/System/
 PRESENT= Presentacion/
-OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Leccion.o Ejercicio.o Ejercicio_Completar.o Ejercicio_Traducir.o Controlador.o DTUsuario.o DTProfesor.o DTEjercicio.o DTEjercicio_Traduccion.o DTEjercicio_Completar.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Alta_Idioma.o Cargar_Datos.o Consultar_Estadisticas.o Consultar_Usuario.o Consultar_Idiomas.o Agregar_Ejercicio.o Habilitar_Curso.o Alta_De_Usuario.o
+OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Leccion.o Ejercicio.o Ejercicio_Completar.o Ejercicio_Traducir.o Controlador.o DTUsuario.o DTProfesor.o DTEjercicio.o DTEjercicio_Traduccion.o DTEjercicio_Completar.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Alta_Idioma.o Cargar_Datos.o Consultar_Estadisticas.o Consultar_Usuario.o Consultar_Idiomas.o Eliminar_Curso.o Agregar_Ejercicio.o Habilitar_Curso.o Alta_De_Usuario.o
 BINARIO = programa
 INPUT = input.txt
 
@@ -114,7 +114,11 @@ Agregar_Ejercicio.o: $(PRESENT)Agregar_Ejercicio.cpp $(PRESENT)Agregar_Ejercicio
 	$(CXX) $(CXXFLAGS) -c $(PRESENT)Agregar_Ejercicio.cpp	
 	
 Consultar_Usuario.o: $(PRESENT)Consultar_Usuario.cpp $(PRESENT)Consultar_Usuario.h
-	$(CXX) $(CXXFLAGS) -c $(PRESENT)Consultar_Usuario.cpp	
+	$(CXX) $(CXXFLAGS) -c $(PRESENT)Consultar_Usuario.cpp
+	
+	
+Eliminar_Curso.o: $(PRESENT)Eliminar_Curso.cpp $(PRESENT)Eliminar_Curso.h
+	$(CXX) $(CXXFLAGS) -c $(PRESENT)Eliminar_Curso.cpp		
 	
 Cargar_Datos.o: $(PRESENT)Cargar_Datos.cpp $(PRESENT)Cargar_Datos.h
 	$(CXX) $(CXXFLAGS) -c $(PRESENT)Cargar_Datos.cpp	

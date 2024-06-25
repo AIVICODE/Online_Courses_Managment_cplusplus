@@ -55,6 +55,10 @@ public:
 	bool Existe_Leccion(string nombreCurso,string nombreLeccion);
 	list<string>  Mostrar_Ejercicios(string nombreCurso, string nombreLeccion);
 	//fin
+	
+	
+	//Eliminar curso
+	list <string> Listar_Cursos();
 	void Carga_Datos();
 };
 
