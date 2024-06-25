@@ -286,7 +286,7 @@ list<DTUsuario*> Controlador::Listar_Profesores(){
 }
 
 
-bool Controlador::Verificar_Nombre_Curso(const std::string& nombre) {
+bool Controlador::Verificar_Nombre_Curso(const string nombre) {
     // Recorro los cursos del sistema
     bool result = false;
 
@@ -375,6 +375,7 @@ Controlador::~Controlador() {
 //------------------------------------------------<MARIANO>-------------------------------------------------------
 DTConsulta_Curso* Controlador::ConsultaCurso(string nombreCurso){
 	Curso* curso = Buscar_Curso(nombreCurso);
+	
 	DTConsulta_Curso* consultaDTO=new DTConsulta_Curso((curso->getNombre()),(curso->getDescripcion()),(curso->getDificultadString()), (curso->getIdioma())->Get_Nombre() );
 	return consultaDTO;
 }

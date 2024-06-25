@@ -67,6 +67,7 @@ void Alta_De_Curso::AltaCurso(){
 void Alta_De_Curso::CrearCurso(){
 
     string nombreCurso, descripcion,idioma;
+    idioma="";
     list<string> previas;
     int dificultad;
 
@@ -93,7 +94,10 @@ void Alta_De_Curso::CrearCurso(){
 			    dificultad = seleccionarDificultad();
 			    
 				Agregar_Idioma(idioma);
-				
+				if(idioma==""){
+					cout << "Debe ingresar un idioma para el curso"<<endl;
+					return ;
+				}
 				
 				char respuesta;
 			    cout << "Desea agregar previas al curso? (s/n): ";
@@ -149,7 +153,7 @@ void Alta_De_Curso::Agregar_Idioma(string& idioma){
             cout << "Ingrese el Idioma (o 'salir' para terminar): ";
             getline(cin, idioma);
             if (idioma == "salir") {
-                cout << "Saliendo del proceso de entrada de idioma." << endl;
+                cout << "Saliendo." << endl;
                 idioma = ""; // Limpiar el valor de idioma ya que el usuario decidió salir
                 return;
             }

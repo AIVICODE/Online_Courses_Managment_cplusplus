@@ -35,7 +35,10 @@ DTProfesor* profesor = dynamic_cast<DTProfesor*>(user);
 if (profesor != nullptr) {
 	Listar_Idiomas(this->controlador->Listar_Idiomas());
 
-	Agregar_Especializacion(user->getNickname());
+	if(Agregar_Especializacion(user->getNickname())){
+				this->controlador->ingresarUsuario(user);
+
+	}
 }
 
 }
@@ -85,7 +88,6 @@ DTUsuario* AltaUsuario::Ingresar_Profesor() {
 
     DTProfesor* profesor = new DTProfesor(nickname, contrasenia, nombre, descripcion, instituto);
 
-    this->controlador->ingresarUsuario(profesor);
     return profesor;
 }
 
@@ -114,7 +116,6 @@ DTUsuario* AltaUsuario::Ingresar_Estudiante() {
 		DTEstudiante* estudiante = new DTEstudiante(nickname, contrasenia,
 				nombre, descripcion, pais, fecha);
 
-		this->controlador->ingresarUsuario(estudiante);
 		return estudiante;
 	} catch (const invalid_argument &e) {
 		cerr << "Error: " << e.what() << endl;
@@ -140,7 +141,7 @@ bool AltaUsuario::IngresarNickname(string &nickname) {
 	}
 }
 
-void AltaUsuario::Agregar_Especializacion(string user) {
+bool AltaUsuario::Agregar_Especializacion(string user) {
     string idioma;
     while (true) {
         cout << "Seleccione idioma (case sensitive):" << endl;
@@ -150,7 +151,7 @@ void AltaUsuario::Agregar_Especializacion(string user) {
         if ((this->controlador->Existe_Idioma(idioma))!=NULL) {
             // Agregar la especialización y salir del bucle
             this->controlador->Agregar_Especializacion(idioma, user);
-
+return true;
             break; // Salir del bucle
         } else {
             cout << "El idioma '" << idioma << "' no existe." << endl;
@@ -158,7 +159,7 @@ void AltaUsuario::Agregar_Especializacion(string user) {
             char opcion;
             cin >> opcion;
             if (opcion == 'n' || opcion == 'N') {
-                break; // Salir del bucle y de la función
+                return false; // Salir del bucle y de la función
             }
         }
     }
