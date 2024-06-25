@@ -60,3 +60,8 @@ list<string> Estudiante::dar_cursos_pendientes() {
 list<Inscripcion*> Estudiante::getInscripciones() const {
     return inscripto;
 }
+
+
+	void Estudiante::setInscripcion(Inscripcion* inscribe){
+			inscripto.push_back(inscribe);
+	}

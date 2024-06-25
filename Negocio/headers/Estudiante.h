@@ -34,6 +34,7 @@ public:
     list<string> dar_estadistica();
 	list<string> dar_cursos_pendientes();
 	list<Inscripcion*> getInscripciones() const;
+	void setInscripcion(Inscripcion* inscribe);
 };
 
 #endif /* ESTUDIANTE_H_ */

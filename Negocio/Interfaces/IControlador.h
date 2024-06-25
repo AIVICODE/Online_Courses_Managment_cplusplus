@@ -13,12 +13,17 @@
 #include "../headers/Usuario.h"
 #include "../headers/Idioma.h"
 #include "../headers/Curso.h"
+#include "../DT/DTConsultaCurso.h"
 #include <string>
 #include <list>
 
 class IControlador {
 public:
 //extras
+
+//fecha
+virtual void obtenerFechaActual(int &dia, int &mes, int &anio)=0;
+//
 	virtual list<DTUsuario*> Listar_Usuarios()=0;
 	virtual list<DTUsuario*> Listar_Profesores()=0;
 	//fin
@@ -72,6 +77,9 @@ public:
 	virtual void Ingresa_Ejercicio(string nickname)=0;
 	virtual list<string> Muestra_Cursos_Pendientes(string nickname)=0;
 	virtual list<string> Muestra_Ejercicios_Pendientes(string nickname,string nombreCurso)=0;
+	virtual DTConsulta_Curso* ConsultaCurso(string nombreCurso)=0;
+	virtual list<string> Cursos_Habiles_Estudiante(string nickname)=0;
+	virtual void Inscribirse_a_Curso(string nickname, string nombreCurso)=0;
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

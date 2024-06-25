@@ -31,6 +31,8 @@ public:
     bool estaAprobado() const;
     Curso* getCurso() const;
     
+    void setCurso(Curso* curso);
+    
     list<Leccion*> getLeccionesAprobadas() const;
     list<Ejercicio*> getEjerciciosAprobados() const;
 };

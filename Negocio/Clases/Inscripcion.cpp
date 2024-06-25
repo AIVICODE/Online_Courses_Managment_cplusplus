@@ -56,3 +56,7 @@ list<Leccion*> Inscripcion::getLeccionesAprobadas() const {
 list<Ejercicio*> Inscripcion::getEjerciciosAprobados() const{
 	return ejaprobados;
 }
+
+    void Inscripcion::setCurso(Curso* curso){
+		this->curso=curso;
+	}
