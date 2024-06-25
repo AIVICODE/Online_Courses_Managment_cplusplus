@@ -324,7 +324,15 @@ Curso* Controlador::Buscar_Curso(const string nombreCurso) {
         return nullptr; // Devuelve nullptr si no se encuentra el curso
 	
     }
-
+    
+void Controlador::Habilitar_Curso(string nombreCurso){
+    Curso* curso = Buscar_Curso(nombreCurso);
+    if (curso) {
+        curso->setDisponible(true);
+    } 
+    
+    Listar_Cursos_Habiles();
+}
 Controlador::~Controlador() {
 	// TODO Auto-generated destructor stub
 }
@@ -341,7 +349,7 @@ void Controlador::Carga_Datos(){
 	this->sistema->usuarios.insert(new Estudiante(estudiante));
 
 // Crear un profesor y agregarlo a usuarios
-	Profesor profesor("nickname_prof", "contrasenia_prof", "nombre_prof", "descripcion_prof", "instituto_prof");
+	Profesor profesor("prof", "contrasenia_prof", "nombre_prof", "descripcion_prof", "instituto_prof");
 	this->sistema->usuarios.insert(new Profesor(profesor));
 
 // Crear un curso y agregarlo a cursos
