@@ -32,9 +32,12 @@ private:
     void Agregar_Ejercicio(Ejercicio* ejercicio);
     
     const list<Ejercicio*>& Get_Ejercicios() ; 
-        
+        string Get_Descripcion() const ;
+
+string Get_Tema() const;
 
 
+string Get_Objetivo() const;
         ~Leccion();
 };
 

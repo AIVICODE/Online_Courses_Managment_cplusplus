@@ -17,16 +17,18 @@ private:
 	string descripcion;
 	string dificultad;
 	string idioma;
-	//string nickname;
+	string nickname;
+	string disponible;
 
 public:
 	DTConsulta_Curso();
-	DTConsulta_Curso(string nombre, string descripcion,string dificultad,string idioma/*, string nickname*/);
+	DTConsulta_Curso(string nombre, string descripcion,string dificultad,string idioma, string nickname, string disponible);
 	string getNombre() const;
 	string getDescripcion() const;
 	string getDificultad() const;
 	string getIdioma() const;
-	//string getNickname() const;
+	string getNickname() const;
+	string getDisponible() const;
 
 	virtual ~DTConsulta_Curso();
 };

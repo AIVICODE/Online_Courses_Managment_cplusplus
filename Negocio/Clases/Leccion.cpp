@@ -24,8 +24,18 @@ Leccion::~Leccion() {
     ejercicios.clear();  // Limpiar la lista después de eliminar los ejercicios
 }
 
+string Leccion::Get_Descripcion() const {
+    return descripcion;
+}
+string Leccion::Get_Tema() const {
+    return tema;
+}
 string Leccion::Get_Nombre() const {
     return nombre;
+}
+
+string Leccion::Get_Objetivo() const {
+    return objetivo;
 }
 
 void Leccion::Agregar_Ejercicio(Ejercicio* ejercicio) {

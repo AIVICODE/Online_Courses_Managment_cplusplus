@@ -16,6 +16,7 @@
 #include "../headers/Curso.h"
 #include "../DT/DTConsultaCurso.h"
 #include "../DT/DTLeccion.h"
+#include "../DT/DTInscripcion.h"
 
 #include <string>
 #include <list>
@@ -94,6 +95,11 @@ virtual void obtenerFechaActual(int &dia, int &mes, int &anio)=0;
 	virtual void Eliminar_Curso(string nombreCurso)=0;
 	virtual void EliminarInscripcionesPorCurso(Curso* curso)=0;
 	virtual void EliminarInscripcionDeEstudiante(Estudiante* estudiante, Curso* curso)=0;
+	
+	virtual list<DTLeccion*> Info_Lecciones(string nombreCurso)=0;
+	virtual list<string> Mostrar_Descripcion_Ejercicios(string nombreCurso, string nombreLeccion)=0;
+	virtual list<DTInscripcion*> Obtener_Inscipciones_Curso(string nombreCurso)=0;
+	
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

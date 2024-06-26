@@ -9,7 +9,7 @@ EXE = programa
 DT= Negocio/DT/
 SYS= Negocio/System/
 PRESENT= Presentacion/
-OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Inscribirse_A_Curso.o Agregar_Leccion.o Idioma.o ConsultarCurso.o Leccion.o Ejercicio.o Realizar_Ejercicio.o Ejercicio_Completar.o Ejercicio_Traducir.o Controlador.o DTUsuario.o DTLeccion.o DTProfesor.o DTConsultaCurso.o DTEjercicio.o DTEjercicio_Traduccion.o DTEjercicio_Completar.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Alta_Idioma.o Cargar_Datos.o Consultar_Estadisticas.o Consultar_Usuario.o Consultar_Idiomas.o Eliminar_Curso.o Agregar_Ejercicio.o Habilitar_Curso.o Alta_De_Usuario.o
+OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Inscribirse_A_Curso.o Agregar_Leccion.o Idioma.o ConsultarCurso.o Leccion.o Ejercicio.o Realizar_Ejercicio.o Ejercicio_Completar.o Ejercicio_Traducir.o Controlador.o DTUsuario.o DTLeccion.o DTProfesor.o DTInscripcion.o DTConsultaCurso.o DTEjercicio.o DTEjercicio_Traduccion.o DTEjercicio_Completar.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Alta_Idioma.o Cargar_Datos.o Consultar_Estadisticas.o Consultar_Usuario.o Consultar_Idiomas.o Eliminar_Curso.o Agregar_Ejercicio.o Habilitar_Curso.o Alta_De_Usuario.o
 BINARIO = programa
 INPUT = input.txt
 
@@ -93,6 +93,9 @@ DTEjercicio_Traduccion.o: $(DT)DTEjercicio_Traduccion.cpp $(DT)DTEjercicio_Tradu
 	
 DTConsultaCurso.o: $(DT)DTConsultaCurso.cpp $(DT)DTConsultaCurso.h
 	$(CXX) $(CXXFLAGS) -c $(DT)DTConsultaCurso.cpp
+	
+DTInscripcion.o: $(DT)DTInscripcion.cpp $(DT)DTInscripcion.h
+	$(CXX) $(CXXFLAGS) -c $(DT)DTInscripcion.cpp
 	
 System.o: $(SYS)System.cpp $(SYS)System.h
 	$(CXX) $(CXXFLAGS) -c $(SYS)System.cpp

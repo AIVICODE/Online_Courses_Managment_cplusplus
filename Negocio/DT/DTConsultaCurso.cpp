@@ -13,8 +13,8 @@ using namespace std;
 
 DTConsulta_Curso::DTConsulta_Curso() {}
 
-DTConsulta_Curso::DTConsulta_Curso(string nombre, string descripcion, string dificultad, string idioma/*, string nickname*/)
-    : nombre(nombre), descripcion(descripcion), dificultad(dificultad), idioma(idioma)/*, nickname(nickname)*/ {}
+DTConsulta_Curso::DTConsulta_Curso(string nombre, string descripcion, string dificultad, string idioma, string nickname, string disponible)
+    : nombre(nombre), descripcion(descripcion), dificultad(dificultad), idioma(idioma), nickname(nickname), disponible(disponible)  {}
 
 
 // Getters
@@ -34,12 +34,15 @@ string DTConsulta_Curso::getIdioma() const {
     return idioma;
 }
 
-/*string DTConsulta_Curso::getNickname() const {
+string DTConsulta_Curso::getNickname() const {
     return nickname;
-}*/
+}
+
+string DTConsulta_Curso::getDisponible() const {
+    return disponible;
+}
 
 
 DTConsulta_Curso::~DTConsulta_Curso() {
 	// TODO Auto-generated destructor stub
 }
-
