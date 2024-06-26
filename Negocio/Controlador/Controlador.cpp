@@ -846,3 +846,61 @@ Curso* curso = Buscar_Curso(nombreCurso);
 
 }
 
+
+void Controlador::Eliminar_Curso(string nombreCurso) {
+    // Buscar el curso a eliminar
+Curso* cursoAEliminar = Buscar_Curso(nombreCurso);
+    
+    if (cursoAEliminar) {
+		
+		EliminarInscripcionesPorCurso(cursoAEliminar);
+        // Eliminar el curso de la lista de cursos del sistema
+        auto it = this->sistema->cursos.find(cursoAEliminar);
+        if (it != this->sistema->cursos.end()) {
+            this->sistema->cursos.erase(it);
+        }
+
+        // Liberar memoria del curso eliminado
+        delete cursoAEliminar;
+        cursoAEliminar = nullptr;  // Asignación nula para evitar referencias a memoria liberada
+
+        // Iterar sobre todos los cursos en el sistema
+        for (Curso* curso : this->sistema->cursos) {
+            // Obtener la lista de cursos previos del curso actual
+            const list<Curso*>& previas = curso->getCursosPrevios();
+
+            // Iterar sobre la lista de previas para buscar y eliminar el curso a eliminar
+            for (auto itPrevias = previas.begin(); itPrevias != previas.end(); ++itPrevias) {
+                if (*itPrevias == cursoAEliminar) {
+                    curso->eliminarPrevia(cursoAEliminar);
+                    break;  // Salir del bucle una vez que se haya eliminado el curso
+                }
+            }
+        }
+
+        cout << "El curso '" << nombreCurso << "' ha sido eliminado exitosamente." << endl;
+        }
+}
+
+void Controlador::EliminarInscripcionesPorCurso(Curso* curso) {
+    // Iterar sobre todos los estudiantes y eliminar la inscripción al curso
+    for (Usuario* usuario : this->sistema->usuarios) {
+        Estudiante* estudiante = dynamic_cast<Estudiante*>(usuario);
+        if (estudiante) {
+            EliminarInscripcionDeEstudiante(estudiante, curso);
+        }
+    }
+}
+
+void Controlador::EliminarInscripcionDeEstudiante(Estudiante* estudiante, Curso* curso) {
+    list<Inscripcion*> inscripciones = estudiante->getInscripciones();
+    for (auto it = inscripciones.begin(); it != inscripciones.end(); ) {
+        if ((*it)->getCurso() == curso) {
+            delete *it;  // Liberar memoria de la inscripción
+            it = inscripciones.erase(it);  // Eliminar la inscripción de la lista
+        } else {
+            ++it;
+        }
+    }
+}
+

@@ -11,6 +11,7 @@
 #include "../DT/DTCurso.h"
 #include "../DT/DTEjercicio.h"
 #include "../headers/Usuario.h"
+#include "../headers/Estudiante.h"
 #include "../headers/Idioma.h"
 #include "../headers/Curso.h"
 #include "../DT/DTConsultaCurso.h"
@@ -88,7 +89,11 @@ virtual void obtenerFechaActual(int &dia, int &mes, int &anio)=0;
 	virtual void Agrega_Ejercicio_Correcto(string nombreCurso,string estudiante,string nombreejercicio)=0;
 	
 	//agregar leccion
-	virtual void AgregaLeccion(string nombreCurso,DTLeccion * dtleccion)=0;
+	virtual void AgregaLeccion(string nombreCurso,DTLeccion * dtleccion)=0;\
+	//eliminarcurso
+	virtual void Eliminar_Curso(string nombreCurso)=0;
+	virtual void EliminarInscripcionesPorCurso(Curso* curso)=0;
+	virtual void EliminarInscripcionDeEstudiante(Estudiante* estudiante, Curso* curso)=0;
 };
 
 #endif /* LABFINAL_INTERFACES_ICONTROLADOR_H_ */

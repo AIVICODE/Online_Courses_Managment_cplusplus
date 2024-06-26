@@ -16,7 +16,7 @@ void Eliminar_Curso::EliminarCurso(){
 	string nombreCurso;
 	cout <<"Ingrese el nombre del curso a eliminar:"<<endl;
 	cin>>nombreCurso;
-	
+	controlador->Eliminar_Curso(nombreCurso);
 	
 	
 }

@@ -79,6 +79,11 @@ void obtenerFechaActual(int &dia, int &mes, int &anio);
 	void Agrega_Ejercicio_Correcto(string nombreCurso,string estudiante,string nombreejercicio);
 	//agregarleccion
 	void AgregaLeccion(string nombreCurso,DTLeccion * dtleccion);
+	
+	//eliminarcurso
+	void Eliminar_Curso(string nombreCurso);
+	void EliminarInscripcionesPorCurso(Curso* curso);
+	void EliminarInscripcionDeEstudiante(Estudiante* estudiante, Curso* curso);
 };
 
 #endif /* LABFINAL_CONTROLADOR_CONTROLADOR_H_ */
