@@ -35,6 +35,8 @@ public:
     
     list<Leccion*> getLeccionesAprobadas() const;
     list<Ejercicio*> getEjerciciosAprobados() const;
+    
+    void Agregar_Ejercicio_Resuelto(Ejercicio* ejercicio);
 };
 
 #endif // INSCRIPCION_H

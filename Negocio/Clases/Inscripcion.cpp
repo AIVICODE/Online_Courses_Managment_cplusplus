@@ -27,24 +27,36 @@ DTFecha Inscripcion::getFecha() const {
 }
 
 bool Inscripcion::estaAprobado() const {
-    if (!curso) return false;
-
     const list<Leccion*>& leccionesCurso = curso->getLecciones();
+    
+    // Si la lista de lecciones aprobadas está vacía, la inscripción no está aprobada
+    if (aprobadas.empty()) {
+        return false;
+    }
+
+    // Verificar que todas las lecciones del curso estén aprobadas
     for (Leccion* leccionCurso : leccionesCurso) {
         bool encontrada = false;
+
         for (Leccion* leccionAprobada : aprobadas) {
             if (leccionAprobada == leccionCurso) {
                 encontrada = true;
                 break;
             }
         }
+
+        // Si alguna lección del curso no está aprobada, la inscripción no está aprobada
         if (!encontrada) {
             return false;
         }
     }
+
+    // Si todas las lecciones del curso están aprobadas, la inscripción está aprobada
     return true;
 }
-
+void Inscripcion::Agregar_Ejercicio_Resuelto(Ejercicio* ejercicio) {
+    ejaprobados.push_back(ejercicio);
+}
 Curso* Inscripcion::getCurso() const {
     return curso;
 }

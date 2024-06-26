@@ -478,13 +478,16 @@ void Controlador::Ingresa_Ejercicio(string nickname){
 list<string> Controlador::Muestra_Cursos_Pendientes(string nickname){
 			Usuario* user=Buscar_Usuario(nickname);
 		    // Verificamos si un usuario existe y obtenemos el usuario
+		    list<string> cursosPendientes;
     if (user) {
         // Intentamos convertirlo a Estudiante
         Estudiante* estudiante = dynamic_cast<Estudiante*>(user);
         if (estudiante) {
-            list<string> cursosPendientes = estudiante->dar_cursos_pendientes();
+            cursosPendientes = estudiante->dar_cursos_pendientes();
         	}
-        } 
+        }
+        return cursosPendientes;
+        
 }
 
 list<string> Controlador::Muestra_Ejercicios_Pendientes(string nickname,string nombreCurso){
@@ -692,6 +695,120 @@ void Controlador::Carga_Datos(){
 
 	this->sistema->cursos.insert(new Curso(curso));
 
+}
+
+DTEjercicio * Controlador::Muestro_ejercicio_a_realizar(string nombreCurso,string nombreejercicio){
+	    Curso* curso = Buscar_Curso(nombreCurso);
+    if (!curso) {
+        cout << "Curso no encontrado." << endl;
+        return nullptr;
+    }
+
+    list<Leccion*> leccionesCurso = curso->getLecciones();
+    for (Leccion* leccion : leccionesCurso) {
+        list<Ejercicio*> ejerciciosLeccion = leccion->Get_Ejercicios();
+        for (Ejercicio* ejercicio : ejerciciosLeccion) {
+            if (ejercicio->Get_Nombre() == nombreejercicio) {
+                if (Traducir* traducir = dynamic_cast<Traducir*>(ejercicio)) {
+                    return new DTTraducir(traducir->Get_Nombre(), traducir->Get_Descripcion(), traducir->Get_FraseSinTraducir());
+                } else if (Completar* completar = dynamic_cast<Completar*>(ejercicio)) {
+					
+
+                    return new DTCompletar(completar->Get_Nombre(), completar->Get_Descripcion(), completar->Get_FraseIncompleta());
+                    
+  
+                    
+                } else {
+                    return new DTEjercicio(ejercicio->Get_Nombre(), ejercicio->Get_Descripcion());
+                }
+            }
+        }
+    }
+
+    cout << "Ejercicio no encontrado." << endl;
+    return nullptr;
 
 
 }
+
+bool Controlador::Verificar_Solucion(string nombreCurso,string nombreejercicio,DTEjercicio* solucion){
+	    Curso* curso = Buscar_Curso(nombreCurso);
+    if (!curso) {
+        cout << "Curso no encontrado." << endl;
+        return false;
+    }
+
+
+
+
+
+    list<Leccion*> leccionesCurso = curso->getLecciones();
+    for (Leccion* leccion : leccionesCurso) {
+        list<Ejercicio*> ejerciciosLeccion = leccion->Get_Ejercicios();
+        for (Ejercicio* ejercicio : ejerciciosLeccion) {
+            if (ejercicio->Get_Nombre() == nombreejercicio) {
+                // Verificar si el ejercicio es de tipo Traducir
+                if (Traducir* traducir = dynamic_cast<Traducir*>(ejercicio)) {
+                    DTTraducir* solucionTraducir = dynamic_cast<DTTraducir*>(solucion);
+                    if (solucionTraducir) {
+                        return traducir->Get_FraseTraducida() == solucionTraducir->Get_Frase_Traducida();
+                    }
+                }
+                // Verificar si el ejercicio es de tipo Completar
+                else if (Completar* completar = dynamic_cast<Completar*>(ejercicio)) {
+                    DTCompletar* solucionCompletar = dynamic_cast<DTCompletar*>(solucion);
+                    if (solucionCompletar) {
+                        return completar->Get_PalabrasFaltantes() == solucionCompletar->Get_Palabras_Faltantes();
+                    }
+                }
+            }
+        }
+    }
+
+    cout << "Ejercicio no encontrado." << endl;
+    return false;
+}
+
+void Controlador::Agrega_Ejercicio_Correcto(string nombreCurso,string estudiante,string nombreejercicio){
+Curso* curso = Buscar_Curso(nombreCurso);
+    if (!curso) {
+        return;
+    }
+
+    // Buscar al estudiante usando Buscar_Usuario
+    Usuario* usuario = Buscar_Usuario(estudiante);
+    if (!usuario) {
+        return;
+    }
+
+    Estudiante* est = dynamic_cast<Estudiante*>(usuario);
+    if (!est) {
+        return;
+    }
+
+    // Buscar la inscripción del estudiante en el curso especificado
+    Inscripcion* inscripcion = nullptr;
+    for (Inscripcion* insc : est->getInscripciones()) {
+        if (insc->getCurso() == curso) {
+            inscripcion = insc;
+            break;
+        }
+    }
+
+    if (!inscripcion) {
+        return;
+    }
+
+    // Buscar el ejercicio en el curso
+    for (Leccion* leccion : curso->getLecciones()) {
+        for (Ejercicio* ejercicio : leccion->Get_Ejercicios()) {
+            if (ejercicio->Get_Nombre() == nombreejercicio) {
+                // Agregar el ejercicio a la lista de ejercicios aprobados de la inscripción
+                inscripcion->Agregar_Ejercicio_Resuelto(ejercicio);
+                return;
+            }
+        }
+    }
+
+}
+

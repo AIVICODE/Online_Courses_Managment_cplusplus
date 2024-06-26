@@ -21,10 +21,13 @@ private:
 public:
 	DTTraducir();
     DTTraducir(string nombre, string descripcion, string frase_sin_traducir, string frase_traducida);
+    DTTraducir(string nombre, string descripcion, string frase_sin_traducir);
 	~DTTraducir();
 	
 	string Get_Frase_Sin_Traducir() const;
     string Get_Frase_Traducida() const;
+    
+    
 
 };
 

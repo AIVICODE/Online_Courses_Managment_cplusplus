@@ -3,3 +3,12 @@ Falta devolver DTCurso con la cantidad de lecciones del curso etc para  inscripc
 Falta Realizar el ejercicoo la parte 3
 
 
+cargar datos
+
+agregar ejercicio
+
+habilitar curso
+
+inscribirse a curso
+
+ralizar ejercicio

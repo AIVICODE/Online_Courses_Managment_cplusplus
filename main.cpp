@@ -20,6 +20,7 @@
 #include "Presentacion/Inscribirse_A_Curso.h"
 #include "Presentacion/Agregar_Leccion.h"
 #include "Presentacion/ConsultarCurso.h"
+#include "Presentacion/Realizar_Ejercicio.h"
 
 #include <iostream>
 #include "General/Includes.cpp"
@@ -121,8 +122,11 @@ int main() {
                 }
                 break;
             case 12:
-                //realizarEjercicio();
+            {
+                Realizar_Ejercicio realizarejercicio;
+                realizarejercicio.RealizarEjercicio();
                 break;
+                }
             case 13: {
                 Consultar_Estadisticas estadistica;
                 estadistica.consultar_estadisticas();
