@@ -37,7 +37,10 @@ void Realizar_Ejercicio::RealizarEjercicio(){
     string nombreCurso;
     cout << "Seleccione un curso pendiente:" << endl;
     cin >> nombreCurso;
-
+	if(this->controlador->Buscar_Curso(nombreCurso)==NULL){
+	 cout<< "El curso no existe"<<endl;
+		return;
+	}
     list<string> ejercicios = this->controlador->Muestra_Ejercicios_Pendientes(estudiante, nombreCurso);
 
     cout << "Ejercicios pendientes del estudiante " << estudiante << ":" << endl;

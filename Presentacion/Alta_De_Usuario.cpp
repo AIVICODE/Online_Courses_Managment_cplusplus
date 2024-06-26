@@ -59,16 +59,21 @@ void AltaUsuario::Listar_Idiomas(const list<string>& listaIdiomas) {
 
 DTUsuario* AltaUsuario::Ingresar_Usuario() {
     int opcion;
-    cout << "Ingrese 1 si es profesor o 2 si es estudiante: ";
-    cin >> opcion;
+    while (true) {
+        cout << "Ingrese 1 si es profesor o 2 si es estudiante: ";
+        cin >> opcion;
 
-    if (opcion == 1) {
-        return Ingresar_Profesor();
-    } else if (opcion == 2) {
-        return Ingresar_Estudiante();
-    } else {
-        cerr << "Opción inválida!" << endl;
-        return nullptr;
+        if (!cin) { // Verificar si la entrada es válida
+            cin.clear(); // Limpiar el estado de error de cin
+            cin.ignore(10000, '\n'); // Descartar la entrada inválida
+            cerr << "Opción inválida! Intente nuevamente." << endl;
+        } else if (opcion == 1) {
+            return Ingresar_Profesor();
+        } else if (opcion == 2) {
+            return Ingresar_Estudiante();
+        } else {
+            cerr << "Opción inválida! Intente nuevamente." << endl;
+        }
     }
 }
 

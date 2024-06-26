@@ -403,7 +403,7 @@ DTConsulta_Curso* Controlador::ConsultaCurso(string nombreCurso){
 				(curso->getIdioma())->Get_Nombre(),(curso->getProfesor())->Get_Nick(),
 				disponible);
 	return consultaDTO;
-}
+} 
 
 void Controlador::Alta_Idioma(std::string el_idioma){
 

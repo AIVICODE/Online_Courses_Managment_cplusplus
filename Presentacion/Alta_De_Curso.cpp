@@ -74,8 +74,7 @@ void Alta_De_Curso::CrearCurso(string nickname){
 
 	while (true) {
 	    cout << "Ingrese el nombre del curso: ";
-	    cin.ignore(); // Limpiar el buffer
-	    getline(cin, nombreCurso);
+	    cin >> nombreCurso;
 			if (this->controlador->Verificar_Nombre_Curso(nombreCurso)) {
 				cout << "El curso '" << nombreCurso << "' ya existe." << endl;
 				cout << "¿Desea intentar de nuevo? (s/n): ";
@@ -226,17 +225,28 @@ int Alta_De_Curso::seleccionarDificultad() {
         cout << "2. Intermedia" << endl;
         cout << "3. Dificil" << endl;
         cout << "Ingrese una opción: ";
+        
         cin >> opcion;
 
-        switch (opcion) {
-            case 1:
-                return 1;
-            case 2:
-                return 2;
-            case 3:
-                return 3;
-            default:
-                cout << "Opción no válida. Intente nuevamente." << endl;
+
+
+        if (!cin) { // Verificar si la entrada es válida
+            cin.clear(); // Limpiar el estado de error de cin
+            cin.ignore(10000, '\n'); // Descartar la entrada inválida
+        } else if (opcion >= 1 && opcion <= 3) {
+            return opcion; // Devolver la opción válida
+        } else {
+            cout << "Opción no válida. Intente nuevamente." << endl;
         }
-    }
+        
+            switch (opcion) {
+                case 1:
+                    return 1;
+                case 2:
+                    return 2;
+                case 3:
+                    return 3;
+            }
+        }
+    
 }
