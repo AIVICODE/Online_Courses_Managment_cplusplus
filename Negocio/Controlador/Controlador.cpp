@@ -569,6 +569,20 @@ list<string> Controlador::Muestra_Ejercicios_Pendientes(string nickname,string n
 
 }
 
+list<string> Controlador::List_Lecciones(string nombreCurso){
+	    Curso* curso = Buscar_Curso(nombreCurso);
+    if (!curso) {
+        return list<string>(); // Devolver una lista vacía si el curso no se encuentra
+    }
+
+    list<string> nombresLecciones;
+    // Recorrer las lecciones del curso y agregar sus nombres a la lista
+    for (Leccion* leccion : curso->getLecciones()) {
+        nombresLecciones.push_back(leccion->Get_Nombre());
+    }
+
+    return nombresLecciones;
+}
 // realizar inscripcion
 
 list<string> Controlador::Cursos_Habiles_Estudiante(string nickname){

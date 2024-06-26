@@ -42,6 +42,13 @@ while (true) {
 }
 
 string nombreLeccion;
+
+list<string> lecciones= controlador->List_Lecciones(nombreCurso);
+
+    for (string leccion : lecciones) {
+        cout << "Lecciones: " << leccion << endl;
+    }
+
 cout << "Ingrese el nombre de la lección: ";
 getline(cin, nombreLeccion);
 
@@ -55,14 +62,6 @@ getline(cin, nombreLeccion);
 	
 	}
 
-	list<string> ejercicios = controlador->Mostrar_Ejercicios(nombreCurso, nombreLeccion);
-	
-	    cout << "Ejercicios de la lección '" << nombreLeccion << "' en el curso '" << nombreCurso << "':" << endl;
-
-	for (const string& ejer : ejercicios) {
-        cout << ejer << endl;
-    }
-    // Mostrar los ejercicios en consola
     
 	
 }

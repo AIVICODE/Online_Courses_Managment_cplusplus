@@ -54,6 +54,7 @@ void obtenerFechaActual(int &dia, int &mes, int &anio);
 	//altaidioma
 	void Alta_Idioma(std::string el_idioma);
 	//agregar ejercicio
+	list<string> List_Lecciones(string nombreCurso);
 	list <string> Listar_Cursos_No_Habiles();
 	void Agregar_Ejercicio(string nombreCurso,string nombreLeccion,DTEjercicio* dtejercicio);
 	list<string> Mostrar_Lecciones(string nombreCurso);
