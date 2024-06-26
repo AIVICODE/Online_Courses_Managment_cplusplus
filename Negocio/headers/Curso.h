@@ -14,6 +14,7 @@
 #include "Idioma.h"
 #include "Leccion.h"
 #include "Curso.h"
+#include "Profesor.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ private:
 	Idioma* idiomacurso;
 	list <Leccion*> leccionescurso;
 	list <Curso*> previas;
+	Profesor* profesor;
 
 public:
 	Curso();
@@ -51,7 +53,8 @@ public:
     Leccion* buscarLeccion(const string& nombreLeccion);
     list<Curso*> getCursosPrevios() const;
 
-	
+	Profesor* getProfesor() const;
+	void setProfesor(Profesor* profesor);
 	list<string> evalua_progreso();
 	~Curso();
 };

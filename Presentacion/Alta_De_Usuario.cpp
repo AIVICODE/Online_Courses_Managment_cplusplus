@@ -33,13 +33,18 @@ system("clear");
 
 DTProfesor* profesor = dynamic_cast<DTProfesor*>(user);
 if (profesor != nullptr) {
-	Listar_Idiomas(this->controlador->Listar_Idiomas());
-
-	if(Agregar_Especializacion(user->getNickname())){
-				this->controlador->ingresarUsuario(user);
-
+	
+	if((profesor->getIdiomas()).empty()){
+		cout<<"No ingreso ningun idioma para el usuario: finalizando"<<endl;
+	}else{
+	this->controlador->ingresarUsuario(user);
 	}
+
+	
+}else{
+	this->controlador->ingresarUsuario(user);
 }
+
 
 }
 
@@ -48,8 +53,6 @@ void AltaUsuario::Listar_Idiomas(const list<string>& listaIdiomas) {
     for (const auto& idioma : listaIdiomas) {
         cout << idioma << endl;
     }
-
-
 }
 
 
@@ -86,7 +89,42 @@ DTUsuario* AltaUsuario::Ingresar_Profesor() {
     cout << "Ingrese el instituto: ";
     cin >> instituto;
 
-    DTProfesor* profesor = new DTProfesor(nickname, contrasenia, nombre, descripcion, instituto);
+
+	list<string> nombresIdiomas;
+    string nombreIdioma;
+Listar_Idiomas(this->controlador->Listar_Idiomas());
+    // Ingreso de idiomas
+    cout << "Ingrese los nombres de los idiomas (escriba 'fin' para terminar):" << endl;
+    while (true) {
+        cout << "Idioma: ";
+        cin >> nombreIdioma;
+        if (nombreIdioma == "fin") {
+            break;
+        }
+        if(controlador->Existe_Idioma(nombreIdioma)){
+			    bool encontrado = false;
+
+    // Verificar si el nombreIdioma ya está en la lista
+    for (const string& idioma : nombresIdiomas) {
+        if (idioma == nombreIdioma) {
+            encontrado = true;
+            break;
+        }
+    }
+			
+			if(encontrado==false){
+        	nombresIdiomas.push_back(nombreIdioma);
+        	}else{
+				cout<<"El idioma " << nombreIdioma<< " Ya fue ingresado"<<endl;
+			}
+        }else
+        {
+			cout<<"No existe el idioma ingresado, intente nuevamente:"<<endl;
+		}
+    }
+
+
+    DTProfesor* profesor = new DTProfesor(nickname, contrasenia, nombre, descripcion, instituto,nombresIdiomas);
 
     return profesor;
 }
@@ -111,6 +149,7 @@ DTUsuario* AltaUsuario::Ingresar_Estudiante() {
 	cout << "Ingrese la fecha de nacimiento (dia mes anio): ";
 	cin >> dia >> mes >> anio;
 
+	
 	try {
 		DTFecha fecha(dia, mes, anio);
 		DTEstudiante* estudiante = new DTEstudiante(nickname, contrasenia,
@@ -140,29 +179,32 @@ bool AltaUsuario::IngresarNickname(string &nickname) {
 		}
 	}
 }
+/*void AltaUsuario::Agregar_Especializacion(Profesor& profesor) {
+    list<string> nombresIdiomas;
+    string nombreIdioma;
 
-bool AltaUsuario::Agregar_Especializacion(string user) {
-    string idioma;
+    // Ingreso de idiomas
+    cout << "Ingrese los nombres de los idiomas (escriba 'fin' para terminar):" << endl;
     while (true) {
-        cout << "Seleccione idioma (case sensitive):" << endl;
-        cin >> idioma;
+        cout << "Idioma: ";
+        cin >> nombreIdioma;
+        if (nombreIdioma == "fin") {
+            break;
+        }
+        nombresIdiomas.push_back(nombreIdioma);
+    }
 
-        // Verificar si el idioma existe
-        if ((this->controlador->Existe_Idioma(idioma))!=NULL) {
-            // Agregar la especialización y salir del bucle
-            this->controlador->Agregar_Especializacion(idioma, user);
-return true;
-            break; // Salir del bucle
-        } else {
-            cout << "El idioma '" << idioma << "' no existe." << endl;
-            cout << "¿Desea intentar de nuevo? (s/n): ";
-            char opcion;
-            cin >> opcion;
-            if (opcion == 'n' || opcion == 'N') {
-                return false; // Salir del bucle y de la función
-            }
+    // Agregar los idiomas al profesor
+    for (const string& nombre : nombresIdiomas) {
+        Idioma* enlaceIdioma = Buscar_Idioma(nombre);
+        if (enlaceIdioma == nullptr) {
+            cout << "El idioma " << nombre << " no existe." << endl;
+
+        }else{
+        profesor.agregarIdioma(enlaceIdioma);
         }
     }
-}
+}*/
+
 
 

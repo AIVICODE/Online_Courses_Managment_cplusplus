@@ -29,6 +29,8 @@ class Usuario {
 
         // Get_ters
         string Get_Nick();
+        string Get_Nombre();
+        string Get_Descripcion();
         /* virtual string Get_Contrasenia();
         virtual string Get_Nombre();
         virtual string Get_Descripcion();

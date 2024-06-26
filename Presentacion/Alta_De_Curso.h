@@ -16,7 +16,7 @@ public:
 
 	void AltaCurso();
 
-	void CrearCurso();
+	void CrearCurso(string nickname);
 	int seleccionarDificultad();
 	void Muestro_Idiomas();
 	void Muestro_Cursos_Hab();

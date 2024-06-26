@@ -66,6 +66,14 @@ void Controlador::ingresarUsuario(DTUsuario* user) {
 	            profesorDTO->getDescripcion(),
 	            profesorDTO->getInstituto()
 	        );
+	        
+	        list<string> nombresIdiomas=profesorDTO->getIdiomas();
+	    for (const string& nombreIdioma : nombresIdiomas) {
+        Idioma* idioma = Buscar_Idioma(nombreIdioma);
+        if (idioma) {
+            profesor->agregarIdioma(idioma);
+        } 
+    }
 	        // Agregar el profesor al conjunto de usuarios
 	        this->sistema->usuarios.insert(profesor);
 
@@ -140,12 +148,13 @@ void Controlador::Agregar_Especializacion(string idioma,string user){
 	if (enlaceIdioma == nullptr)
 	    // Si el idioma no existe, manejar el caso (por ejemplo, mostrar un mensaje de error)
 	    cout << "El idioma seleccionado no existe." << endl;
-
-
+cout<<"aca1";
 	for (auto it = this->sistema->usuarios.begin(); it != this->sistema->usuarios.end(); it++) {
 	    // Verificar si el usuario es de tipo profesor
+	    cout<<"aca2";
 	    Profesor* profesor = dynamic_cast<Profesor*>(*it);
 	    if (profesor != nullptr && user == profesor->Get_Nick()) {
+			cout<<"aca3";
 	        // El usuario es un profesor, así que podemos llamar a agregarIdioma()
 	        profesor->agregarIdioma(enlaceIdioma);
 
@@ -184,19 +193,26 @@ bool Controlador::Existe_Idioma(const string& nombreIdioma) {
 //fin consultar estadistica
 list<DTUsuario*> Controlador::Listar_Usuarios() {
     list<DTUsuario*> userlist;
-
     // Itera sobre la lista de usuarios
     for (Usuario* usuario : this->sistema->usuarios) {
         // Verifica si el usuario es un profesor
         if (Profesor* profesor = dynamic_cast<Profesor*>(usuario)) {
-            // Crea un DTProfesor con solo el nickname y agrega a la lista
-            DTProfesor* dtProfesor = new DTProfesor(usuario->Get_Nick());
+            list<Idioma*> idiomasDeProfesor = profesor->getIdiomas(); 
+			list<string> nombres;
+
+			for (Idioma* idioma : idiomasDeProfesor) {
+    				if (idioma != nullptr) {
+        				nombres.push_back(idioma->Get_Nombre());
+    				}
+				}
+            
+            DTProfesor* dtProfesor = new DTProfesor(usuario->Get_Nick(),usuario->Get_Nombre(),usuario->Get_Descripcion(),profesor->getInstituto(),nombres);
             userlist.push_back(dtProfesor);
         }
         // Verifica si el usuario es un estudiante
         else if (Estudiante* estudiante = dynamic_cast<Estudiante*>(usuario)) {
             // Crea un DTEstudiante con solo el nickname y agrega a la lista
-            DTEstudiante* dtEstudiante = new DTEstudiante(usuario->Get_Nick());
+            DTEstudiante* dtEstudiante = new DTEstudiante(usuario->Get_Nick(),usuario->Get_Nombre(),usuario->Get_Descripcion(),estudiante->getPais());
             userlist.push_back(dtEstudiante);
         }
         // Si el usuario no es ni profesor ni estudiante, crea un DTUsuario genérico con solo el nickname
@@ -220,7 +236,7 @@ Usuario* Controlador::Buscar_Usuario(string nickname){
 
 }
 //Comienzo alta curso
-void Controlador::Crear_Curso(DTCurso* dtcurso){
+void Controlador::Crear_Curso(DTCurso* dtcurso,string nickname){
 
 
 	Tipo_Dificultad dificultad;
@@ -265,7 +281,11 @@ switch (dtcurso->getDificultad()) {
 
             }
             
-    
+    Usuario* user=Buscar_Usuario(nickname);
+    if (Profesor* profesor = dynamic_cast<Profesor*>(user)) {
+    curso->setProfesor(profesor);
+    }
+
 	this->sistema->cursos.insert(curso);
 
 }

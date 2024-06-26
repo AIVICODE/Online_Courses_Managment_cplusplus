@@ -27,3 +27,10 @@ Usuario::~Usuario() {
 string Usuario::Get_Nick() {
 	return nickname;
 }
+
+        string Usuario::Get_Nombre(){
+			return nombre;
+		}
+        string Usuario::Get_Descripcion(){
+			return descripcion;
+		}

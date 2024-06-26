@@ -52,7 +52,7 @@ virtual void obtenerFechaActual(int &dia, int &mes, int &anio)=0;
 	void virtual Agregar_Idioma_Curso(string idioma)=0;
 	virtual list <string> Listar_Cursos_Habiles()=0;
 	virtual bool Verificar_Nombre_Curso(const string nombre)=0;
-	virtual void Crear_Curso(DTCurso* curso)=0;
+	virtual void Crear_Curso(DTCurso* curso,string nickname)=0;
 	virtual Idioma* Buscar_Idioma(string idioma)=0;
 	virtual Curso* Buscar_Curso(const string nombreCurso)=0;
 	//habilitar curso

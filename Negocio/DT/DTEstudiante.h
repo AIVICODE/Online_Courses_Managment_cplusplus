@@ -8,7 +8,7 @@
 #ifndef LABFINAL_DT_DTEstudiante_H_
 #define LABFINAL_DT_DTEstudiante_H_
 #include <string>
-#include <vector>
+#include <list>
 #include "DTUsuario.h"
 #include "DTFecha.h"
 
@@ -22,7 +22,7 @@ public:
     // Constructor
     DTEstudiante();
     DTEstudiante(string nickname, string contrasenia, string nombre, string descripcion, string pais, DTFecha fecha);
-    DTEstudiante(string nickname);
+    DTEstudiante(string nickname,string nombre, string descripcion,string pais);
     // Destructor
     virtual ~DTEstudiante();
     string getPais() const;

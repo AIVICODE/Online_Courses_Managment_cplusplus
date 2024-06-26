@@ -42,7 +42,7 @@ void obtenerFechaActual(int &dia, int &mes, int &anio);
 	Controlador();
 	//Alta curso
 	list<DTUsuario*> Listar_Profesores();
-	void Crear_Curso(DTCurso* curso);
+	void Crear_Curso(DTCurso* curso,string nickname);
 	bool Verificar_Nombre_Curso(const string nombre);
 	list <string> Listar_Cursos_Habiles();
 	void Agregar_Idioma_Curso(string idioma);
