@@ -3,7 +3,6 @@
 
 #include <string>
 #include "../Negocio/Interfaces/IControlador.h"
-#include "../Negocio/Controlador/Controlador.h"
 
 
 class Habilitar_Curso {
@@ -13,6 +12,7 @@ private:
 public:
     Habilitar_Curso();
     void habilitarCurso();
+    void Mostrar_Cursos_No_Hab();
 };
 
 #endif // HABILITAR_CURSO_H

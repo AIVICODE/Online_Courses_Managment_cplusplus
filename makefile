@@ -9,7 +9,7 @@ EXE = programa
 DT= Negocio/DT/
 SYS= Negocio/System/
 PRESENT= Presentacion/
-OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Leccion.o Ejercicio.o Controlador.o DTUsuario.o DTProfesor.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Alta_Idioma.o Cargar_Datos.o Consultar_Estadisticas.o Consultar_Idiomas.o Habilitar_Curso.o Alta_De_Usuario.o
+OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Idioma.o Leccion.o Ejercicio.o Ejercicio_Completar.o Ejercicio_Traducir.o Controlador.o DTUsuario.o DTProfesor.o DTEjercicio.o DTEjercicio_Traduccion.o DTEjercicio_Completar.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Alta_Idioma.o Cargar_Datos.o Consultar_Estadisticas.o Consultar_Idiomas.o Agregar_Ejercicio.o Habilitar_Curso.o Alta_De_Usuario.o
 BINARIO = programa
 INPUT = input.txt
 
@@ -44,6 +44,12 @@ Leccion.o: $(IMPLEMENT)Leccion.cpp $(HEADERS)Leccion.h
 Ejercicio.o: $(IMPLEMENT)Ejercicio.cpp $(HEADERS)Ejercicio.h
 	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Ejercicio.cpp
 	
+Ejercicio_Completar.o: $(IMPLEMENT)Ejercicio_Completar.cpp $(HEADERS)Ejercicio_Completar.h
+	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Ejercicio_Completar.cpp
+	
+Ejercicio_Traducir.o: $(IMPLEMENT)Ejercicio_Traducir.cpp $(HEADERS)Ejercicio_Traducir.h
+	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Ejercicio_Traducir.cpp
+	
 Inscripcion.o: $(IMPLEMENT)Inscripcion.cpp $(HEADERS)Inscripcion.h
 	$(CXX) $(CXXFLAGS) -c $(IMPLEMENT)Inscripcion.cpp
 	
@@ -72,7 +78,16 @@ DTFecha.o: $(DT)DTFecha.cpp $(DT)DTFecha.h
 	
 DTCurso.o: $(DT)DTCurso.cpp $(DT)DTCurso.h
 	$(CXX) $(CXXFLAGS) -c $(DT)DTCurso.cpp
-#SYSTEM
+	
+DTEjercicio.o: $(DT)DTEjercicio.cpp $(DT)DTEjercicio.h
+	$(CXX) $(CXXFLAGS) -c $(DT)DTEjercicio.cpp
+
+DTEjercicio_Completar.o: $(DT)DTEjercicio_Completar.cpp $(DT)DTEjercicio_Completar.h
+	$(CXX) $(CXXFLAGS) -c $(DT)DTEjercicio_Completar.cpp
+
+DTEjercicio_Traduccion.o: $(DT)DTEjercicio_Traduccion.cpp $(DT)DTEjercicio_Traduccion.h
+	$(CXX) $(CXXFLAGS) -c $(DT)DTEjercicio_Traduccion.cpp
+	
 System.o: $(SYS)System.cpp $(SYS)System.h
 	$(CXX) $(CXXFLAGS) -c $(SYS)System.cpp
 	
@@ -94,9 +109,13 @@ Consultar_Idiomas.o: $(PRESENT)Consultar_Idiomas.cpp $(PRESENT)Consultar_Idiomas
 	
 Habilitar_Curso.o: $(PRESENT)Habilitar_Curso.cpp $(PRESENT)Habilitar_Curso.h
 	$(CXX) $(CXXFLAGS) -c $(PRESENT)Habilitar_Curso.cpp		
+
+Agregar_Ejercicio.o: $(PRESENT)Agregar_Ejercicio.cpp $(PRESENT)Agregar_Ejercicio.h
+	$(CXX) $(CXXFLAGS) -c $(PRESENT)Agregar_Ejercicio.cpp	
 	
 Cargar_Datos.o: $(PRESENT)Cargar_Datos.cpp $(PRESENT)Cargar_Datos.h
 	$(CXX) $(CXXFLAGS) -c $(PRESENT)Cargar_Datos.cpp	
+	
 build: $(EXE)
 	
 clean:

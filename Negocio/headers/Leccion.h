@@ -8,17 +8,22 @@
 #ifndef LABFINAL_LECCIONES_H_
 #define LABFINAL_LECCIONES_H_
 
+#include <list>
+#include <string>
+
+using namespace std;
 class Leccion {
 private:
+		string nombre;
        // string tema;
         //string objetivo;
-        //set<Ejercicio*> ejercicios;
+        //list<Ejercicio*> ejercicios;
     public:
        Leccion();
         //Leccion(string descripcion);
         //Leccion(string tema, string objetivo);
         //Leccion(string tema,string objetivo,set<Ejercicio*>);
-
+		string Get_Nombre();
         // Getters
         //string getTema();
         //string getObjetivo();

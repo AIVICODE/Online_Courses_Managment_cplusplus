@@ -9,6 +9,7 @@
 #define LABFINAL_INTERFACES_ICONTROLADOR_H_
 #include "../DT/DTUsuario.h"
 #include "../DT/DTCurso.h"
+#include "../DT/DTEjercicio.h"
 #include "../headers/Usuario.h"
 #include "../headers/Idioma.h"
 #include "../headers/Curso.h"
@@ -52,6 +53,12 @@ public:
 	
 	//alta idioma
 	virtual void Alta_Idioma(string el_idioma) = 0;
+	
+	//agregar ejerccio
+	virtual list <string> Listar_Cursos_No_Habiles()=0;
+	virtual void Agregar_Ejercicio(string nombreCurso,string nombreLeccion,DTEjercicio* dtejercicio)=0;
+	virtual list<string> Mostrar_Lecciones(string nombreCurso)=0;
+	//fin
 	virtual void Carga_Datos()=0;
 };
 

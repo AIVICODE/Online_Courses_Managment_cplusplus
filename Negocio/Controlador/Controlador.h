@@ -11,6 +11,7 @@
 #include "../Interfaces/IControlador.h"
 #include "../DT/DTUsuario.h"
 #include "../System/System.h"
+#include "../DT/DTEjercicio.h"
 #include <set>
 #include <string>
 
@@ -47,7 +48,11 @@ public:
 	void Habilitar_Curso(string nombreCurso);
 	//altaidioma
 	void Alta_Idioma(std::string el_idioma);
-	
+	//agregar ejercicio
+	list <string> Listar_Cursos_No_Habiles();
+	void Agregar_Ejercicio(string nombreCurso,string nombreLeccion,DTEjercicio* dtejercicio);
+	list<string> Mostrar_Lecciones(string nombreCurso);
+	//fin
 	void Carga_Datos();
 };
 

@@ -14,6 +14,8 @@
 #include "Presentacion/Consultar_Idiomas.h"
 #include "Presentacion/Cargar_Datos.h"
 #include "Presentacion/Habilitar_Curso.h"
+#include "Presentacion/Agregar_Ejercicio.h"
+
 #include <iostream>
 #include "General/Includes.cpp"
 
@@ -78,7 +80,10 @@ int main() {
                 //sistema->agregarLeccion();
                 break;
             case 7:
-                //agregarEjercicio();
+            {
+                Agregar_Ejercicio agregare_ejercicio;
+                agregare_ejercicio.Agregar_Ejercicio_Curso();
+                }
                 break;
             case 8:
             {

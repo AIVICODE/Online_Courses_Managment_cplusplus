@@ -11,11 +11,18 @@
 #include "../headers/Profesor.h"
 #include "../headers/Estudiante.h"
 #include "../headers/Tipo_Dificultad.h"
+#include "../headers/Ejercicio.h"
+#include "../headers/Ejercicio_Completar.h"
+#include "../headers/Ejercicio_Traducir.h"
 
 #include "../DT/DTUsuario.h"
 #include "../DT/DTProfesor.h"
 #include "../DT/DTEstudiante.h"
 #include "../DT/DTCurso.h"
+#include "../DT/DTEjercicio.h"
+#include "../DT/DTEjercicio_Completar.h"
+#include "../DT/DTEjercicio_Traduccion.h"
+
 
 #include "../System/System.h"
 
@@ -298,6 +305,17 @@ list <string> Controlador::Listar_Cursos_Habiles(){
     return cursosHabilitados;
 }
 
+list <string> Controlador::Listar_Cursos_No_Habiles(){
+    list<string> cursosnoHabilitados;
+
+    for (Curso* curso : this->sistema->cursos) {
+        if (curso->isDisponible()==false) {
+            cursosnoHabilitados.push_back(curso->getNombre());
+        }
+    }
+    return cursosnoHabilitados;
+}
+
 void Controlador::Agregar_Idioma_Curso(string idioma){
 
 
@@ -343,6 +361,52 @@ void Controlador::Alta_Idioma(std::string el_idioma){
 	this->sistema->idiomas.insert(new Idioma(el_idioma));
 	
 }
+list<string> Controlador::Mostrar_Lecciones(string nombreCurso){
+    Curso* curso = Buscar_Curso(nombreCurso);
+    list<string> nombresLecciones;
+
+    if (curso) {
+        for (auto it = curso->getLecciones().begin(); it != curso->getLecciones().end(); ++it) {
+            nombresLecciones.push_back((*it)->Get_Nombre());
+        }
+    } else {
+        // Manejar el caso en que el curso no sea encontrado
+        cout << "Curso no encontrado." << endl;
+    }
+
+    return nombresLecciones;
+}
+
+void Controlador::Agregar_Ejercicio(string nombreCurso,string nombreLeccion,DTEjercicio* dtejercicio){
+	Mostrar_Lecciones(nombreCurso);
+	
+        Curso* curso = Buscar_Curso(nombreCurso);
+
+        Leccion* leccion = curso->buscarLeccion(nombreLeccion);
+        
+        if (DTCompletar* completarDTO = dynamic_cast<DTCompletar*>(dtejercicio)) {
+        Completar* ejercicio = new Completar(
+            completarDTO->Get_Nombre(),
+            completarDTO->Get_Descripcion(),
+            completarDTO->Get_Frase_Incompleta(),
+            completarDTO->Get_Palabras_Faltantes()
+        );
+        //leccion->Agregar_Ejercicio(ejercicio);
+    } else if (DTTraducir* traducirDTO = dynamic_cast<DTTraducir*>(dtejercicio)) {
+        Traducir* ejercicio = new Traducir(
+            traducirDTO->Get_Nombre(),
+            traducirDTO->Get_Descripcion(),
+            traducirDTO->Get_Frase_Sin_Traducir(),
+            traducirDTO->Get_Frase_Traducida()
+        );
+        //leccion->Agregar_Ejercicio(ejercicio);
+    }
+	
+}
+
+
+
+
 
 void Controlador::Carga_Datos(){
 	Estudiante estudiante("pedro", "123", "nombre", "Le gusta el ingle", "Burkina", DTFecha(1, 1, 1940));
@@ -354,9 +418,15 @@ void Controlador::Carga_Datos(){
 
 // Crear un curso y agregarlo a cursos
 	Curso curso("Tenis", "Abajo del agua", Tipo_Dificultad::Facil, true);
+	
+
 	this->sistema->cursos.insert(new Curso(curso));
 
 // Crear un idioma y agregarlo a idiomas
 	Idioma idioma("Ingles");
 	this->sistema->idiomas.insert(new Idioma(idioma));
 }
+
+
+
+

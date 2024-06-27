@@ -63,8 +63,24 @@ Idioma* Curso::getIdioma() const {
     return idiomacurso;
 }
 
+list<Leccion*> Curso::getLecciones() const {
+    return leccionescurso;
+}
     void Curso::setPrevias(const list<Curso*>& nuevasPrevias) {
         previas = nuevasPrevias;
+    }
+    
+void Curso::setLeccion(Leccion* nuevaLeccion) {
+    leccionescurso.push_back(nuevaLeccion);
+}
+
+    Leccion* Curso::buscarLeccion(const string& nombreLeccion) {
+        for (Leccion* leccion : leccionescurso) {
+            if (leccion->Get_Nombre() == nombreLeccion) {
+                return leccion;
+            }
+        }
+        return nullptr; // Retorna nullptr si no se encuentra la lección
     }
 
 list<string> Curso::evalua_progreso(){
