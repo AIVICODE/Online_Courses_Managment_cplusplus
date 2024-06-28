@@ -15,6 +15,8 @@
 #include "Presentacion/Cargar_Datos.h"
 #include "Presentacion/Habilitar_Curso.h"
 #include "Presentacion/Agregar_Ejercicio.h"
+#include "Presentacion/Consultar_Usuario.h"
+#include "Presentacion/Eliminar_Curso.h"
 
 #include <iostream>
 #include "General/Includes.cpp"
@@ -54,7 +56,10 @@ int main() {
             }
             break;
             case 2:
-                //Consulta_De_Usuario();
+            {
+                Consultar_Usuario consulta;
+                consulta.Imprimir();
+                }
                 break;
             case 3:
                 //Alta_De_Idioma();
@@ -92,7 +97,10 @@ int main() {
                 }
                 break;
             case 9:
-                //eliminarCurso();
+            {
+                Eliminar_Curso eliminarc;
+                eliminarc.EliminarCurso();
+                }
                 break;
             case 10:
                 //consultarCurso();

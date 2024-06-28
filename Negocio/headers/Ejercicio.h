@@ -22,7 +22,7 @@ private:
         Ejercicio(string nombre, string descripcion);
 
 
-
+		string Get_Nombre();
         virtual ~Ejercicio();
 };
 

@@ -21,3 +21,7 @@ Ejercicio::~Ejercicio() {
 	// TODO Auto-generated destructor stub
 }
 
+
+string Ejercicio::Get_Nombre(){
+	return nombre;
+}

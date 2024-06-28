@@ -14,6 +14,7 @@
 #include "../headers/Ejercicio.h"
 #include "../headers/Ejercicio_Completar.h"
 #include "../headers/Ejercicio_Traducir.h"
+#include "../headers/Leccion.h"
 
 #include "../DT/DTUsuario.h"
 #include "../DT/DTProfesor.h"
@@ -36,8 +37,6 @@ Controlador::Controlador() {
 	//obtendo la unica instancia del Sistema
 	this->sistema = System::Get_Instancia();
 }
-
-
 //Alta user
 void Controlador::ingresarUsuario(DTUsuario* user) {
 	cout << "Ingresando Usuario" << endl;
@@ -109,7 +108,7 @@ list<string> Controlador::Listar_Idiomas(){
 }
 
 void Controlador::Agregar_Especializacion(string idioma,string user){
-//Existe idioma?
+	//Existe idioma?
 	Idioma* enlaceIdioma = nullptr; // Inicializar el puntero a nullptr para indicar que aún no se ha encontrado el idioma
 
 	for (auto it = this->sistema->idiomas.begin(); it != this->sistema->idiomas.end(); it++) {
@@ -122,7 +121,7 @@ void Controlador::Agregar_Especializacion(string idioma,string user){
 	    }
 	}
 
-//redundante pero quien sabe
+	//redundante pero quien sabe
 	if (enlaceIdioma == nullptr)
 	    // Si el idioma no existe, manejar el caso (por ejemplo, mostrar un mensaje de error)
 	    cout << "El idioma seleccionado no existe." << endl;
@@ -148,14 +147,14 @@ bool Controlador::Existe_Idioma(const string& nombreIdioma) {
     }
     return false; // Si no se encuentra, retornar nullptr
 }
-//fin alta user
+	//fin alta user
 
-//consultar estadistica
-list<string> Controlador::consultar_estadistica(string nickname){
+	//consultar estadistica
+	list<string> Controlador::consultar_estadistica(string nickname){
 
-Usuario* user=Buscar_Usuario(nickname);
+	Usuario* user=Buscar_Usuario(nickname);
 
-Estudiante* estudiante = dynamic_cast<Estudiante*>(user);
+	Estudiante* estudiante = dynamic_cast<Estudiante*>(user);
 
 	if (estudiante != nullptr) {//Es estudiante
 		estudiante->dar_estadistica();
@@ -166,11 +165,8 @@ Estudiante* estudiante = dynamic_cast<Estudiante*>(user);
 	if (profesor != nullptr) {//Es profesor
 
 }
-
-
 }
 //fin consultar estadistica
-
 list<DTUsuario*> Controlador::Listar_Usuarios() {
     list<DTUsuario*> userlist;
 
@@ -196,8 +192,7 @@ list<DTUsuario*> Controlador::Listar_Usuarios() {
 
     return userlist;
 }
-
-
+// Hay que ponerla en privado
 Usuario* Controlador::Buscar_Usuario(string nickname){
 
 
@@ -209,15 +204,11 @@ Usuario* Controlador::Buscar_Usuario(string nickname){
 	    return nullptr; // Devuelve nullptr si no se encuentra el usuario
 
 }
-
-//fin alta user
-
-
 //Comienzo alta curso
 void Controlador::Crear_Curso(DTCurso* dtcurso){
 
 
-Tipo_Dificultad dificultad;
+	Tipo_Dificultad dificultad;
 
 switch (dtcurso->getDificultad()) {
         case 1:
@@ -316,6 +307,16 @@ list <string> Controlador::Listar_Cursos_No_Habiles(){
     return cursosnoHabilitados;
 }
 
+list <string> Controlador::Listar_Cursos(){
+	    list<string> cursoslist;
+
+    for (Curso* curso : this->sistema->cursos) {
+            cursoslist.push_back(curso->getNombre());
+
+    }
+    return cursoslist;
+}
+
 void Controlador::Agregar_Idioma_Curso(string idioma){
 
 
@@ -366,8 +367,8 @@ list<string> Controlador::Mostrar_Lecciones(string nombreCurso){
     list<string> nombresLecciones;
 
     if (curso) {
-        for (auto it = curso->getLecciones().begin(); it != curso->getLecciones().end(); ++it) {
-            nombresLecciones.push_back((*it)->Get_Nombre());
+        for (Leccion* leccion : curso->getLecciones()) {
+            nombresLecciones.push_back(leccion->Get_Nombre());
         }
     } else {
         // Manejar el caso en que el curso no sea encontrado
@@ -378,12 +379,14 @@ list<string> Controlador::Mostrar_Lecciones(string nombreCurso){
 }
 
 void Controlador::Agregar_Ejercicio(string nombreCurso,string nombreLeccion,DTEjercicio* dtejercicio){
+
 	Mostrar_Lecciones(nombreCurso);
-	
+
+
         Curso* curso = Buscar_Curso(nombreCurso);
 
         Leccion* leccion = curso->buscarLeccion(nombreLeccion);
-        
+
         if (DTCompletar* completarDTO = dynamic_cast<DTCompletar*>(dtejercicio)) {
         Completar* ejercicio = new Completar(
             completarDTO->Get_Nombre(),
@@ -391,7 +394,8 @@ void Controlador::Agregar_Ejercicio(string nombreCurso,string nombreLeccion,DTEj
             completarDTO->Get_Frase_Incompleta(),
             completarDTO->Get_Palabras_Faltantes()
         );
-        //leccion->Agregar_Ejercicio(ejercicio);
+
+        leccion->Agregar_Ejercicio(ejercicio);
     } else if (DTTraducir* traducirDTO = dynamic_cast<DTTraducir*>(dtejercicio)) {
         Traducir* ejercicio = new Traducir(
             traducirDTO->Get_Nombre(),
@@ -399,13 +403,43 @@ void Controlador::Agregar_Ejercicio(string nombreCurso,string nombreLeccion,DTEj
             traducirDTO->Get_Frase_Sin_Traducir(),
             traducirDTO->Get_Frase_Traducida()
         );
-        //leccion->Agregar_Ejercicio(ejercicio);
+        leccion->Agregar_Ejercicio(ejercicio);
     }
 	
 }
 
+//Existe leccion para curso
+bool Controlador::Existe_Leccion(string nombreCurso,string nombreLeccion){
+	    if (Curso* curso = Buscar_Curso(nombreCurso)) {
+        if (curso->buscarLeccion(nombreLeccion)) {
+            return true;
+        }
+    }
+    return false;
+}
 
 
+list<string> Controlador::Mostrar_Ejercicios(string nombreCurso, string nombreLeccion) {
+    Curso* curso = Buscar_Curso(nombreCurso);
+    if (!curso) {
+        cout << "Curso no encontrado: " << nombreCurso << endl;
+        return {}; // Devolver lista vacía si el curso no se encuentra
+    }
+
+    Leccion* leccion = curso->buscarLeccion(nombreLeccion);
+    if (!leccion) {
+        cout << "Lección no encontrada: " << nombreLeccion << " en el curso " << nombreCurso << endl;
+        return {}; // Devolver lista vacía si la lección no se encuentra en el curso
+    }
+
+    list<string> nombresEjercicios;
+    const list<Ejercicio*>& ejercicios = leccion->Get_Ejercicios();
+    for (Ejercicio* ejercicio : ejercicios) {
+        nombresEjercicios.push_back(ejercicio->Get_Nombre()); // Suponiendo que Ejercicio tiene un método Get_Nombre()
+    }
+
+    return nombresEjercicios;
+}
 
 
 void Controlador::Carga_Datos(){
@@ -416,14 +450,17 @@ void Controlador::Carga_Datos(){
 	Profesor profesor("prof", "contrasenia_prof", "nombre_prof", "descripcion_prof", "instituto_prof");
 	this->sistema->usuarios.insert(new Profesor(profesor));
 
+
+
 // Crear un curso y agregarlo a cursos
-	Curso curso("Tenis", "Abajo del agua", Tipo_Dificultad::Facil, true);
-	
+	Curso curso("fut", "Abajo del agua", Tipo_Dificultad::Facil, false);
+	    Leccion* leccion1 = new Leccion("lec1");
+    curso.setLeccion(leccion1);
 
 	this->sistema->cursos.insert(new Curso(curso));
 
 // Crear un idioma y agregarlo a idiomas
-	Idioma idioma("Ingles");
+	Idioma idioma("ing");
 	this->sistema->idiomas.insert(new Idioma(idioma));
 }
 

@@ -11,6 +11,7 @@ Leccion::Leccion() {
 	// TODO Auto-generated constructor stub
 
 }
+Leccion::Leccion(string nombre) : nombre(nombre) {}
 
 string Leccion::Get_Nombre(){
 	return nombre;
@@ -19,3 +20,14 @@ Leccion::~Leccion() {
 	// TODO Auto-generated destructor stub
 }
 
+string Leccion::Get_Nombre() const {
+    return nombre;
+}
+
+void Leccion::Agregar_Ejercicio(Ejercicio* ejercicio) {
+    ejercicios.push_back(ejercicio);
+}
+
+const list<Ejercicio*>& Leccion::Get_Ejercicios() {
+    return ejercicios;
+}
