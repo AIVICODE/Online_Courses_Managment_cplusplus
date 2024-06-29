@@ -30,6 +30,6 @@ void Habilitar_Curso::Mostrar_Cursos_No_Hab(){
 	list<string> cursoshab = this->controlador->Listar_Cursos_No_Habiles();
 
     for (const string& cursoNombre : cursoshab) {
-        cout << "Cursos habilitados: " << cursoNombre << endl;
+        cout << "Cursos no habilitados: " << cursoNombre << endl;
     }
 }

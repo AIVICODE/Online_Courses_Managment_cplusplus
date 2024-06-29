@@ -15,13 +15,15 @@ using namespace std;
 class Leccion {
 private:
 		string nombre;
-       // string tema;
-        //string objetivo;
+		string descripcion;
+       string tema;
+        string objetivo;
         list<Ejercicio*> ejercicios;
     public:
        Leccion();
 
 	    Leccion(string nombre);
+	    Leccion(string nombre,string descripcion,string tema,string objetivo);
 
 		string Get_Nombre();
 		

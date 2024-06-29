@@ -12,6 +12,8 @@
 #include "../DT/DTUsuario.h"
 #include "../System/System.h"
 #include "../DT/DTEjercicio.h"
+#include "../DT/DTLeccion.h"
+
 #include <set>
 #include <string>
 
@@ -71,6 +73,9 @@ void obtenerFechaActual(int &dia, int &mes, int &anio);
 	list<string> Muestra_Ejercicios_Pendientes(string nickname,string nombreCurso);
 	list<string> Cursos_Habiles_Estudiante(string nickname);
 	void Inscribirse_a_Curso(string nickname, string nombreCurso);
+	
+	//agregarleccion
+	void AgregaLeccion(string nombreCurso,DTLeccion * dtleccion);
 };
 
 #endif /* LABFINAL_CONTROLADOR_CONTROLADOR_H_ */

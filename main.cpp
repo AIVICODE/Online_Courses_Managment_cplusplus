@@ -18,6 +18,8 @@
 #include "Presentacion/Consultar_Usuario.h"
 #include "Presentacion/Eliminar_Curso.h"
 #include "Presentacion/Inscribirse_A_Curso.h"
+#include "Presentacion/Agregar_Leccion.h"
+#include "Presentacion/ConsultarCurso.h"
 
 #include <iostream>
 #include "General/Includes.cpp"
@@ -83,7 +85,10 @@ int main() {
             }
             break;
             case 6:
-                //sistema->agregarLeccion();
+            {
+                Agregar_Leccion agregarleccion;
+                agregarleccion.AgregaLeccion();
+                }
                 break;
             case 7:
             {
@@ -104,7 +109,10 @@ int main() {
                 }
                 break;
             case 10:
-                //consultarCurso();
+            {
+                Consultar_Curso consultacurso;
+                consultacurso.Hacer();
+                }
                 break;
             case 11:
             {

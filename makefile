@@ -9,7 +9,7 @@ EXE = programa
 DT= Negocio/DT/
 SYS= Negocio/System/
 PRESENT= Presentacion/
-OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Inscribirse_A_Curso.o Idioma.o ConsultarCurso.o Leccion.o Ejercicio.o Realizar_Ejercicio.o Ejercicio_Completar.o Ejercicio_Traducir.o Controlador.o DTUsuario.o DTProfesor.o DTConsultaCurso.o DTEjercicio.o DTEjercicio_Traduccion.o DTEjercicio_Completar.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Alta_Idioma.o Cargar_Datos.o Consultar_Estadisticas.o Consultar_Usuario.o Consultar_Idiomas.o Eliminar_Curso.o Agregar_Ejercicio.o Habilitar_Curso.o Alta_De_Usuario.o
+OBJS = main.o Curso.o Usuario.o Tipo_Dificultad.o Inscripcion.o Estudiante.o Profesor.o Inscribirse_A_Curso.o Agregar_Leccion.o Idioma.o ConsultarCurso.o Leccion.o Ejercicio.o Realizar_Ejercicio.o Ejercicio_Completar.o Ejercicio_Traducir.o Controlador.o DTUsuario.o DTLeccion.o DTProfesor.o DTConsultaCurso.o DTEjercicio.o DTEjercicio_Traduccion.o DTEjercicio_Completar.o DTEstudiante.o DTFecha.o DTCurso.o System.o Alta_De_Curso.o Alta_Idioma.o Cargar_Datos.o Consultar_Estadisticas.o Consultar_Usuario.o Consultar_Idiomas.o Eliminar_Curso.o Agregar_Ejercicio.o Habilitar_Curso.o Alta_De_Usuario.o
 BINARIO = programa
 INPUT = input.txt
 
@@ -79,6 +79,9 @@ DTFecha.o: $(DT)DTFecha.cpp $(DT)DTFecha.h
 DTCurso.o: $(DT)DTCurso.cpp $(DT)DTCurso.h
 	$(CXX) $(CXXFLAGS) -c $(DT)DTCurso.cpp
 	
+DTLeccion.o: $(DT)DTLeccion.cpp $(DT)DTLeccion.h
+	$(CXX) $(CXXFLAGS) -c $(DT)DTLeccion.cpp
+	
 DTEjercicio.o: $(DT)DTEjercicio.cpp $(DT)DTEjercicio.h
 	$(CXX) $(CXXFLAGS) -c $(DT)DTEjercicio.cpp
 
@@ -127,6 +130,9 @@ ConsultarCurso.o: $(PRESENT)ConsultarCurso.cpp $(PRESENT)ConsultarCurso.h
 	
 Inscribirse_A_Curso.o: $(PRESENT)Inscribirse_A_Curso.cpp $(PRESENT)Inscribirse_A_Curso.h
 	$(CXX) $(CXXFLAGS) -c $(PRESENT)Inscribirse_A_Curso.cpp
+	
+Agregar_Leccion.o: $(PRESENT)Agregar_Leccion.cpp $(PRESENT)Agregar_Leccion.h
+	$(CXX) $(CXXFLAGS) -c $(PRESENT)Agregar_Leccion.cpp
 	
 	
 Eliminar_Curso.o: $(PRESENT)Eliminar_Curso.cpp $(PRESENT)Eliminar_Curso.h

@@ -18,6 +18,7 @@
 #include "../headers/Inscripcion.h"
 
 #include "../DT/DTUsuario.h"
+#include "../DT/DTLeccion.h"
 #include "../DT/DTProfesor.h"
 #include "../DT/DTEstudiante.h"
 #include "../DT/DTCurso.h"
@@ -567,15 +568,25 @@ list<string> Controlador::Muestra_Ejercicios_Pendientes(string nickname,string n
 // realizar inscripcion
 
 list<string> Controlador::Cursos_Habiles_Estudiante(string nickname){
+        Usuario* usuario = Buscar_Usuario(nickname);
+        Estudiante* estudiante;
+try {
 
-    Usuario* usuario = Buscar_Usuario(nickname);
-    if (!usuario) {
-        throw std::runtime_error("Usuario no encontrado");
-    }
+        if (!usuario) {
+            throw std::runtime_error("Usuario no encontrado");
+        }
 
-    Estudiante* estudiante = dynamic_cast<Estudiante*>(usuario);
-    if (!estudiante) {
-        throw std::runtime_error("Usuario no es un estudiante");
+         estudiante = dynamic_cast<Estudiante*>(usuario);
+        if (!estudiante) {
+            throw std::runtime_error("Usuario no es un estudiante");
+        }
+
+        // Aquí agregarías la lógica para obtener los cursos habilitados
+
+    } catch (const std::runtime_error& e) {
+        // Captura la excepción y maneja el error de alguna manera
+        std::cerr << "Error: " << e.what() << std::endl;
+        return list<string>();
     }
 
     list<string> cursos_habiles = Listar_Cursos_Habiles();
@@ -646,6 +657,20 @@ void Controlador::Inscribirse_a_Curso(string nickname, string nombreCurso){
 
 }
 
+
+void Controlador::AgregaLeccion(string nombreCurso,DTLeccion * dtleccion){
+	    Curso* curso = Buscar_Curso(nombreCurso);
+    if (curso) {
+        Leccion* nuevaLeccion = new Leccion(dtleccion->Get_Nombre(), dtleccion->Get_Descripcion(), dtleccion->Get_Tema(), dtleccion->Get_Objetivo());
+        curso->setLeccion(nuevaLeccion);
+        cout << "Lección agregada al curso '" << nombreCurso << "' correctamente." << endl;
+    } else {
+        cout << "Curso no encontrado: '" << nombreCurso << "'. No se pudo agregar la lección." << endl;
+    }
+}
+
+
+
 void Controlador::Carga_Datos(){
 	Estudiante estudiante("pedro", "123", "nombre", "Le gusta el ingle", "Burkina", DTFecha(1, 1, 1940));
 	this->sistema->usuarios.insert(new Estudiante(estudiante));
@@ -658,7 +683,7 @@ void Controlador::Carga_Datos(){
 
 // Crear un curso y agregarlo a cursos
 
-	Curso curso("fut", "Abajo del agua", Tipo_Dificultad::Facil, true);
+	Curso curso("fut", "Abajo del agua", Tipo_Dificultad::Facil, false);
 	    Leccion* leccion1 = new Leccion("lec1");
     curso.setLeccion(leccion1);
 
