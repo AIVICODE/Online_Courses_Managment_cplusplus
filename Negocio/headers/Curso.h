@@ -13,6 +13,7 @@
 #include "Tipo_Dificultad.h"
 #include "Idioma.h"
 #include "Leccion.h"
+#include "Curso.h"
 
 using namespace std;
 
@@ -48,6 +49,7 @@ public:
 	list<Leccion*> getLecciones() const;
     void setLeccion(Leccion* nuevaLeccion);
     Leccion* buscarLeccion(const string& nombreLeccion);
+    list<Curso*> getCursosPrevios() const;
 
 	
 	list<string> evalua_progreso();

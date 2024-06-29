@@ -43,3 +43,25 @@ list<string> Estudiante::dar_estadistica(){
 string Estudiante::Get_Nick(){
 	return Get_Nick();
 }
+
+list<string> Estudiante::dar_cursos_pendientes() {
+    list<string> cursosPendientes;
+
+    for (Inscripcion* inscripcion : inscripto) {
+        if (!inscripcion->estaAprobado()) {
+            cursosPendientes.push_back(inscripcion->getCurso()->getNombre());
+        }
+    }
+
+    return cursosPendientes;
+}
+
+
+list<Inscripcion*> Estudiante::getInscripciones() const {
+    return inscripto;
+}
+
+
+	void Estudiante::setInscripcion(Inscripcion* inscribe){
+			inscripto.push_back(inscribe);
+	}

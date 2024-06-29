@@ -15,6 +15,7 @@
 #include "../headers/Ejercicio_Completar.h"
 #include "../headers/Ejercicio_Traducir.h"
 #include "../headers/Leccion.h"
+#include "../headers/Inscripcion.h"
 
 #include "../DT/DTUsuario.h"
 #include "../DT/DTProfesor.h"
@@ -23,7 +24,7 @@
 #include "../DT/DTEjercicio.h"
 #include "../DT/DTEjercicio_Completar.h"
 #include "../DT/DTEjercicio_Traduccion.h"
-
+#include "../DT/DTConsultaCurso.h"
 
 #include "../System/System.h"
 
@@ -32,6 +33,19 @@
 #include <iostream>
 using namespace std;
 
+#include <ctime>
+
+// Función para obtener la fecha actual del sistema
+void Controlador::obtenerFechaActual(int &dia, int &mes, int &anio) {
+    // Obtener la fecha y hora actual del sistema
+    std::time_t t = std::time(nullptr);
+    std::tm* now = std::localtime(&t);
+
+    // Extraer el día, mes y año
+    dia = now->tm_mday;
+    mes = now->tm_mon + 1; // tm_mon es el número de meses desde enero, por lo que se añade 1
+    anio = now->tm_year + 1900; // tm_year es el número de años desde 1900, por lo que se añade 1900
+}
 
 Controlador::Controlador() {
 	//obtendo la unica instancia del Sistema
@@ -355,6 +369,14 @@ void Controlador::Habilitar_Curso(string nombreCurso){
 Controlador::~Controlador() {
 	// TODO Auto-generated destructor stub
 }
+//mariano consultar curso
+
+//------------------------------------------------<MARIANO>-------------------------------------------------------
+DTConsulta_Curso* Controlador::ConsultaCurso(string nombreCurso){
+	Curso* curso = Buscar_Curso(nombreCurso);
+	DTConsulta_Curso* consultaDTO=new DTConsulta_Curso((curso->getNombre()),(curso->getDescripcion()),(curso->getDificultadString()), (curso->getIdioma())->Get_Nombre() );
+	return consultaDTO;
+}
 
 void Controlador::Alta_Idioma(std::string el_idioma){
 
@@ -442,6 +464,188 @@ list<string> Controlador::Mostrar_Ejercicios(string nombreCurso, string nombreLe
 }
 
 
+
+void Controlador::Ingresa_Ejercicio(string nickname){
+
+	Usuario* user=Buscar_Usuario(nickname);
+
+       
+    
+}
+
+list<string> Controlador::Muestra_Cursos_Pendientes(string nickname){
+			Usuario* user=Buscar_Usuario(nickname);
+		    // Verificamos si un usuario existe y obtenemos el usuario
+    if (user) {
+        // Intentamos convertirlo a Estudiante
+        Estudiante* estudiante = dynamic_cast<Estudiante*>(user);
+        if (estudiante) {
+            list<string> cursosPendientes = estudiante->dar_cursos_pendientes();
+        	}
+        } 
+}
+
+list<string> Controlador::Muestra_Ejercicios_Pendientes(string nickname,string nombreCurso){
+			Usuario* user=Buscar_Usuario(nickname);
+			
+			Curso* curso=Buscar_Curso(nombreCurso);
+			
+			    list<string> ejerciciosPendientes;
+
+			
+			const list<Leccion*>& leccionesCurso = curso->getLecciones();
+
+    // Intentar castear el usuario a Estudiante
+    Estudiante* estudiante = dynamic_cast<Estudiante*>(user);
+
+    // Obtener las inscripciones del estudiante
+    list<Inscripcion*> inscripciones = estudiante->getInscripciones();
+    
+        Inscripcion* inscripcionEnCurso = nullptr;
+    for (Inscripcion* inscripcion : inscripciones) {
+        if (inscripcion->getCurso() == curso) {
+            inscripcionEnCurso = inscripcion;
+            break;
+        }
+    }
+
+    // Verificar si se encontró la inscripción para el curso
+    if (!inscripcionEnCurso) {
+        cout << "El estudiante no está inscrito en el curso '" << nombreCurso << "'." << endl;
+        return ejerciciosPendientes;
+    }
+
+    // Encontrar la lección actual que no está aprobada
+    Leccion* leccionActual = nullptr;
+    bool encontrada = false;
+
+    const list<Leccion*>& leccionesAprobadas = inscripcionEnCurso->getLeccionesAprobadas();
+
+    for (Leccion* leccion : leccionesCurso) {
+        bool estaAprobada = false;
+        for (Leccion* aprobada : leccionesAprobadas) {
+            if (aprobada == leccion) {
+                estaAprobada = true;
+                break;
+            }
+        }
+
+        if (!estaAprobada) {
+            leccionActual = leccion;
+            encontrada = true;
+            break;
+        }
+    }
+
+    // Si se encontró una lección no aprobada, obtener los ejercicios pendientes
+    if (encontrada && leccionActual) {
+        const list<Ejercicio*>& ejerciciosCurso = leccionActual->Get_Ejercicios();
+        const list<Ejercicio*>& ejerciciosAprobados = inscripcionEnCurso->getEjerciciosAprobados();
+
+        for (Ejercicio* ejercicio : ejerciciosCurso) {
+            bool estaAprobado = false;
+            for (Ejercicio* aprobado : ejerciciosAprobados) {
+                if (aprobado == ejercicio) {
+                    estaAprobado = true;
+                    break;
+                }
+            }
+
+            if (!estaAprobado) {
+                ejerciciosPendientes.push_back(ejercicio->Get_Nombre());
+            }
+        }
+    } else {
+        cout << "Todos los ejercicios del curso '" << nombreCurso << "' han sido aprobados." << endl;
+    }
+
+    return ejerciciosPendientes;
+    
+
+}
+
+// realizar inscripcion
+
+list<string> Controlador::Cursos_Habiles_Estudiante(string nickname){
+
+    Usuario* usuario = Buscar_Usuario(nickname);
+    if (!usuario) {
+        throw std::runtime_error("Usuario no encontrado");
+    }
+
+    Estudiante* estudiante = dynamic_cast<Estudiante*>(usuario);
+    if (!estudiante) {
+        throw std::runtime_error("Usuario no es un estudiante");
+    }
+
+    list<string> cursos_habiles = Listar_Cursos_Habiles();
+    list<string> cursosPendientes = estudiante->dar_cursos_pendientes();
+
+    list<string> cursosDisponibles;
+    for (const string& curso : cursos_habiles) {
+        bool estaPendiente = false;
+
+        // Verificar que el estudiante no esté inscrito en el curso
+        for (const string& cursoPendiente : cursosPendientes) {
+            if (curso == cursoPendiente) {
+                estaPendiente = true;
+                break;
+            }
+        }
+
+        if (!estaPendiente) {
+            Curso* cursoObj = Buscar_Curso(curso);
+            bool previosAprobados = true;
+
+            // Obtener los nombres de los cursos previos
+            list<string> nombresCursosPrevios;
+            for (Curso* previo : cursoObj->getCursosPrevios()) {
+                nombresCursosPrevios.push_back(previo->getNombre());
+            }
+
+            // Verificar los cursos previos
+            for (const string& previo : nombresCursosPrevios) {
+                bool previoPendiente = false;
+                for (const string& cursoPendiente : cursosPendientes) {
+                    if (previo == cursoPendiente) {
+                        previoPendiente = true;
+                        break;
+                    }
+                }
+                if (previoPendiente) {
+                    previosAprobados = false;
+                    break;
+                }
+            }
+
+            if (previosAprobados) {
+                cursosDisponibles.push_back(curso);
+            }
+        }
+    }
+
+    return cursosDisponibles;
+	
+}
+
+void Controlador::Inscribirse_a_Curso(string nickname, string nombreCurso){
+    Usuario* usuario = Buscar_Usuario(nickname);
+    Curso* curso = Buscar_Curso(nombreCurso);
+    Estudiante* estudiante = dynamic_cast<Estudiante*>(usuario);
+
+
+    int dia, mes, anio;
+    obtenerFechaActual(dia, mes, anio);
+
+    DTFecha fecha_actual(dia, mes, anio);
+    Inscripcion* nuevaInscripcion = new Inscripcion(fecha_actual);
+    nuevaInscripcion->setCurso(curso);
+
+    // Agregar la inscripción al estudiante
+    estudiante->setInscripcion(nuevaInscripcion);
+
+}
+
 void Controlador::Carga_Datos(){
 	Estudiante estudiante("pedro", "123", "nombre", "Le gusta el ingle", "Burkina", DTFecha(1, 1, 1940));
 	this->sistema->usuarios.insert(new Estudiante(estudiante));
@@ -453,7 +657,8 @@ void Controlador::Carga_Datos(){
 
 
 // Crear un curso y agregarlo a cursos
-	Curso curso("fut", "Abajo del agua", Tipo_Dificultad::Facil, false);
+
+	Curso curso("fut", "Abajo del agua", Tipo_Dificultad::Facil, true);
 	    Leccion* leccion1 = new Leccion("lec1");
     curso.setLeccion(leccion1);
 
@@ -463,7 +668,3 @@ void Controlador::Carga_Datos(){
 	Idioma idioma("ing");
 	this->sistema->idiomas.insert(new Idioma(idioma));
 }
-
-
-
-

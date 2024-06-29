@@ -17,6 +17,7 @@
 #include "Presentacion/Agregar_Ejercicio.h"
 #include "Presentacion/Consultar_Usuario.h"
 #include "Presentacion/Eliminar_Curso.h"
+#include "Presentacion/Inscribirse_A_Curso.h"
 
 #include <iostream>
 #include "General/Includes.cpp"
@@ -106,7 +107,10 @@ int main() {
                 //consultarCurso();
                 break;
             case 11:
-                //inscribirseACurso();
+            {
+                Inscribirse_A_Curso inscripcion;
+                inscripcion.Inscribirse();
+                }
                 break;
             case 12:
                 //realizarEjercicio();

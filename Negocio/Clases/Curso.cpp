@@ -66,6 +66,10 @@ Idioma* Curso::getIdioma() const {
 list<Leccion*> Curso::getLecciones() const {
     return leccionescurso;
 }
+
+list<Curso*> Curso::getCursosPrevios() const{
+	return previas;
+}
     void Curso::setPrevias(const list<Curso*>& nuevasPrevias) {
         previas = nuevasPrevias;
     }

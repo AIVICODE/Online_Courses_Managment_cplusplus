@@ -21,6 +21,9 @@ private:
 	System* sistema;
 
 public:
+
+//fecha
+void obtenerFechaActual(int &dia, int &mes, int &anio);
 	//Alta user
 	void ingresarUsuario(DTUsuario* user);
 	list<string> Listar_Idiomas();
@@ -56,10 +59,18 @@ public:
 	list<string>  Mostrar_Ejercicios(string nombreCurso, string nombreLeccion);
 	//fin
 	
-	
+	//consutlar curso mariano
+	DTConsulta_Curso* ConsultaCurso(string nombreCurso);
 	//Eliminar curso
 	list <string> Listar_Cursos();
 	void Carga_Datos();
+	
+//ejercicio realizar
+	void Ingresa_Ejercicio(string nickname);
+	list<string> Muestra_Cursos_Pendientes(string nickname);
+	list<string> Muestra_Ejercicios_Pendientes(string nickname,string nombreCurso);
+	list<string> Cursos_Habiles_Estudiante(string nickname);
+	void Inscribirse_a_Curso(string nickname, string nombreCurso);
 };
 
 #endif /* LABFINAL_CONTROLADOR_CONTROLADOR_H_ */

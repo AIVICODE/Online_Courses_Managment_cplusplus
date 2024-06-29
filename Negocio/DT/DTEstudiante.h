@@ -27,6 +27,8 @@ public:
     virtual ~DTEstudiante();
     string getPais() const;
     DTFecha getFecha() const;
+    
+    
 };
 
 #endif /* LABFINAL_DT_DTEstudiante_H_ */
