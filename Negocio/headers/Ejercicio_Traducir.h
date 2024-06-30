@@ -22,6 +22,8 @@ public:
 	Traducir();
     Traducir(string nombre, string descripcion, string frase_sin_traducir, string frase_traducida);
 	~Traducir();
+	string Get_FraseSinTraducir() const;
+	string Get_FraseTraducida() const ;
 };
 
 #endif 

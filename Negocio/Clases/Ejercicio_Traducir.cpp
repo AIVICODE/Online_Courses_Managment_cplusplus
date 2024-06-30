@@ -16,4 +16,12 @@ Traducir::Traducir(string nombre, string descripcion, string frase_sin_traducir,
     this->frase_traducida = frase_traducida;
 }
 
+string Traducir::Get_FraseSinTraducir() const {
+    return frase_sin_traducir;
+}
+
+string Traducir::Get_FraseTraducida() const {
+    return frase_traducida;
+}
+
 Traducir::~Traducir() {}

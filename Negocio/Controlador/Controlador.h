@@ -73,7 +73,9 @@ void obtenerFechaActual(int &dia, int &mes, int &anio);
 	list<string> Muestra_Ejercicios_Pendientes(string nickname,string nombreCurso);
 	list<string> Cursos_Habiles_Estudiante(string nickname);
 	void Inscribirse_a_Curso(string nickname, string nombreCurso);
-	
+	DTEjercicio * Muestro_ejercicio_a_realizar(string nombreCurso,string nombreejercicio);
+	bool Verificar_Solucion(string nombreCurso,string nombreejercicio,DTEjercicio* solucion);
+	void Agrega_Ejercicio_Correcto(string nombreCurso,string estudiante,string nombreejercicio);
 	//agregarleccion
 	void AgregaLeccion(string nombreCurso,DTLeccion * dtleccion);
 };

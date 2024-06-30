@@ -3,7 +3,9 @@
 
 #include <string>
 #include "../Negocio/Interfaces/IControlador.h"
-
+#include "../Negocio/DT/DTEjercicio.h"
+#include "../Negocio/DT/DTEjercicio_Completar.h"
+#include "../Negocio/DT/DTEjercicio_Traduccion.h"
 
 class Realizar_Ejercicio {
 private:

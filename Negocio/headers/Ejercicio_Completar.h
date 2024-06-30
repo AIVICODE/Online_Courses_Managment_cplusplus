@@ -21,6 +21,9 @@ private:
 public:
 	Completar();
     Completar(string nombre, string descripcion, string frase_incompleta, list<string> palabras_faltantes);
+    
+    string Get_FraseIncompleta() const;
+    list<string> Get_PalabrasFaltantes() const;
 	~Completar();
 };
 

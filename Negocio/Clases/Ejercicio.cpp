@@ -25,3 +25,9 @@ Ejercicio::~Ejercicio() {
 string Ejercicio::Get_Nombre(){
 	return nombre;
 }
+
+
+
+string Ejercicio::Get_Descripcion() const {
+    return descripcion;
+}

@@ -99,26 +99,30 @@ DTEjercicio* Agregar_Ejercicio::SolicitarDatosEjercicio() {
             string fraseIncompleta;
             list<string> palabrasFaltantes;
             cout << "Ingrese frase incompleta: ";
-            getline(cin, fraseIncompleta);
+            cin >> fraseIncompleta;
             
             string palabra;
             while (true) {
         		cout << "Ingrese una palabra faltante (o 'fin' para terminar): ";
-        		getline(cin, palabra);
+        		cin >> palabra;
         		if (palabra == "fin") {
             	break;
+        		}else{
+					palabrasFaltantes.push_back(palabra);
+					
+					cout<<" PALABRA INGRESADA ES:"<<palabra;
+				}
         		}
-        		}
-        	palabrasFaltantes.push_back(palabra);
+
             DTCompletar* completarDTO = new DTCompletar(nombre, descripcion, fraseIncompleta, palabrasFaltantes);
             return completarDTO;
         }
         case 2: {
             string fraseSinTraducir, fraseTraducida;
             cout << "Ingrese frase sin traducir: ";
-            getline(cin, fraseSinTraducir);
+            cin >> fraseSinTraducir;
             cout << "Ingrese frase traducida: ";
-            getline(cin, fraseTraducida);
+            cin >> fraseTraducida;
             DTTraducir* traducirDTO = new DTTraducir(nombre, descripcion, fraseSinTraducir, fraseTraducida);
             return traducirDTO;
         }

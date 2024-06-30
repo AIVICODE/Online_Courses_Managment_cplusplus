@@ -82,6 +82,9 @@ virtual void obtenerFechaActual(int &dia, int &mes, int &anio)=0;
 	virtual DTConsulta_Curso* ConsultaCurso(string nombreCurso)=0;
 	virtual list<string> Cursos_Habiles_Estudiante(string nickname)=0;
 	virtual void Inscribirse_a_Curso(string nickname, string nombreCurso)=0;
+	virtual DTEjercicio * Muestro_ejercicio_a_realizar(string nombreCurso,string nombreejercicio)=0;
+	virtual bool Verificar_Solucion(string nombreCurso,string nombreejercicio,DTEjercicio* solucion)=0;
+	virtual void Agrega_Ejercicio_Correcto(string nombreCurso,string estudiante,string nombreejercicio)=0;
 	
 	//agregar leccion
 	virtual void AgregaLeccion(string nombreCurso,DTLeccion * dtleccion)=0;

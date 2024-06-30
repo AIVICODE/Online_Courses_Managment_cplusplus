@@ -10,6 +10,10 @@ DTCompletar::DTCompletar() : DTEjercicio(), frase_incompleta(""), palabras_falta
 // Constructor con parámetros
 DTCompletar::DTCompletar(string nombre, string descripcion, string frase_incompleta, list<string> palabras_faltantes)
     : DTEjercicio(nombre, descripcion), frase_incompleta(frase_incompleta), palabras_faltantes(palabras_faltantes) {}
+    
+    
+DTCompletar::DTCompletar(string nombre, string descripcion, string frase_incompleta)
+    : DTEjercicio(nombre, descripcion), frase_incompleta(frase_incompleta) {}
 
 // Destructor
 DTCompletar::~DTCompletar() {}

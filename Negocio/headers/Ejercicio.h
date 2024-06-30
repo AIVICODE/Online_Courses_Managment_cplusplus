@@ -22,6 +22,8 @@ private:
         Ejercicio(string nombre, string descripcion);
 
 
+		string Get_Descripcion() const ;
+
 		string Get_Nombre();
         virtual ~Ejercicio();
 };

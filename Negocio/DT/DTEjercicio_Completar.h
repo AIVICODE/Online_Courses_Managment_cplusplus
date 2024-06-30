@@ -21,6 +21,7 @@ private:
 public:
 	DTCompletar();
     DTCompletar(string nombre, string descripcion, string frase_incompleta, list<string> palabras_faltantes);
+    DTCompletar(string nombre, string descripcion, string frase_incompleta);
 	~DTCompletar();
 	string Get_Frase_Incompleta() const;
     list<string> Get_Palabras_Faltantes() const;

@@ -15,6 +15,15 @@ Completar::Completar(string nombre, string descripcion, string frase_incompleta,
 }
 
 
+string Completar::Get_FraseIncompleta() const {
+    return frase_incompleta;
+}
+
+list<string> Completar::Get_PalabrasFaltantes() const {
+    return palabras_faltantes;
+}
+
+
 Completar::~Completar() {
     // Implementación del destructor
 }
