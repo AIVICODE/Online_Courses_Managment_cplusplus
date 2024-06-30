@@ -103,19 +103,19 @@ int main() {
                 }
                 break;
             case 9:
-            {
+            {//no terminado
                 Eliminar_Curso eliminarc;
                 eliminarc.EliminarCurso();
                 }
                 break;
             case 10:
-            {
+            {//no terminado
                 Consultar_Curso consultacurso;
                 consultacurso.Hacer();
                 }
                 break;
             case 11:
-            {
+            	{
                 Inscribirse_A_Curso inscripcion;
                 inscripcion.Inscribirse();
                 }

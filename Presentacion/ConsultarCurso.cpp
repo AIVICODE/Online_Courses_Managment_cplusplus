@@ -21,8 +21,8 @@ void Consultar_Curso::Hacer(){
 	while (true) {
 		    cout << "Ingrese el nombre del curso: ";
 		    cin.ignore(); // Limpiar el buffer
-		    getline(cin, nombreCurso);
-		    if (!(this->c->Verificar_Nombre_Curso(nombreCurso))) {
+		    cin >> nombreCurso;
+		    if (this->c->Verificar_Nombre_Curso(nombreCurso)==false) {
 		    				cout << "El curso '" << nombreCurso << "' no existe." << endl;
 		    				cout << "¿Desea intentar de nuevo? (s/n): ";
 		    				char opcion;
@@ -32,18 +32,21 @@ void Consultar_Curso::Hacer(){
 		    					}
 		    				}
 		    				else{
+								DTConsulta_Curso* consulta;
+
+								consulta=this->c->ConsultaCurso(nombreCurso);
+								cout << "Nombre de curso '" << consulta->getNombre() << "'" << endl;
+								cout << "Descripcion '" << consulta->getDescripcion() << "'" << endl;
+								cout << "Dificultad '" << consulta->getDificultad()<< "'" << endl;
+								cout << "Idioma '" << consulta->getIdioma()<< "'" << endl;
+								
+								
 		    				break;
 		    				}
 	}
-	DTConsulta_Curso* consulta;
+	
+	
 
-	consulta=this->c->ConsultaCurso(nombreCurso);
-	cout << "Nombre de curso '" << consulta->getNombre() << "'" << endl;
-	cout << "Descripcion '" << consulta->getDescripcion() << "'" << endl;
-	cout << "Dificultad '" << consulta->getDificultad()<< "'" << endl;
-	cout << "Idioma '" << consulta->getIdioma()<< "'" << endl;
-
-	std::cin.ignore();
 }
 
 

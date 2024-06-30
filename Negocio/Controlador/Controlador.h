@@ -43,7 +43,7 @@ void obtenerFechaActual(int &dia, int &mes, int &anio);
 	//Alta curso
 	list<DTUsuario*> Listar_Profesores();
 	void Crear_Curso(DTCurso* curso);
-	bool Verificar_Nombre_Curso(const std::string& nombre);
+	bool Verificar_Nombre_Curso(const string nombre);
 	list <string> Listar_Cursos_Habiles();
 	void Agregar_Idioma_Curso(string idioma);
 	Idioma* Buscar_Idioma(string idioma);
