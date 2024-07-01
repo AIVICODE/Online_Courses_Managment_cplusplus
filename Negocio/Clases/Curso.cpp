@@ -77,7 +77,12 @@ list<Curso*> Curso::getCursosPrevios() const{
 void Curso::setLeccion(Leccion* nuevaLeccion) {
     leccionescurso.push_back(nuevaLeccion);
 }
-
+Profesor* Curso::getProfesor() const {
+    return profesor;
+}
+void Curso::setProfesor(Profesor* profesor) {
+    this->profesor = profesor;
+}
     Leccion* Curso::buscarLeccion(const string& nombreLeccion) {
         for (Leccion* leccion : leccionescurso) {
             if (leccion->Get_Nombre() == nombreLeccion) {

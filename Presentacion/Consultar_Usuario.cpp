@@ -19,17 +19,27 @@ Consultar_Usuario::~Consultar_Usuario() {
 void Consultar_Usuario::Imprimir() {
 list<DTUsuario*> usuarios = c->Listar_Usuarios();
 
-    // Mostrar los usuarios obtenidos
-    for (DTUsuario* usuario : usuarios) {
+for (DTUsuario* usuario : usuarios) {
         // Intentar convertir el usuario a un DTProfesor
         if (DTProfesor* profesor = dynamic_cast<DTProfesor*>(usuario)) {
-            cout << "Profesor - Nickname: " << usuario->getNickname() << endl;
-            // Aquí puedes mostrar más detalles si los tienes en DTProfesor
+            cout << "Profesor - Nickname: " << profesor->getNickname() << endl;
+            cout << "Nombre: " << profesor->getNombre() << endl;
+            cout << "Descripción: " << profesor->getDescripcion() << endl;
+            cout << "Instituto: " << profesor->getInstituto() << endl;
+
+            list<string> idiomas = profesor->getIdiomas();
+            cout << "Idiomas: ";
+            for (const string& idioma : idiomas) {
+                cout << idioma << " ";
+            }
+            cout << endl;
         }
         // Intentar convertir el usuario a un DTEstudiante
         else if (DTEstudiante* estudiante = dynamic_cast<DTEstudiante*>(usuario)) {
-            cout << "Estudiante - Nickname: " << usuario->getNickname() << endl;
-            // Aquí puedes mostrar más detalles si los tienes en DTEstudiante
+            cout << "Estudiante - Nickname: " << estudiante->getNickname() << endl;
+            cout << "Nombre: " << estudiante->getNombre() << endl;
+            cout << "Descripción: " << estudiante->getDescripcion() << endl;
+            cout << "País: " << estudiante->getPais() << endl;
         }
         // Manejo de caso inesperado (aunque según la implementación, no debería ocurrir)
         else {

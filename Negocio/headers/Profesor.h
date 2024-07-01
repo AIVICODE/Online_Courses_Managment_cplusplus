@@ -10,6 +10,7 @@
 
 #include "Usuario.h"
 #include "Idioma.h"
+
 #include <list>
 class Profesor : public Usuario {
 private:
@@ -24,19 +25,9 @@ public:
     string getInstituto()const;
     string getNickname();
     void agregarIdioma(Idioma* idioma);
+    
+        list<Idioma*> getIdiomas() const; 
 
-
-   // DTUsuario* getDT();
-
-    // Setters
-    //void setInstituto(string instituto);
-
-    // Operaciones
-    //set<string> obtenerIdiomas();
-    //void agregarAIdiomasDeProfesor();
-    //set<DTDataCursoProfesor> getCursosProfesor();
-
-    //set<Idioma*> getIdiomas();
 
 
     ~Profesor();

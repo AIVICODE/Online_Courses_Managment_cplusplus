@@ -29,3 +29,8 @@ string Profesor::getNickname(){
 return Get_Nick();
 }
 
+
+
+list<Idioma*> Profesor::getIdiomas() const {
+    return idiomasDeProfesor;
+}

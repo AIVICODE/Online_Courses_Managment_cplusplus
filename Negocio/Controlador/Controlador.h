@@ -42,7 +42,7 @@ void obtenerFechaActual(int &dia, int &mes, int &anio);
 	Controlador();
 	//Alta curso
 	list<DTUsuario*> Listar_Profesores();
-	void Crear_Curso(DTCurso* curso);
+	void Crear_Curso(DTCurso* curso,string nickname);
 	bool Verificar_Nombre_Curso(const string nombre);
 	list <string> Listar_Cursos_Habiles();
 	void Agregar_Idioma_Curso(string idioma);
@@ -54,6 +54,7 @@ void obtenerFechaActual(int &dia, int &mes, int &anio);
 	//altaidioma
 	void Alta_Idioma(std::string el_idioma);
 	//agregar ejercicio
+	list<string> List_Lecciones(string nombreCurso);
 	list <string> Listar_Cursos_No_Habiles();
 	void Agregar_Ejercicio(string nombreCurso,string nombreLeccion,DTEjercicio* dtejercicio);
 	list<string> Mostrar_Lecciones(string nombreCurso);

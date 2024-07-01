@@ -51,7 +51,7 @@ void Alta_De_Curso::AltaCurso(){
 					}
 				} else {
 					// FUNCION QUE CONTINUA CON USUARIO VALIDO
-					CrearCurso();
+					CrearCurso(nickname);
 					break;
 				}
 			}
@@ -64,7 +64,7 @@ void Alta_De_Curso::AltaCurso(){
 
 }
 
-void Alta_De_Curso::CrearCurso(){
+void Alta_De_Curso::CrearCurso(string nickname){
 
     string nombreCurso, descripcion,idioma;
     idioma="";
@@ -133,7 +133,7 @@ void Alta_De_Curso::CrearCurso(){
 		    
 		
 	DTCurso* curso=new DTCurso(nombreCurso,descripcion,dificultad,idioma,previas);
-	this->controlador->Crear_Curso(curso);
+	this->controlador->Crear_Curso(curso,nickname);
 	
 	
 }

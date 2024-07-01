@@ -15,9 +15,14 @@
 using namespace std;
 
 DTEstudiante::DTEstudiante() {}
+
 DTEstudiante::DTEstudiante(string nickname, string contrasenia, string nombre, string descripcion, string pais, DTFecha fecha)
     : DTUsuario(nickname, contrasenia, nombre, descripcion), pais(pais), fecha(fecha) {}
+    
 DTEstudiante::~DTEstudiante() {}
+
+DTEstudiante::DTEstudiante(string nickname, string nombre, string descripcion, string pais)
+    : DTUsuario(nickname, "", nombre, descripcion), pais(pais) {}
 
 string DTEstudiante::getPais() const {
     return pais;
@@ -26,8 +31,3 @@ string DTEstudiante::getPais() const {
 DTFecha DTEstudiante::getFecha() const {
     return fecha;
 }
-
-
-
-DTEstudiante::DTEstudiante(string nickname)
-    : DTUsuario(nickname) {} // Llamar al constructor de DTUsuario
