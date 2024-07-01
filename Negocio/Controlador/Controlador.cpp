@@ -26,6 +26,7 @@
 #include "../DT/DTEjercicio_Completar.h"
 #include "../DT/DTEjercicio_Traduccion.h"
 #include "../DT/DTConsultaCurso.h"
+#include "../DT/DTInscripcion.h"
 
 #include "../System/System.h"
 
@@ -395,8 +396,12 @@ Controlador::~Controlador() {
 //------------------------------------------------<MARIANO>-------------------------------------------------------
 DTConsulta_Curso* Controlador::ConsultaCurso(string nombreCurso){
 	Curso* curso = Buscar_Curso(nombreCurso);
-	
-	DTConsulta_Curso* consultaDTO=new DTConsulta_Curso((curso->getNombre()),(curso->getDescripcion()),(curso->getDificultadString()), (curso->getIdioma())->Get_Nombre() );
+	string disponible;
+	if(curso->isDisponible()){disponible="Habilitado";}else{disponible="No habilitado";}
+	DTConsulta_Curso* consultaDTO=new DTConsulta_Curso((curso->getNombre()),
+				(curso->getDescripcion()),(curso->getDificultadString()),
+				(curso->getIdioma())->Get_Nombre(),(curso->getProfesor())->Get_Nick(),
+				disponible);
 	return consultaDTO;
 }
 
@@ -418,6 +423,7 @@ list<string> Controlador::Mostrar_Lecciones(string nombreCurso){
         // Manejar el caso en que el curso no sea encontrado
         cout << "Curso no encontrado." << endl;
     }
+    
 
     return nombresLecciones;
 }
@@ -845,4 +851,125 @@ Curso* curso = Buscar_Curso(nombreCurso);
     }
 
 }
+
+list<DTLeccion*> Controlador::Info_Lecciones(string nombreCurso){
+	list<DTLeccion*> info_Leccion;
+	Curso* curso = Buscar_Curso(nombreCurso);
+	list<Leccion*> lecciones=curso->getLecciones();
+
+		for(auto it = lecciones.begin(); it != lecciones.end(); ++it){
+			Leccion* leccion = *it;
+			DTLeccion* info=new DTLeccion(leccion->Get_Nombre(),leccion->Get_Descripcion(),leccion->Get_Tema(),leccion->Get_Objetivo());
+			info_Leccion.push_back(info);
+		}
+	return info_Leccion;
+}
+
+list<string> Controlador::Mostrar_Descripcion_Ejercicios(string nombreCurso, string nombreLeccion) {
+    Curso* curso = Buscar_Curso(nombreCurso);
+    if (!curso) {
+        cout << "Curso no encontrado: " << nombreCurso << endl;
+        return {}; // Devolver lista vacía si el curso no se encuentra
+    }
+
+    Leccion* leccion = curso->buscarLeccion(nombreLeccion);
+    if (!leccion) {
+        cout << "Lección no encontrada: " << nombreLeccion << " en el curso " << nombreCurso << endl;
+        return {}; // Devolver lista vacía si la lección no se encuentra en el curso
+    }
+
+    list<string> nombresEjercicios;
+    const list<Ejercicio*>& ejercicios = leccion->Get_Ejercicios();
+    for (Ejercicio* ejercicio : ejercicios) {
+        nombresEjercicios.push_back(ejercicio->Get_Nombre()); // Suponiendo que Ejercicio tiene un método Get_Nombre()
+    }
+
+    return nombresEjercicios;
+}
+
+list<DTInscripcion*> Controlador::Obtener_Inscipciones_Curso(string nombreCurso){
+	list<DTUsuario*> userlist;
+	list<DTInscripcion*> inscripciones;
+	for (Usuario* usuario : this->sistema->usuarios) {
+		// Verifica si el usuario es un estudiante
+		if (Estudiante* estudiante = dynamic_cast<Estudiante*>(usuario)) {
+			list<Inscripcion*> insc=estudiante->getInscripciones();
+			for(auto it = insc.begin(); it != insc.end() ; ++it){
+				Inscripcion* i =*it;
+				if((i->getCurso())->getNombre() == nombreCurso){
+					DTFecha fech= i->getFecha();
+					std::string fecha = std::to_string(fech.getDia())+"/"+std::to_string(fech.getMes())+"/"+std::to_string(fech.getAnio());
+					DTInscripcion* inscripto = new DTInscripcion(usuario->Get_Nick(),i->getCurso()->getNombre(), fecha);
+					inscripciones.push_back(inscripto);
+
+				}
+			}
+		}
+	}
+
+	return inscripciones;
+}
+
+
+void Controlador::Eliminar_Curso(string nombreCurso) {
+    // Buscar el curso a eliminar
+Curso* cursoAEliminar = Buscar_Curso(nombreCurso);
+    
+    if (cursoAEliminar) {
+		
+		EliminarInscripcionesPorCurso(cursoAEliminar);
+        // Eliminar el curso de la lista de cursos del sistema
+        auto it = this->sistema->cursos.find(cursoAEliminar);
+        if (it != this->sistema->cursos.end()) {
+            this->sistema->cursos.erase(it);
+        }
+
+        // Liberar memoria del curso eliminado
+        delete cursoAEliminar;
+        cursoAEliminar = nullptr;  // Asignación nula para evitar referencias a memoria liberada
+
+        // Iterar sobre todos los cursos en el sistema
+        for (Curso* curso : this->sistema->cursos) {
+            // Obtener la lista de cursos previos del curso actual
+            const list<Curso*>& previas = curso->getCursosPrevios();
+
+            // Iterar sobre la lista de previas para buscar y eliminar el curso a eliminar
+            for (auto itPrevias = previas.begin(); itPrevias != previas.end(); ++itPrevias) {
+                if (*itPrevias == cursoAEliminar) {
+                    curso->eliminarPrevia(cursoAEliminar);
+                    break;  // Salir del bucle una vez que se haya eliminado el curso
+                }
+            }
+        }
+
+        cout << "El curso '" << nombreCurso << "' ha sido eliminado exitosamente." << endl;
+        }
+}
+
+void Controlador::EliminarInscripcionesPorCurso(Curso* curso) {
+    // Iterar sobre todos los estudiantes y eliminar la inscripción al curso
+    for (Usuario* usuario : this->sistema->usuarios) {
+        Estudiante* estudiante = dynamic_cast<Estudiante*>(usuario);
+        if (estudiante) {
+            EliminarInscripcionDeEstudiante(estudiante, curso);
+        }
+    }
+}
+
+void Controlador::EliminarInscripcionDeEstudiante(Estudiante* estudiante, Curso* curso) {
+    list<Inscripcion*> inscripciones = estudiante->getInscripciones();
+    for (auto it = inscripciones.begin(); it != inscripciones.end(); ) {
+        if ((*it)->getCurso() == curso) {
+            delete *it;  // Liberar memoria de la inscripción
+            it = inscripciones.erase(it);  // Eliminar la inscripción de la lista
+        } else {
+            ++it;
+        }
+    }
+        estudiante->setInscripciones(inscripciones);
+
+}
+
+
+
 

@@ -91,6 +91,9 @@ void Curso::setProfesor(Profesor* profesor) {
         }
         return nullptr; // Retorna nullptr si no se encuentra la lección
     }
+    void Curso::eliminarPrevia(Curso* cursoEliminar) {
+        previas.remove(cursoEliminar);
+    }
 
 list<string> Curso::evalua_progreso(){
 // RECORRO LECCIONES

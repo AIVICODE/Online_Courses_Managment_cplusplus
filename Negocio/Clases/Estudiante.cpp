@@ -18,7 +18,9 @@ Estudiante::Estudiante() {}
 Estudiante::Estudiante(string nickname, string contrasenia, string nombre, string descripcion, string pais, DTFecha fecha)
     : Usuario(nickname, contrasenia, nombre, descripcion), pais(pais), fecha(fecha) {}
 
-Estudiante::~Estudiante() {}
+Estudiante::~Estudiante() {
+	
+}
 
 string Estudiante::getPais() const {
     return pais;
@@ -60,7 +62,9 @@ list<string> Estudiante::dar_cursos_pendientes() {
 list<Inscripcion*> Estudiante::getInscripciones() const {
     return inscripto;
 }
-
+void Estudiante::setInscripciones(const list<Inscripcion*>& nuevasInscripciones) {
+    inscripto = nuevasInscripciones;
+}
 
 	void Estudiante::setInscripcion(Inscripcion* inscribe){
 			inscripto.push_back(inscribe);

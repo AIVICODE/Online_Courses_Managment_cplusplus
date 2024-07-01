@@ -56,6 +56,8 @@ public:
 	Profesor* getProfesor() const;
 	void setProfesor(Profesor* profesor);
 	list<string> evalua_progreso();
+	    void eliminarPrevia(Curso* cursoEliminar);
+
 	~Curso();
 };
 #endif /* CLASES_CURSO_H_ */

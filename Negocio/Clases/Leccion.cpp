@@ -17,11 +17,25 @@ string Leccion::Get_Nombre(){
 	return nombre;
 }
 Leccion::~Leccion() {
-	// TODO Auto-generated destructor stub
+    // Liberar memoria de todos los ejercicios
+    for (auto ejercicio : ejercicios) {
+        delete ejercicio;
+    }
+    ejercicios.clear();  // Limpiar la lista después de eliminar los ejercicios
 }
 
+string Leccion::Get_Descripcion() const {
+    return descripcion;
+}
+string Leccion::Get_Tema() const {
+    return tema;
+}
 string Leccion::Get_Nombre() const {
     return nombre;
+}
+
+string Leccion::Get_Objetivo() const {
+    return objetivo;
 }
 
 void Leccion::Agregar_Ejercicio(Ejercicio* ejercicio) {

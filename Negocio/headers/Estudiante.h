@@ -35,6 +35,8 @@ public:
 	list<string> dar_cursos_pendientes();
 	list<Inscripcion*> getInscripciones() const;
 	void setInscripcion(Inscripcion* inscribe);
+    void setInscripciones(const list<Inscripcion*>& nuevasInscripciones);
+
 };
 
 #endif /* ESTUDIANTE_H_ */

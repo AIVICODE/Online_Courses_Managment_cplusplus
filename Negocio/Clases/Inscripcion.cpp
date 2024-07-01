@@ -72,3 +72,18 @@ list<Ejercicio*> Inscripcion::getEjerciciosAprobados() const{
     void Inscripcion::setCurso(Curso* curso){
 		this->curso=curso;
 	}
+	
+	
+	Inscripcion::~Inscripcion() {
+    // Liberar memoria de la lista de Lecciones aprobadas
+    for (auto it = aprobadas.begin(); it != aprobadas.end(); ++it) {
+        delete *it;
+    }
+    aprobadas.clear();  // Limpiar la lista después de liberar la memoria
+
+    // Liberar memoria de la lista de Ejercicios aprobados
+    for (auto it = ejaprobados.begin(); it != ejaprobados.end(); ++it) {
+        delete *it;
+    }
+    ejaprobados.clear();  // Limpiar la lista después de liberar la memoria
+}

@@ -104,13 +104,13 @@ int main() {
                 }
                 break;
             case 9:
-            {//no terminado
+            {//terminado pobremente testeado
                 Eliminar_Curso eliminarc;
                 eliminarc.EliminarCurso();
                 }
                 break;
             case 10:
-            {//no terminado
+            {//terminado
                 Consultar_Curso consultacurso;
                 consultacurso.Hacer();
                 }
@@ -128,6 +128,7 @@ int main() {
                 break;
                 }
             case 13: {
+				//no terminado
                 Consultar_Estadisticas estadistica;
                 estadistica.consultar_estadisticas();
                 esperaEnter();

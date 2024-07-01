@@ -1,14 +1,6 @@
 Falta devolver DTCurso con la cantidad de lecciones del curso etc para  inscripcion
 
-Falta Realizar el ejercicoo la parte 3
 
 
-cargar datos
+Falta Al dar de alta el curso agregar lecciones y ejercicios (si funciona con los casos de uso dedicados)
 
-agregar ejercicio
-
-habilitar curso
-
-inscribirse a curso
-
-ralizar ejercicio

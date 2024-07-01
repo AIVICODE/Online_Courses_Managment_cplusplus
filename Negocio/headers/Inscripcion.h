@@ -17,7 +17,7 @@ private:
     list<Ejercicio*> ejaprobados;
 public:
     Inscripcion(const DTFecha& fecha);
-
+	~Inscripcion();
     // Métodos
     list<string> evalua_progreso();
     void Pendiente();
