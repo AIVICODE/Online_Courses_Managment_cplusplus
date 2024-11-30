@@ -1,6 +1,1 @@
-# LabFinal
-Implementacion final del curso PGAV
-Reglas GIT:
-Crear rama secundaria para trabajar (solo subir codigo a rama main si funciona)
-Antes de comenzar a programar algo nuevo se trae el codigo de la rama main para tenerlo actualizado.
-Antes de subir algo se trae de la rama main para que la misma este actualizado, se prueba si compila, si compila se puede subir a la rama main su codigo.
+The project was the final implementation for the Programming course, where we developed an online course management system in C++. The system allowed students to take tests. We followed Git best practices, including working on a secondary branch and updating from the main branch before committing changes.
